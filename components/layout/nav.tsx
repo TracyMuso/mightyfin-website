@@ -1,10 +1,13 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { navLinks } from "@/constants/data/navmenu";
+import MobileNav from "./mobilenav";
 
 const NavMenu = () => {
-  const router = useRouter();
+  const pathname = usePathname();
   return (
     <div className="py-4 px-9 flex gap-6 border-gray-50 border-b-2 justify-between items-center m-0 w-full font-Montserrat">
       <div className="logo p-0">
@@ -15,7 +18,7 @@ const NavMenu = () => {
       <div className="nav-items hidden md:flex justify-between gap-2 py-4 px-6 rounded-[50px]">
         {navLinks.map((item, idx) => (
           <Link
-            className={`${router.pathname == item.url ? "nav-item-active" : ""} px-4 py-2 rounded-[50px]`}
+            className={`${pathname == item.url ? "nav-item-active" : ""} px-4 py-2 rounded-[50px]`}
             href={item.url}
             key={idx}
           >
@@ -23,7 +26,7 @@ const NavMenu = () => {
           </Link>
         ))}
       </div>
-      {/* <MobileNav /> */}
+      <MobileNav />
       {/* <div className="w-1/4 flex items-center justify-between">
         <div className="2/5">
           <Button
