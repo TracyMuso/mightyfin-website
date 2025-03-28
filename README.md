@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mightyfin - FRONTEND WEBSITE
 
-## Getting Started
+## Project Structure
 
-First, run the development server:
+> Each page should go under pages/ directory
+> Here is the project stucture
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+|_ components/
+  |_ index.ts # this will be the file that will export all the components, but each component should have a folder like
+  |_ component-name
+    |_ index.ts # or js
+    |_ types.ts # if necessary
+|_ helpers
+  |_ index.ts # this will be the file that will export all the helpers functions and classes, but each component should have a folder or file
+  |_ apiService.ts # for example
+|_ constants
+  |_ index.ts # to export all the constants
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Getting started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Depending on the task you got assigned, you can test on a dedicated environment
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Install all dependencies
 
-## Learn More
+  `$ yarn`
 
-To learn more about Next.js, take a look at the following resources:
+- Start the whole app in dev mode using:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  `$ yarn dev`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contribution guideline
 
-## Deploy on Vercel
+- After all the changes, make sure there is no linting error
+- Make sure to run builds for your working project, eg, if I am working on auth, I would run: `$ yarn build`
+- Make sure husky hooks executes successfully (if not the first time you may consider running `$ npx husky`)
+- Make a meaninfull PR describing the work you did, with a short loom record
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Commits formats
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Since we have multiple apps in one, making meaningful commits is crutial, otherwise PRs won't be accepted, make sure the following appears in the commit:
+
+- The name of the folder or page changes belong to
+- A short desctiption of the changes
+
+Here is an example of a valid / invalid commit:
+
+```bash
+# BAD COMMIT MESSAGE PLEASE AVOID AS MUCH AS POSSIBLE
+$ git commit -m 'update the loader on the page'
+
+# A MEANINGFUL COMMIT MESSAGE
+$ git commit -m 'feat(landing-page): update the loader component accross the landing page'
+
+```
+
+### Pull Request Formats
+
+A valid PR should contain:
+
+- The name of the platform the PR belongs to
+- A tag to the issue you are resolving
+- A loom/zoom recording or screenshots of visible changes
+- A short description that summarizes all the commits added
