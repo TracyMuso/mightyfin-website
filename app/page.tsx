@@ -1,9 +1,8 @@
-import { Button } from "@/components/button";
-
+import Hero from "@/components/hero";
 export default function Home() {
   return (
     <div>
-      <Button size="md" variant="primary" text="hi there"  />
+      <Hero />
     </div>
   );
 }
