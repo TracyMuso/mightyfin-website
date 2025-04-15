@@ -71,13 +71,13 @@ export default function MobileNav() {
 
       {/* Mobile menu */}
       <div
-        className={`absolute top-0 left-0 right-0 bg-white shadow-md transition-all duration-300 ease-in-out ${
+        className={`absolute top-0 left-0 right-0 bg-purple-100 py-12 shadow-md transition-all duration-300 ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
-        <nav className="flex flex-col p-4 space-y-2 bg-purple-100">
+        <nav className="flex flex-col items-center px-4 space-y-2">
           {navLinks.map((item, idx) => (
             <a
               key={idx}
