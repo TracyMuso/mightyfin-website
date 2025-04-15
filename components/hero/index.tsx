@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Point from "./point";
-import { Button } from "./button";
+import { Button } from "../button";
 
 const Hero = () => {
   return (
