@@ -104,3 +104,56 @@ export interface WhyUsCardType {
   icon: string;
   text: string;
 }
+
+export type Product = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  benefits: string[];
+  ctaPrimary: {
+    text: string;
+    action: string;
+  };
+  ctaSecondary: {
+    text: string;
+    action: string;
+  };
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  theme?: {
+    primaryColor?: string;
+    secondaryColor?: string;
+  };
+};
+
+export type CsProduct = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  benefits: string[];
+  ctaPrimary: {
+    text: string;
+    action: string;
+  };
+  ctaSecondary: {
+    text: string;
+    action: string;
+  };
+  image: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
+  theme?: {
+    primaryColor?: string;
+    secondaryColor?: string;
+  };
+  status?: 'active' | 'coming-soon' | 'beta'; // Optional status flag
+};

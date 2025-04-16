@@ -9,37 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <section className="font-Montserrat pt-16">
-      <div
-        className={`${styles.footerCTAContainer} md:pb-16 md:h-[80vh] pb-16 flex justify-center`}
-      >
-        <div
-          className={`${styles.footerCtaMain} md:w-[80%] flex justify-between`}
-        >
-          <div className="p-6 md:w-2/3">
-            <h2 className="md:text-3xl sm:text-2xl text-xl sm:leading-[2.5rem] font-extrabold pb-4 sm:text-left text-center">
-              Embrace A Brighter Financial Future With
-              <span className="text-yellow-300"> Mighty Fin </span>
-              Starting Today!
-            </h2>
-            <h4 className="md:font-bold md:text-xl pb-8 sm:text-left text-center">
-              Financial Solutions at Your Fingertips: Secure Loans, Manage
-              Accounts
-            </h4>
-            <button className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-purple-500 hover:bg-purple-primary rounded-3xl text-white font-bold">
-              Apply Now!
-            </button>
-          </div>
-          <div className="md:block hidden">
-            <Image
-              src={"/Images/LandingPage/happy-woman.png"}
-              alt="happy black woman"
-              width={600}
-              height={480}
-            />
-          </div>
-        </div>
-      </div>
+    <section className="font-Montserrat pt-6">
       <footer className="flex flex-col px-5">
         <div
           className={`${styles.footerBorder} flex md:flex-row flex-col justify-between lg:gap-2 sm:gap-8 mx-auto pb-8`}
@@ -87,7 +57,7 @@ const Footer = () => {
         </div>
         <div className="flex sm:flex-row flex-col items-center sm:gap-1 gap-3 justify-between py-8 md:w-[90%] mx-auto">
           <span className="text-gray-400">
-            © 2024 All rights reserved | Mighty finance
+            © 2025 All rights reserved | Mighty finance
           </span>
           <div className="flex items-center justify-between md:w-1/5">
             {footerSocialLinks.map((item, idx) => (
