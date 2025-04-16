@@ -10,14 +10,18 @@ export const navLinks: NavigationLink[] = [
   },
   {
     title: "About",
-    url: "/about-us",
+    url: "/about",
   },
   {
     title: "Products",
-    url: "/product",
+    url: "/products",
   },
   {
-    title: "Blog & News",
-    url: "/blog",
+    title: "Contact",
+    url: "/contact",
   },
+  // {
+  //   title: "Blog & News",
+  //   url: "/blog",
+  // },
 ];
