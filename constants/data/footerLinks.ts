@@ -65,7 +65,7 @@ export const footerLinks: FooterLink[] = [
 
 export {};
 
-export const footerContactLinks: SocialLink[] = [
+export const ContactLinks: SocialLink[] = [
   {
     label: "+260 97 8555299",
     icon: "/Icons/fluent_call-12-regular.svg",
