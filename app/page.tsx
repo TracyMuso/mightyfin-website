@@ -1,5 +1,4 @@
 import BlogandNews from "@/components/BlogxNews";
-import Footer from "@/components/Footer";
 import Hero from "@/components/hero";
 import LoanSteps from "@/components/LoanSteps";
 import Products from "@/components/Products";
@@ -14,7 +13,6 @@ export default function Home() {
       <LoanSteps />
       <BlogandNews />
       <SocialProof />
-      <Footer />
     </div>
   );
 }
