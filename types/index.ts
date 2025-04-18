@@ -167,3 +167,10 @@ export interface FormType {
   for: string;
   name: string;
 }
+
+export interface AboutFeatureCard {
+  icon: string;
+  text1: string;
+  text2: string;
+  title: string;
+}

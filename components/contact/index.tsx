@@ -5,7 +5,7 @@ import ContactForm from "./contactForm";
 
 const Contact = () => {
   return (
-    <div id="contact" className="w-full flex flex-col sm:items-start items-center gap-5 py-6 md:px-16 px-8">
+    <div id="contact" className="w-full flex flex-col sm:items-start items-center gap-5 py-16 md:px-16 px-8">
       <div className="flex md:flex-row justify-between flex-col items-center m-0 gap-10 lg:px-20 md:px-10 w-full">
         <div className=" flex flex-col justify-between sm:items-start items-center gap-9">
           <div className="flex flex-col sm:items-start items-center gap-5">
