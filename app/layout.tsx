@@ -5,7 +5,7 @@ import NavMenu from "@/components/layout/nav";
 import Footer from "@/components/Footer";
 
 const poppins = Poppins({
-  variable: "--font-montserrat",
+  variable: "--font-poppins",
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });

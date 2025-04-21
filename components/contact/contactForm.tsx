@@ -19,7 +19,7 @@ export const ContactForm = () => {
           ))}
           <div className="flex flex-col">
             <label htmlFor="message" className="mb-2 text-black text-sm sm:text-base">Message</label>
-            <textarea className="px-4 py-2 bg-purple-100 w-full h-[100px] rounded-md leading-5 text-sm text-gray-800" id="message" name="message" placeholder="Your message"></textarea>
+            <textarea className="px-4 py-2 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-input shadow-xs transition-[color,box-shadow] outline-none bg-purple-100 w-full h-[100px] rounded-md leading-5 text-sm text-gray-800" id="message" name="message" placeholder="Your message"></textarea>
           </div>
         </div>
         <div className="pl-4 py-2 relative">
