@@ -157,3 +157,20 @@ export type CsProduct = {
   };
   status?: 'active' | 'coming-soon' | 'beta'; // Optional status flag
 };
+
+export interface FormType {
+  type?: string;
+  label?: string;
+  placeholder?: string;
+  value?: string;
+  id: string;
+  for: string;
+  name: string;
+}
+
+export interface AboutFeatureCard {
+  icon: string;
+  text1: string;
+  text2: string;
+  title: string;
+}
