@@ -4,7 +4,7 @@ import styles from "../../styles/landingPage.module.css";
 import {
   footerLinks,
   footerSocialLinks,
-  footerContactLinks,
+  ContactLinks,
 } from "@/constants/data/footerLinks";
 
 const Footer = () => {
@@ -42,7 +42,7 @@ const Footer = () => {
             ))}
 
             <div className="flex flex-col gap-4 min-w-[250px] flex-1 sm:flex-none">
-              {footerContactLinks.map((item, idx) => (
+              {ContactLinks.map((item, idx) => (
                 <Link
                   key={idx}
                   href={item.link}
