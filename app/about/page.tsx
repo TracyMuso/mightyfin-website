@@ -7,12 +7,12 @@ import styles from '@/styles/aboutPage.module.css'
 const AboutPage = () => {
   return (
     <div>
-      <section className='lg:px-16 sm:px-12 px-8 py-10 md:h-[100vh] relative'>
+      <section className='lg:px-16 sm:px-12 px-8 py-10 md:h-[100vh] md:relative'>
         <h1 className='lg:text-4xl sm:text-2xl pb-3 text-xl text-purple-600'>Simplifying Finance, Empowering Dreams
         Your Fintech Ally</h1>
         <div className={`${styles.hero} w-full hidden sm:block`}>
         </div>
-        <div className='p-4 rounded-md bg-gray-50 md:text-left sm:absolute left-24 bottom-12 sm:w-[500px]'>
+        <div className='p-4 rounded-md bg-gray-50 md:text-left md:absolute left-24 bottom-12 sm:w-[500px]'>
           <h4 className='text-xl'>Problem We Solve</h4>
           <p className='font-light pt-3'>
             Many people struggle with confusing loan applications, hidden fees, and inflexible repayment options. Mighty Fin simplifies the process with an easy-to-use platform, clear rates, and personalized, flexible repayment plans, making borrowing straightforward and stress-free.
