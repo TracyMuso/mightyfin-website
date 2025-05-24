@@ -8,34 +8,34 @@
     /* Color Palette */
     /* Purple */
     --color-purple-primary: #653191;
-    --color-purple-100: #EDCCFF;
-    --color-purple-200: #A152CC;
-    --color-purple-300: #793D99;
+    --color-purple-100: #edccff;
+    --color-purple-200: #a152cc;
+    --color-purple-300: #793d99;
     --color-purple-400: #531773;
     --color-purple-500: #410064;
-    --color-purple-600: #1B0129;
+    --color-purple-600: #1b0129;
 
     /* Pink */
-    --color-pink-100: #FFBBB8;
-    --color-pink-200: #FF180E;
+    --color-pink-100: #ffbbb8;
+    --color-pink-200: #ff180e;
 
     /* Yellow */
-    --color-yellow-50: #FFF2CC;
-    --color-yellow-100: #FFE599;
-    --color-yellow-200: #FFD866;
-    --color-yellow-300: #FFCB33;
-    --color-yellow-400: #FFC10D;
+    --color-yellow-50: #fff2cc;
+    --color-yellow-100: #ffe599;
+    --color-yellow-200: #ffd866;
+    --color-yellow-300: #ffcb33;
+    --color-yellow-400: #ffc10d;
 
     /* Gray */
     --color-gray-100: #878787;
-    --color-gray-200: #4E4E4E;
-    --color-gray-300: #1E1D1D;
+    --color-gray-200: #4e4e4e;
+    --color-gray-300: #1e1d1d;
     --color-gray-400: #606060;
     --color-gray-500: #656565;
 
     /* Green */
-    --color-green-100: #A4D498;
-    --color-green-200: #21A501;
+    --color-green-100: #a4d498;
+    --color-green-200: #21a501;
 
     /* Font Families */
     --font-montserrat: "Montserrat", sans-serif;
@@ -97,12 +97,24 @@
 
 @layer utilities {
   /* Generate utility classes for custom properties */
-  .lh-10 { line-height: var(--line-height-10); }
-  .lh-11 { line-height: var(--line-height-11); }
-  .lh-12 { line-height: var(--line-height-12); }
-  .lh-14 { line-height: var(--line-height-14); }
-  .lh-16 { line-height: var(--line-height-16); }
-  .lh-18 { line-height: var(--line-height-18); }
+  .lh-10 {
+    line-height: var(--line-height-10);
+  }
+  .lh-11 {
+    line-height: var(--line-height-11);
+  }
+  .lh-12 {
+    line-height: var(--line-height-12);
+  }
+  .lh-14 {
+    line-height: var(--line-height-14);
+  }
+  .lh-16 {
+    line-height: var(--line-height-16);
+  }
+  .lh-18 {
+    line-height: var(--line-height-18);
+  }
 
   /* Add any other custom utilities you need */
 }
@@ -251,7 +263,15 @@ input:focus::placeholder {
   color: transparent;
 }
 
-input:focus::-webkit-input-placeholder { color:transparent; }
-input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
-input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
-input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+input:focus:-moz-placeholder {
+  color: transparent;
+} /* FF 4-18 */
+input:focus::-moz-placeholder {
+  color: transparent;
+} /* FF 19+ */
+input:focus:-ms-input-placeholder {
+  color: transparent;
+} /* IE 10+ */
