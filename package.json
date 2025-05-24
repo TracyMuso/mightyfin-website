@@ -16,6 +16,7 @@
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-tooltip": "^1.2.7",
+    "@reduxjs/toolkit": "^2.8.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
@@ -33,6 +34,7 @@
     "react-router-dom": "^7.6.1",
     "react-step-progress-bar": "^1.0.3",
     "sonner": "^2.0.4",
+    "react-redux": "^9.2.0",
     "tailwind-merge": "^3.2.0",
     "tw-animate-css": "^1.2.5",
     "zod": "^3.25.47"
