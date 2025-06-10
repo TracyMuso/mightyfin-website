@@ -20,7 +20,7 @@ const Footer = () => {
               We simplify access to loans, empowering you to achieve your goals.
             </p>
           </div>
-          <div className="flex flex-wrap lg:flex-nowrap gap-8 lg:w-3/5 md:mx-0 mx-auto">
+          <div className="flex flex-wrap xl:flex-nowrap gap-8 lg:w-3/5 md:mx-0 mx-auto">
             {footerLinks.map((group, idx) => (
               <div
                 key={idx}
@@ -41,7 +41,7 @@ const Footer = () => {
               </div>
             ))}
 
-            <div className="flex flex-col gap-4 min-w-[250px] flex-1 sm:flex-none">
+            <div className="flex flex-col gap-4 min-w-[250px]">
               {ContactLinks.map((item, idx) => (
                 <Link
                   key={idx}

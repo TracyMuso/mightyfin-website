@@ -275,3 +275,13 @@ input:focus::-moz-placeholder {
 input:focus:-ms-input-placeholder {
   color: transparent;
 } /* IE 10+ */
+
+.loan-number-input {
+  -moz-appearance: textfield;
+}
+
+.loan-number-input::-webkit-outer-spin-button,
+.loan-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -155,7 +155,7 @@ export type CsProduct = {
     primaryColor?: string;
     secondaryColor?: string;
   };
-  status?: 'active' | 'coming-soon' | 'beta'; // Optional status flag
+  status?: "active" | "coming-soon" | "beta"; // Optional status flag
 };
 
 export interface FormType {
@@ -174,3 +174,8 @@ export interface AboutFeatureCard {
   text2: string;
   title: string;
 }
+
+export type StoredFormState = {
+  currentStepIndex: number;
+  formValues: Record<string, unknown>;
+};
