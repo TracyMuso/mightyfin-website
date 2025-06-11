@@ -8,7 +8,7 @@ import {
   step1Schema,
   step2Schema,
   step3Schema,
-} from "@/validators/checkout-flow.validator";
+} from "@/validators/application-flow.validator";
 import { UserIcon, HandshakeIcon, CircleDollarSignIcon } from "lucide-react";
 
 export const checkoutSteps: FormStep[] = [

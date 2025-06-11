@@ -12,7 +12,7 @@ import {
   getNextRepaymentDate,
 } from "@/hooks/calculate-loan-details";
 import { z } from "zod";
-import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
+import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
 import PrevButton from "../steppedForm/prevButton";
 
 const Step1 = () => {

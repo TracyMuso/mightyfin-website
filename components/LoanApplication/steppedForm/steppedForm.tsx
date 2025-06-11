@@ -13,7 +13,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import {
   CombinedCheckoutSchema,
   CombinedCheckoutType,
-} from "@/validators/checkout-flow.validator";
+} from "@/validators/application-flow.validator";
 import ProgressIndicator from "./progressIndictor";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
@@ -35,8 +35,29 @@ const MultiStepForm = ({
       loanTermMonths: 1,
       loanType: "personal",
       email: "",
-      fullName: "",
-      phoneNumber: +260,
+      firstName: "",
+      lastName: "",
+      nrc: "",
+      dob: undefined,
+      gender: "male",
+      town: "",
+      province: "",
+      address: "",
+      phoneNumber: 260,
+      kinAddress: "",
+      kinFirstName: "",
+      kinLastName: "",
+      hrmFirstName: "",
+      hrmLastName: "",
+      hrmPhoneNumber: 260,
+      supervisorFirstName: "",
+      supervisorLastName: "",
+      supervisorPhoneNumber: 260,
+      photo: undefined,
+      proofOfIncome: undefined,
+      preApprovalDoc: undefined,
+      idCopy: undefined,
+      bankStatement: undefined,
       consent: false,
     },
   });

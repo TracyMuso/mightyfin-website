@@ -10,7 +10,7 @@ import {
   getInterestRate,
   getNextRepaymentDate,
 } from "@/hooks/calculate-loan-details";
-import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
+import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
 import NextButton from "../steppedForm/nextButton";
 import ErrorMessage from "@/components/ui/error-message";
 import PrevButton from "../steppedForm/prevButton";
