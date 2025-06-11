@@ -162,8 +162,14 @@ const MultiStepForm = ({
       <FormProvider {...methods}>
         <div className="w-[550px] mx-auto">
           <ProgressIndicator />
-          <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
-            <h1 className="py-5 text-3xl font-bold">{currentStep.title}</h1>
+          <form
+            onSubmit={methods.handleSubmit(submitSteppedForm)}
+            action="https://api.web3forms.com/submit"
+            method="POST"
+          >
+            <h1 className="py-2 font-bold text-purple-900 text-center">
+              {currentStep.title}
+            </h1>
             {currentStep.component}
           </form>
         </div>

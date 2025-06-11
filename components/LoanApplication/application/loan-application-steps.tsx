@@ -13,7 +13,7 @@ import { UserIcon, HandshakeIcon, CircleDollarSignIcon } from "lucide-react";
 
 export const checkoutSteps: FormStep[] = [
   {
-    title: "Step 1: Loan Information",
+    title: "Fill in Loan Information",
     component: <Step1 />,
     icon: CircleDollarSignIcon,
     position: 1,
@@ -21,7 +21,7 @@ export const checkoutSteps: FormStep[] = [
     fields: ["loanType", "loanTermMonths", "loanAmount"],
   },
   {
-    title: "Step 2: Personal Details",
+    title: "Confirm Personal Details",
     component: <Step2 />,
     icon: UserIcon,
     position: 2,
@@ -29,7 +29,7 @@ export const checkoutSteps: FormStep[] = [
     fields: ["email", "fullName", "phoneNumber"],
   },
   {
-    title: "Step 3: Consent",
+    title: "Loan Summary",
     component: <Step3 />,
     icon: HandshakeIcon,
     position: 3,

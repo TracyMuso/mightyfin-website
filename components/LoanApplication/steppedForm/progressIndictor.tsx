@@ -7,7 +7,7 @@ export default function ProgressIndicator() {
   const { currentStep, goToStep, currentStepIndex } = useMultiStepForm();
 
   return (
-    <div className="flex items-center w-fulljustify-centerp-4 mb-10">
+    <div className="flex items-center w-fulljustify-center px-4 py-5">
       <div className="w-full space-y-8">
         <div className="relative flex justify-between">
           {/* Progress Line */}
@@ -30,7 +30,7 @@ export default function ProgressIndicator() {
               <div key={step.position} className="relative z-10">
                 <motion.button
                   onClick={() => goToStep(step.position)}
-                  className={`flex size-16 items-center justify-center rounded-full border-2 ${
+                  className={`flex size-12 items-center justify-center rounded-full border-2 ${
                     isCompleted || isCurrent
                       ? "bg-yellow-500 border border-yellow-400 text-white"
                       : "border-gray-200 bg-white text-gray-400"

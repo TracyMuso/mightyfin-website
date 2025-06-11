@@ -8,7 +8,7 @@ const PrevButton = () => {
     <Button
       variant="tertiary"
       type="button"
-      className="mt-5"
+      className="px-4 py-2 w-1/3"
       onClick={previousStep}
       disabled={isFirstStep}
     >

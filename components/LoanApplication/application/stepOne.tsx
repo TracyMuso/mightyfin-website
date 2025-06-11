@@ -1,11 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import NextButton from "../steppedForm/nextButton";
 import { Input } from "@/components/ui/input";
+import { useState, useEffect } from "react";
 import ErrorMessage from "@/components/ui/error-message";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
 import { useFormContext } from "react-hook-form";
-import { format, addMonths } from "date-fns";
+import {
+  getInterestRate,
+  getNextRepaymentDate,
+} from "@/hooks/calculate-loan-details";
 import { z } from "zod";
 import { CombinedCheckoutSchema } from "@/validators/checkout-flow.validator";
 import PrevButton from "../steppedForm/prevButton";
@@ -13,7 +18,7 @@ import PrevButton from "../steppedForm/prevButton";
 const Step1 = () => {
   const {
     register,
-    getValues,
+    watch,
     // setError,
     formState: { errors },
   } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
@@ -25,18 +30,40 @@ const Step1 = () => {
     nextStep();
   };
 
-  const { loanAmount, loanTermMonths } = getValues();
+  // const [loanAmount, setLoanAmount] = useState<string>("");
+  const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
+  const [totalPayment, setTotalPayment] = useState<number>(0);
+  const [totalInterest, setTotalInterest] = useState<number>(0);
 
-  const getNextRepaymentDate = (): string => {
-    return format(addMonths(new Date(), 1), "yyyy-MM-dd");
+  // Watch loanAmount changes in real-time
+  const watchedLoanAmount = watch("loanAmount");
+  const watchedLoanTerm = watch("loanTermMonths");
+
+  const calculatePayment = (amount: number, term: number) => {
+    const interestRate = getInterestRate(term);
+    const monthlyRate = interestRate / term; // Divide total interest by number of months
+
+    // Simple interest calculation (interest is spread evenly across payments)
+    const totalInterestAmount = amount * interestRate;
+    const payment = (amount + totalInterestAmount) / term;
+
+    setMonthlyPayment(parseFloat(payment.toFixed(2)));
+    setTotalPayment(parseFloat((amount + totalInterestAmount).toFixed(2)));
+    setTotalInterest(parseFloat(totalInterestAmount.toFixed(2)));
   };
 
+  useEffect(() => {
+    if (watchedLoanAmount) {
+      calculatePayment(watchedLoanAmount, watchedLoanTerm);
+    }
+  }, [watchedLoanAmount, watchedLoanTerm]);
+
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-1">
       <div className="space-y-2">
         <fieldset>
           <legend className="font-semibold">Loan Type</legend>
-          <div className="flex flex-col items-start gap-4 mt-2">
+          <div className="flex flex-col items-start gap-3 mt-2">
             <div className="flex items-center">
               <input
                 id="personal-loan"
@@ -94,14 +121,14 @@ const Step1 = () => {
         />
         <ErrorMessage message={errors.loanTermMonths?.message} />
       </div>
-      <div className="flex items-center w-full justify-between">
+      <div className="flex items-center w-full justify-between pb-4">
         <div>
           <span className="text-purple-700">Payback amount</span>
-          <p>{loanAmount}</p>
+          <p>{totalPayment}</p>
         </div>
         <div>
           <span className="text-purple-700">Monthly deduction</span>
-          <p>{loanAmount}</p>
+          <p>{monthlyPayment}</p>
         </div>
         <div>
           <span className="text-purple-700">Next Payment date</span>
