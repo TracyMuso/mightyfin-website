@@ -39,25 +39,27 @@ const MultiStepForm = ({
       lastName: "",
       nrc: "",
       dob: undefined,
-      gender: "male",
+      gender: undefined,
       town: "",
-      province: "",
+      province: undefined,
       address: "",
-      phoneNumber: 260,
+      phoneNumber: undefined,
       kinAddress: "",
       kinFirstName: "",
+      kinPhoneNumber: undefined,
       kinLastName: "",
       hrmFirstName: "",
       hrmLastName: "",
-      hrmPhoneNumber: 260,
+      hrmPhoneNumber: undefined,
       supervisorFirstName: "",
       supervisorLastName: "",
-      supervisorPhoneNumber: 260,
+      supervisorPhoneNumber: undefined,
       photo: undefined,
       proofOfIncome: undefined,
       preApprovalDoc: undefined,
       idCopy: undefined,
       bankStatement: undefined,
+      tpin: undefined,
       consent: false,
     },
   });
@@ -183,11 +185,7 @@ const MultiStepForm = ({
       <FormProvider {...methods}>
         <div className="w-[550px] mx-auto">
           <ProgressIndicator />
-          <form
-            onSubmit={methods.handleSubmit(submitSteppedForm)}
-            action="https://api.web3forms.com/submit"
-            method="POST"
-          >
+          <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
             <h1 className="py-2 font-bold text-purple-900 text-center">
               {currentStep.title}
             </h1>

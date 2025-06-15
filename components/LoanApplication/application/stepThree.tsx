@@ -1,97 +1,116 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
 "use client";
 
-import { useFormContext } from "react-hook-form";
-import { useEffect, useState } from "react";
-import { Input } from "@/components/ui/input";
-import { z } from "zod";
-import {
-  getInterestRate,
-  getNextRepaymentDate,
-} from "@/hooks/calculate-loan-details";
-import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
 import NextButton from "../steppedForm/nextButton";
 import ErrorMessage from "@/components/ui/error-message";
+import { Input } from "@/components/ui/input";
+import { useMultiStepForm } from "@/hooks/use-stepped-form";
+import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
+import { useFormContext } from "react-hook-form";
+import { z } from "zod";
 import PrevButton from "../steppedForm/prevButton";
-import Link from "next/link";
-import styles from "@/styles/loanApplication.module.css";
 
 const Step3 = () => {
   const {
     register,
-    getValues,
+    // getValues,
+    // setError,
     formState: { errors },
   } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
 
+  const { nextStep } = useMultiStepForm();
+
   const handleStepSubmit = async () => {
-    console.log(localStorage.getItem("checkout-form"));
-    return;
+    nextStep();
   };
-
-  const { loanAmount, loanTermMonths, loanType } = getValues();
-
-  // const [loanAmount, setLoanAmount] = useState<string>("");
-  const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
-  const [totalPayment, setTotalPayment] = useState<number>(0);
-  const [totalInterest, setTotalInterest] = useState<number>(0);
-
-  const calculatePayment = (amount: number, term: number) => {
-    const interestRate = getInterestRate(term);
-    const monthlyRate = interestRate / term; // Divide total interest by number of months
-
-    // Simple interest calculation (interest is spread evenly across payments)
-    const totalInterestAmount = amount * interestRate;
-    const payment = (amount + totalInterestAmount) / term;
-
-    setMonthlyPayment(parseFloat(payment.toFixed(2)));
-    setTotalPayment(parseFloat((amount + totalInterestAmount).toFixed(2)));
-    setTotalInterest(parseFloat(totalInterestAmount.toFixed(2)));
-  };
-
-  useEffect(() => {
-    if (loanAmount) {
-      calculatePayment(loanAmount, loanTermMonths);
-    }
-  }, [loanAmount, loanTermMonths]);
 
   return (
-    <div className="flex flex-col gap-3">
-      <div className="flex flex-col pt-3">
-        <div className="flex flex-col items-center gap-2 pb-6">
-          <span className="border-b border-gray-400 p-1 w-2/3 flex justify-center">
-            <strong className="pr-2">Loan Type: </strong> {loanType}
-          </span>
-          <span className="border-b border-gray-400 p-1 w-2/3 flex justify-center">
-            <strong className="pr-2">Loan Term: </strong> {loanTermMonths}{" "}
-            months
-          </span>
-          <span className="border-b border-gray-400 p-1 w-2/3 flex justify-center">
-            <strong className="pr-2">Loan Amount: </strong> K{loanAmount}
-          </span>
-          <span className="border-b border-gray-400 p-1 w-2/3 flex justify-center">
-            <strong className="pr-2">Total Amount: </strong> K{totalPayment}
-          </span>
-          <span className="border-b border-gray-400 p-1 w-2/3 flex justify-center">
-            <strong className="pr-2">Monthly Deduction: </strong> K
-            {monthlyPayment}
-          </span>
-          <span>
-            <strong className="pr-2">Due Date: </strong>{" "}
-            {getNextRepaymentDate()}
-          </span>
+    <div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="font-semibold">Job Title</label>
+          <Input {...register("jobTitle")} placeholder="e.g Accountant" />
+          <ErrorMessage message={errors.jobTitle?.message} />
+        </div>
+        <div>
+          <label className="font-semibold">Ministry</label>
+          <Input
+            {...register("ministry")}
+            placeholder="e.g Ministry of Finance"
+          />
+          <ErrorMessage message={errors.ministry?.message} />
+        </div>
+        <div>
+          <label className="font-semibold">Department</label>
+          <Input {...register("department")} placeholder="e.g Finance" />
+          <ErrorMessage message={errors.department?.message} />
+        </div>
+        <div>
+          <label className="font-semibold">Employee Number</label>
+          <Input {...register("employeeNumber")} placeholder="e.g 10336622" />
+          <ErrorMessage message={errors.employeeNumber?.message} />
         </div>
       </div>
-      <div className="self-center">
-        <label className={`${styles.consentContainer} font-light text-sm`}>
-          I agree with the{" "}
-          <Link className="text-purple-700 text-sm" href={"#"}>
-            Terms and Conditions
-          </Link>
-          <Input type="checkbox" {...register("consent")} />
-          <span className={`${styles.checkmark}`}></span>
-        </label>
-        <ErrorMessage message={errors.consent?.message} />
+      {/* references */}
+      <div className="py-4">
+        <h2 className="text-center font-semibold text-purple-900">
+          References
+        </h2>
+        <h3 className="font-semibold py-3">Human Resource Manager</h3>
+        <div className="flex justify-between">
+          <div>
+            <label className="font-semibold">First Name</label>
+            <Input {...register("hrmFirstName")} placeholder="Simon" />
+            <ErrorMessage message={errors.hrmFirstName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Last Name</label>
+            <Input {...register("hrmLastName")} placeholder="Mwansa" />
+            <ErrorMessage message={errors.hrmLastName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Phone Number</label>
+            <Input
+              className="loan-number-input"
+              type="number"
+              inputMode="numeric"
+              {...register("hrmPhoneNumber", {
+                valueAsNumber: true, // Convert to number automatically
+                validate: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+              })}
+              placeholder="0978236744"
+            />
+            <ErrorMessage message={errors.hrmPhoneNumber?.message} />
+          </div>
+        </div>
+        <h3 className="font-semibold py-3">Supervisor</h3>
+        <div className="flex justify-between">
+          <div>
+            <label className="font-semibold">First Name</label>
+            <Input {...register("supervisorFirstName")} placeholder="Simon" />
+            <ErrorMessage message={errors.supervisorFirstName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Last Name</label>
+            <Input {...register("supervisorLastName")} placeholder="Mwansa" />
+            <ErrorMessage message={errors.supervisorLastName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Phone Number</label>
+            <Input
+              className="loan-number-input"
+              type="number"
+              inputMode="numeric"
+              {...register("supervisorPhoneNumber", {
+                valueAsNumber: true, // Convert to number automatically
+                validate: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+              })}
+              placeholder="0978236744"
+            />
+            <ErrorMessage message={errors.supervisorPhoneNumber?.message} />
+          </div>
+        </div>
       </div>
       <div className="w-full flex items-center justify-between">
         <PrevButton />

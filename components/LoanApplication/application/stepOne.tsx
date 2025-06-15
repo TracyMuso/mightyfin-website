@@ -19,18 +19,15 @@ const Step1 = () => {
   const {
     register,
     watch,
-    // setError,
     formState: { errors },
   } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
 
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
-    // move to the next step
     nextStep();
   };
 
-  // const [loanAmount, setLoanAmount] = useState<string>("");
   const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
   const [totalPayment, setTotalPayment] = useState<number>(0);
   const [totalInterest, setTotalInterest] = useState<number>(0);

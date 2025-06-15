@@ -5,7 +5,6 @@ export const step1Schema = z.object({
     required_error: "Please select a loan type",
     invalid_type_error: "Loan type must be either personal or business",
   }),
-
   loanAmount: z
     .number({
       required_error: "Loan amount is required",
@@ -13,7 +12,6 @@ export const step1Schema = z.object({
     })
     .min(10000, "Minimum loan amount is k10,000")
     .max(1000000, "Maximum loan amount is k1,000,000"),
-
   loanTermMonths: z
     .number({
       required_error: "Loan term is required",
@@ -23,13 +21,27 @@ export const step1Schema = z.object({
     .max(9, "Maximum term is 9 months"),
 });
 
+const provinces = [
+  "Northern",
+  "Western",
+  "Southern",
+  "Eastern",
+  "Lusaka",
+  "Central",
+  "North Western",
+  "Copperbelt",
+  "Muchinga",
+  "Luapula",
+] as const;
+export type Province = (typeof provinces)[number];
+
 export const step2Schema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
   email: z.string().email({ message: "Please enter a valid email address" }),
   phoneNumber: z.number({
     required_error: "Phone number is required",
-    invalid_type_error: "Loan amount must be a number",
+    invalid_type_error: "Must be a number",
   }),
   dob: z
     .date({
@@ -42,7 +54,7 @@ export const step2Schema = z.object({
     .min(new Date(1900, 0, 1), {
       message: "Please enter a valid date",
     }),
-  gender: z.enum(["male", "female", "other"], {
+  gender: z.enum(["male", "female", "other", "prefer-not-to-say"], {
     required_error: "Gender is required",
     invalid_type_error: "Please select a valid gender",
   }),
@@ -73,16 +85,9 @@ export const step2Schema = z.object({
     .max(50, {
       message: "Town name must be less than 50 characters",
     }),
-  province: z
-    .string({
-      required_error: "Province is required",
-    })
-    .min(2, {
-      message: "Province must be at least 2 characters",
-    })
-    .max(50, {
-      message: "Province must be less than 50 characters",
-    }),
+  province: z.enum(provinces, {
+    required_error: "Province is required",
+  }),
 });
 
 export const step3Schema = z.object({
@@ -96,7 +101,7 @@ export const step3Schema = z.object({
   hrmLastName: z.string().min(2, "Last name must be at least 2 characters"),
   hrmPhoneNumber: z.number({
     required_error: "Phone number is required",
-    invalid_type_error: "Loan amount must be a number",
+    invalid_type_error: "Must be a number",
   }),
   supervisorFirstName: z
     .string()
@@ -106,7 +111,7 @@ export const step3Schema = z.object({
     .min(2, "Last name must be at least 2 characters"),
   supervisorPhoneNumber: z.number({
     required_error: "Phone number is required",
-    invalid_type_error: "Loan amount must be a number",
+    invalid_type_error: "Must be a number",
   }),
 });
 
@@ -121,18 +126,18 @@ const ACCEPTED_FILE_TYPES = [
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
 export const step4Schema = z.object({
-  firstName: z.string().min(2, "First name must be at least 2 characters"),
-  lastName: z.string().min(2, "Last name must be at least 2 characters"),
-  phoneNumber: z.number({
+  kinFirstName: z.string().min(2, "First name must be at least 2 characters"),
+  kinLastName: z.string().min(2, "Last name must be at least 2 characters"),
+  kinPhoneNumber: z.number({
     required_error: "Phone number is required",
-    invalid_type_error: "Loan amount must be a number",
+    invalid_type_error: "Must be a number",
   }),
   relationship: z
     .string({
       required_error: "Relationship is required",
     })
     .min(3, "Relationship must be at least 3 characters"),
-  address: z.string().min(5, "Address must be at least 5 characters"),
+  kinAddress: z.string().min(5, "Address must be at least 5 characters"),
 });
 
 export const step5Schema = z.object({
@@ -143,7 +148,8 @@ export const step5Schema = z.object({
     })
     .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
       message: "Only PDF, JPEG, PNG, or Word files are accepted",
-    }),
+    })
+    .nullable(),
 
   proofOfIncome: z
     .instanceof(File)
@@ -153,7 +159,7 @@ export const step5Schema = z.object({
     .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
       message: "Only PDF, JPEG, PNG, or Word files are accepted",
     })
-    .optional(),
+    .nullable(),
 
   bankStatement: z
     .instanceof(File)
@@ -162,7 +168,8 @@ export const step5Schema = z.object({
     })
     .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
       message: "Only PDF, JPEG, PNG, or Word files are accepted",
-    }),
+    })
+    .nullable(),
   photo: z
     .instanceof(File)
     .refine((file) => file.size <= MAX_FILE_SIZE, {
@@ -170,7 +177,8 @@ export const step5Schema = z.object({
     })
     .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
       message: "Only PDF, JPEG, PNG, or Word files are accepted",
-    }),
+    })
+    .nullable(),
   preApprovalDoc: z
     .instanceof(File)
     .refine((file) => file.size <= MAX_FILE_SIZE, {
@@ -178,7 +186,17 @@ export const step5Schema = z.object({
     })
     .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
       message: "Only PDF, JPEG, PNG, or Word files are accepted",
-    }),
+    })
+    .nullable(),
+  tpin: z
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: "File size must be less than 5MB",
+    })
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+      message: "Only PDF, JPEG, PNG, or Word files are accepted",
+    })
+    .nullable(),
   consent: z.boolean({
     message: "To proceed, please agree to the T's and C's",
   }),
@@ -189,5 +207,4 @@ export const CombinedCheckoutSchema = step1Schema
   .merge(step3Schema)
   .merge(step4Schema)
   .merge(step5Schema);
-
 export type CombinedCheckoutType = z.infer<typeof CombinedCheckoutSchema>;

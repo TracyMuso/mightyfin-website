@@ -28,3 +28,10 @@ export type SavedFormState = {
   currentStepIndex: number;
   formValues: Record<string, unknown>;
 };
+
+export interface FileUploadProps {
+  label: string;
+  name: string;
+  accept?: string;
+  onChange: (file: File | null) => void;
+}

@@ -44,16 +44,9 @@ export default function ProgressIndicator() {
                   {isCompleted ? (
                     <Check className="h-6 w-6" />
                   ) : (
-                    <step.icon className="h-6 w-6" />
+                    <div className="h-6 w-6">{step.position}</div>
                   )}
                 </motion.button>
-                <div
-                  className={`absolute left-1/2 mt-2 -translate-x-1/2 text-sm font-medium ${
-                    isCompleted || isCurrent ? "text-primary" : "text-gray-500"
-                  }`}
-                >
-                  {step.position}
-                </div>
               </div>
             );
           })}
