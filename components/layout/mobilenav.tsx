@@ -7,7 +7,6 @@ export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // Close menu when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {
@@ -15,12 +14,10 @@ export default function MobileNav() {
       }
     }
 
-    // Add event listener when menu is open
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-    // Clean up
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -31,11 +28,10 @@ export default function MobileNav() {
       {/* Hamburger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 text-gray-700 focus:outline-none absolute top-5 right-5 z-250"
+        className="p-2 text-gray-700 focus:outline-none absolute top-5 right-5 z-9999"
         aria-label="Toggle menu"
       >
         {isOpen ? (
-          // X icon (close)
           <svg
             className="w-6 h-6"
             fill="none"
@@ -51,7 +47,6 @@ export default function MobileNav() {
             />
           </svg>
         ) : (
-          // Hamburger icon
           <svg
             className="w-6 h-6"
             fill="none"
@@ -71,18 +66,18 @@ export default function MobileNav() {
 
       {/* Mobile menu */}
       <div
-        className={`absolute top-0 left-0 right-0 bg-purple-100 py-12 shadow-md transition-all duration-300 ease-in-out ${
+        className={`absolute top-0 left-0 right-0 bg-purple-100 py-12 z-9998 shadow-md transition-all duration-300 ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
-        <nav className="flex flex-col items-center px-4 space-y-2">
+        <nav className="flex flex-col w-full items-center px-4">
           {navLinks.map((item, idx) => (
             <a
               key={idx}
               href={item.url}
-              className="px-4 py-2 text-gray-800 hover:bg-gray-100 rounded"
+              className="w-full text-center py-3 text-gray-800 hover:bg-purple-200 border-b border-gray-900"
               onClick={() => setIsOpen(false)}
             >
               {item.title}

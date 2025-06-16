@@ -5,7 +5,7 @@ import styles from "@/styles/productPage.module.css"
 const ProductsPage = () => {
   return (
     <div className="w-full p-0">
-      <div className={`${styles.hero} md:h-[40vh] h-[20vh]`}>
+      <div className={`${styles.hero} h-[40vh]`}>
         <div className={`${styles.heroImg} md:pt-[5rem] pt-16`}>
           <div className="text-center">
           <h1 className="text-white font-bold lg:text-5xl sm:text-3xl text-xlpb-2">Our Products</h1>

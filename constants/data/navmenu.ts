@@ -20,6 +20,10 @@ export const navLinks: NavigationLink[] = [
     title: "Contact",
     url: "/contact",
   },
+  {
+    title: "Apply",
+    url: "/apply",
+  },
   // {
   //   title: "Blog & News",
   //   url: "/blog",
