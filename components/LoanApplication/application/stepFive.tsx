@@ -1,6 +1,7 @@
 "use client";
 
 import NextButton from "../steppedForm/nextButton";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
@@ -16,8 +17,14 @@ const Step5 = () => {
     register,
   } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
 
-  const SubmitForm = async () => {
+  const router = useRouter();
+
+  const SubmitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
     console.log("submitted!");
+
+    // Redirect to thank you page after submission
+    router.push("/thankyou");
   };
 
   const handleFileChange =
@@ -27,10 +34,10 @@ const Step5 = () => {
     };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 pt-4 pb-8">
       <div className="space-y-4">
         <h3 className="text-lg font-semibold">Document Uploads</h3>
-        <div className="grid grid-cols-2">
+        <div className="grid sm:grid-cols-2">
           {documentFields.map((field) => (
             <FileUpload
               key={field.name}

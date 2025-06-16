@@ -19,7 +19,7 @@ export function FileUpload({
 }: FileUploadProps) {
   return (
     <div>
-      <label className="block mb-1 font-medium">{label}</label>
+      <label className="block mb-1 font-semibold">{label}</label>
       <input
         type="file"
         id={name}

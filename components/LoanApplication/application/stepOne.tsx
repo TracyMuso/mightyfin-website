@@ -56,20 +56,23 @@ const Step1 = () => {
   }, [watchedLoanAmount, watchedLoanTerm]);
 
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-1 pt-4 pb-8">
       <div className="space-y-2">
         <fieldset>
           <legend className="font-semibold">Loan Type</legend>
-          <div className="flex flex-col items-start gap-3 mt-2">
+          <div className="flex flex-col items-start gap-3 pt-2">
             <div className="flex items-center">
               <input
                 id="personal-loan"
                 type="radio"
                 value="personal"
                 {...register("loanType")}
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500"
+                className="h-4 w-4 text-purple-600 focus:ring-purple-600"
               />
-              <label htmlFor="personal-loan" className="ml-2">
+              <label
+                htmlFor="personal-loan"
+                className="pl-2 sm:text-[16px] text-[13px]"
+              >
                 Civil Servant Loan
               </label>
             </div>
@@ -79,9 +82,12 @@ const Step1 = () => {
                 type="radio"
                 value="business"
                 {...register("loanType")}
-                className="h-4 w-4 text-indigo-600 focus:ring-indigo-500"
+                className="h-4 w-4 text-purple-600 focus:ring-purple-600"
               />
-              <label htmlFor="business-loan" className="ml-2">
+              <label
+                htmlFor="business-loan"
+                className="pl-2 sm:text-[16px] text-[13px]"
+              >
                 Business Loan
               </label>
             </div>
@@ -120,16 +126,22 @@ const Step1 = () => {
       </div>
       <div className="flex items-center w-full justify-between pb-4">
         <div>
-          <span className="text-purple-700">Payback amount</span>
-          <p>{totalPayment}</p>
+          <span className="text-purple-700 sm:text-[17px] text-sm">
+            Payback amount
+          </span>
+          <p className="sm:text-[15px] text-[12px]">{totalPayment}</p>
         </div>
         <div>
-          <span className="text-purple-700">Monthly deduction</span>
-          <p>{monthlyPayment}</p>
+          <span className="text-purple-700 sm:text-[17px] text-sm">
+            Monthly deduction
+          </span>
+          <p className="sm:text-[15px] text-[12px]">{monthlyPayment}</p>
         </div>
         <div>
-          <span className="text-purple-700">Next Payment date</span>
-          <p>{getNextRepaymentDate()}</p>
+          <span className="text-purple-700 sm:text-[17px] text-sm">
+            Next Payment date
+          </span>
+          <p className="sm:text-[15px] text-[12px]">{getNextRepaymentDate()}</p>
         </div>
       </div>
       <div className="w-full flex items-center justify-between">

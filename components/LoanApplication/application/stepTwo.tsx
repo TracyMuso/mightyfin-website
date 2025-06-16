@@ -3,18 +3,13 @@
 import NextButton from "../steppedForm/nextButton";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { FormSelect } from "../ui/form-select";
 import { useMultiStepForm } from "@/hooks/use-stepped-form";
 import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
-import { useFormContext, Controller } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 import PrevButton from "../steppedForm/prevButton";
+import { provinces, genderOptions } from "@/constants/data/loan";
 
 const Step2 = () => {
   const {
@@ -42,29 +37,18 @@ const Step2 = () => {
     nextStep();
   };
 
-  const provinces = [
-    "Northern",
-    "Western",
-    "Southern",
-    "Eastern",
-    "Lusaka",
-    "Central",
-    "North Western",
-    "Copperbelt",
-    "Muchinga",
-    "Luapula",
-  ];
-
   return (
-    <div>
-      <div className="grid grid-cols-2 gap-3">
+    <div className="pt-4 pb-8">
+      <div className="grid sm:grid-cols-2 sm:gap-3">
         <div>
           <label className="font-semibold">First Name</label>
           <Input {...register("firstName")} placeholder="Simon" />
           <ErrorMessage message={errors.firstName?.message} />
         </div>
         <div>
-          <label className="font-semibold">Last Name</label>
+          <label className="font-semibold sm:text-[16px] text-sm">
+            Last Name
+          </label>
           <Input {...register("lastName")} placeholder="Mwansa" />
           <ErrorMessage message={errors.lastName?.message} />
         </div>
@@ -112,30 +96,14 @@ const Step2 = () => {
           <Input type="text" {...register("nrc")} placeholder="123456/78/9" />
           <ErrorMessage message={errors.nrc?.message} />
         </div>
-        <div className="space-y-2">
-          <label className="font-semibold">Gender</label>
-          <Controller
-            name="gender"
-            control={control}
-            rules={{ required: "Gender is required" }}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select your gender" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
-                  <SelectItem value="prefer-not-to-say">
-                    Prefer not to say
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            )}
-          />
-          <ErrorMessage message={errors.gender?.message} />
-        </div>
+        <FormSelect
+          name="gender"
+          label="Gender"
+          control={control}
+          errors={errors.gender}
+          options={genderOptions}
+          placeholder="Select your gender"
+        />
         <div>
           <label className="font-semibold">Address</label>
           <Input
@@ -150,27 +118,14 @@ const Step2 = () => {
           <ErrorMessage message={errors.town?.message} />
         </div>
         <div className="space-y-2">
-          <label className="font-semibold">Province</label>
-          <Controller
+          <FormSelect
             name="province"
+            label="Province"
             control={control}
-            rules={{ required: "Province is required" }}
-            render={({ field }) => (
-              <Select onValueChange={field.onChange} value={field.value}>
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select your province" />
-                </SelectTrigger>
-                <SelectContent>
-                  {provinces.map((province) => (
-                    <SelectItem key={province} value={province}>
-                      {province}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            )}
+            errors={errors.province}
+            options={provinces}
+            placeholder="Select your province"
           />
-          <ErrorMessage message={errors.province?.message} />
         </div>
       </div>
       <div className="w-full flex items-center justify-between">

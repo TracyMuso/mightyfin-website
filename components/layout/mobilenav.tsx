@@ -28,7 +28,7 @@ export default function MobileNav() {
       {/* Hamburger button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 text-gray-700 focus:outline-none absolute top-5 right-5 z-250"
+        className="p-2 text-gray-700 focus:outline-none absolute top-5 right-5 z-9999"
         aria-label="Toggle menu"
       >
         {isOpen ? (
@@ -66,7 +66,7 @@ export default function MobileNav() {
 
       {/* Mobile menu */}
       <div
-        className={`absolute top-0 left-0 right-0 bg-purple-100 py-12 shadow-md transition-all duration-300 ease-in-out ${
+        className={`absolute top-0 left-0 right-0 bg-purple-100 py-12 z-9998 shadow-md transition-all duration-300 ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none"

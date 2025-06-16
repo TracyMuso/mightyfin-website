@@ -183,10 +183,10 @@ const MultiStepForm = ({
   return (
     <MultiStepFormContext.Provider value={value}>
       <FormProvider {...methods}>
-        <div className="w-[550px] mx-auto">
+        <div className="max-w-[550px] mx-auto">
           <ProgressIndicator />
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
-            <h1 className="py-2 font-bold text-purple-900 text-center">
+            <h1 className="py-2 font-bold md:text-xl text-purple-900 text-center">
               {currentStep.title}
             </h1>
             {currentStep.component}

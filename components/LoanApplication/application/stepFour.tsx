@@ -24,8 +24,8 @@ const Step4 = () => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-2 gap-3">
+    <div className="pt-4 pb-8">
+      <div className="grid sm:grid-cols-2 sm:gap-3">
         <div>
           <label className="font-semibold">First Name</label>
           <Input {...register("kinFirstName")} placeholder="Simon" />

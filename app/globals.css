@@ -133,6 +133,12 @@ body {
   overflow-x: hidden;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
 .nav-items {
   background: rgba(102, 39, 133, 0.12);
 }

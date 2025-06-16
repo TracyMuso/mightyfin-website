@@ -17,7 +17,8 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Mighty Finance | Financing Your Goals",
-  description: "Your go-to solution for quick business and personal loans. Get approved within minutes, hassle-free.",
+  description:
+    "Your go-to solution for quick business and personal loans. Get approved within minutes, hassle-free.",
 };
 
 export default function RootLayout({
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        // className={`${poppins.variable} ${montserrat.variable} antialiased`}
+      // className={`${poppins.variable} ${montserrat.variable} antialiased`}
       >
         <NavMenu />
         {children}

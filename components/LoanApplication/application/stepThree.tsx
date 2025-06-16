@@ -24,8 +24,8 @@ const Step3 = () => {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-2 gap-3">
+    <div className="pt-4 pb-8">
+      <div className="grid sm:grid-cols-2 sm:gap-3">
         <div>
           <label className="font-semibold">Job Title</label>
           <Input {...register("jobTitle")} placeholder="e.g Accountant" />
@@ -56,7 +56,7 @@ const Step3 = () => {
           References
         </h2>
         <h3 className="font-semibold py-3">Human Resource Manager</h3>
-        <div className="flex justify-between">
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:flex-wrap md:flex-nowrap">
           <div>
             <label className="font-semibold">First Name</label>
             <Input {...register("hrmFirstName")} placeholder="Simon" />
@@ -84,7 +84,7 @@ const Step3 = () => {
           </div>
         </div>
         <h3 className="font-semibold py-3">Supervisor</h3>
-        <div className="flex justify-between">
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:flex-wrap md:flex-nowrap">
           <div>
             <label className="font-semibold">First Name</label>
             <Input {...register("supervisorFirstName")} placeholder="Simon" />
