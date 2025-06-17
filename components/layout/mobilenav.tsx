@@ -2,6 +2,7 @@
 
 import { navLinks } from "@/constants/data/navmenu";
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,6 +84,12 @@ export default function MobileNav() {
               {item.title}
             </a>
           ))}
+          <Link
+            className="px-6 py-3 bg-purple-800 hover:bg-purple-700 rounded-lg font-semibold text-white"
+            href={"/apply"}
+          >
+            Apply Now
+          </Link>
         </nav>
       </div>
     </div>
