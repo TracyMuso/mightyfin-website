@@ -225,7 +225,7 @@ export default function Signup() {
           </form>
           <small className="py-2 mx-auto md:w-1/3">
             Already have an account?{" "}
-            <Link href={"/auth/sign-in"} className="text-yellow-400">
+            <Link href={"/auth/signin"} className="text-yellow-400">
               Log In
             </Link>
           </small>

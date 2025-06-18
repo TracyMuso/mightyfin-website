@@ -43,13 +43,21 @@ export const signInSchema = z.object({
     .regex(/[0-9]/, "Password must contain at least one number"),
 });
 
+// Password Recovery
+
 export const passwordRecoverySchema = z
   .object({
-    email: z.string().email({ message: "Please enter a valid email address" }),
-    phoneNumber: z.number({
-      required_error: "Phone number is required",
-      invalid_type_error: "Must be a number",
-    }),
+    email: z
+      .string()
+      .email({ message: "Please enter a valid email address" })
+      .optional(),
+    phoneNumber: z
+      .number({
+        required_error: "Phone number is required",
+        invalid_type_error: "Must be a number",
+      })
+      .nullable()
+      .optional(),
     password: z
       .string()
       .min(8, "Password must be at least 8 characters")

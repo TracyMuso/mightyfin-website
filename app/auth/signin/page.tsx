@@ -137,7 +137,7 @@ const Signin = () => {
               </label>
               <Link
                 className="text-yellow-400 text-[13px] md:text-[15px]"
-                href={"/reset-password"}
+                href={"/auth/reset-password"}
               >
                 Forgot password?
               </Link>
