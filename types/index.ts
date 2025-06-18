@@ -77,6 +77,14 @@ export type inputDataType = {
   inputType: string;
 };
 
+export type authInputDataType = {
+  id: string;
+  label: string;
+  placeholder: string;
+  htmlFor: string;
+  inputType: string;
+};
+
 export type sidebarDataType = {
   icon: string;
   alt: string;

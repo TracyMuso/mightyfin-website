@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Point from "./point";
-import { Button } from "../button";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -9,15 +9,20 @@ const Hero = () => {
         <article className="py-12 gap-2 md:text-left text-center flex flex-col md:items-start items-center">
           <span className="md:text-3xl text-xl t">Need a loan?</span>
           <h1 className="lg:text-4xl sm:text-2xl text-xl font-extrabold leading-12 md:pb-8 md:pt-6 text-purple-500">
-            Fast & <span className="text-yellow-300">Easy </span>Loans Apply in
+            Fast & <span className="text-yellow-400">Easy </span>Loans Apply in
             Minutes
           </h1>
           <p className="sm:w-4/5 w-full text-gray-400 text-xl">
             We simplify the loan process, so you can focus on your goals
           </p>
         </article>
-        <div className="w-2/5 lg:mx-0 mx-auto">
-          <Button text="Apply now!" variant="primary" fullWidth />
+        <div className="sm:w-2/5 sm:mx-0 mx-auto sm:block flex justify-center">
+          <Link
+            className="px-6 py-3 bg-purple-800 hover:bg-purple-700 text-center sm:w-full rounded-md font-semibold text-white"
+            href={"/apply"}
+          >
+            Apply Now
+          </Link>
         </div>
       </div>
       <div className="relative lg:block hidden">
