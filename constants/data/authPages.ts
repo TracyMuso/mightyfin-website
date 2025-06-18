@@ -10,7 +10,7 @@ export const signUpDets: authInputDataType[] = [
   },
   {
     label: "Last Name",
-    placeholder: "Mwae",
+    placeholder: "Mwale",
     htmlFor: "last-name",
     inputType: "text",
     id: "last-name",

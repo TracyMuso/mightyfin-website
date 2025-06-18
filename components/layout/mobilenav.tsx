@@ -85,10 +85,10 @@ export default function MobileNav() {
             </a>
           ))}
           <Link
-            className="px-6 py-3 bg-purple-800 hover:bg-purple-700 rounded-lg font-semibold text-white"
-            href={"/apply"}
+            href={"auth/signin"}
+            className="bg-purple-800 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
           >
-            Apply Now
+            Log in
           </Link>
         </nav>
       </div>

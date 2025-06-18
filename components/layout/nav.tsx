@@ -32,10 +32,10 @@ const NavMenu = () => {
           </Link>
         ))}
         <Link
-          href={"auth/signup"}
+          href={"auth/signin"}
           className="bg-purple-800 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
         >
-          Sign Up
+          Log in
         </Link>
       </div>
       <MobileNav />

@@ -188,6 +188,32 @@ export default function Signup() {
                   )}
               </div>
             </div>
+            <div>
+              <div className="pt-5">
+                <label
+                  htmlFor="loan-processing-consent"
+                  className="text-[13px] sm:text-sm"
+                >
+                  <input
+                    id="loan-processing-consent"
+                    type="checkbox"
+                    {...register("consent")}
+                    className="focus:ring-indigo-500 h-4 w-4 mr-2 text-indigo-600 border-gray-300 rounded"
+                  />
+                  By creating an account, you agree to Mighty Finance Solution
+                  <Link href={"#"} className="text-yellow-300">
+                    {" "}
+                    Terms of Services
+                  </Link>{" "}
+                  and{" "}
+                  <Link href={"#"} className="text-yellow-300">
+                    {" "}
+                    Privacy Policy
+                  </Link>
+                  .
+                </label>
+              </div>
+            </div>
             <div className="w-full py-2"> </div>
             <Button
               type="submit"
@@ -227,32 +253,6 @@ export default function Signup() {
                   height={25}
                 />
                 <p className="text-sm">Continue with Apple</p>
-              </div>
-            </div>
-            <div>
-              <div className="pt-5">
-                <label
-                  htmlFor="user-agreement"
-                  className="text-[13px] sm:text-sm"
-                >
-                  <input
-                    id="consent"
-                    type="checkbox"
-                    {...register("consent")}
-                    className="focus:ring-indigo-500 h-4 w-4 mr-2 text-indigo-600 border-gray-300 rounded"
-                  />
-                  By creating an account, you agree to Mighty Finance Solution
-                  <Link href={"#"} className="text-yellow-300">
-                    {" "}
-                    Terms of Services
-                  </Link>{" "}
-                  and{" "}
-                  <Link href={"#"} className="text-yellow-300">
-                    {" "}
-                    Privacy Policy
-                  </Link>
-                  .
-                </label>
               </div>
             </div>
           </div>

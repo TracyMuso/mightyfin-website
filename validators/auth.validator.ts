@@ -28,3 +28,41 @@ export const signUpSchema = z
       });
     }
   });
+
+export const signInSchema = z.object({
+  email: z.string().email({ message: "Please enter a valid email address" }),
+  phoneNumber: z.number({
+    required_error: "Phone number is required",
+    invalid_type_error: "Must be a number",
+  }),
+  sessionConsent: z.boolean(),
+  password: z
+    .string()
+    .min(8, "Password must be at least 8 characters")
+    .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+    .regex(/[0-9]/, "Password must contain at least one number"),
+});
+
+export const passwordRecoverySchema = z
+  .object({
+    email: z.string().email({ message: "Please enter a valid email address" }),
+    phoneNumber: z.number({
+      required_error: "Phone number is required",
+      invalid_type_error: "Must be a number",
+    }),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[a-zA-Z]/, "Password must contain at least one letter")
+      .regex(/[0-9]/, "Password must contain at least one number"),
+    confirmPassword: z.string(),
+  })
+  .superRefine(({ password, confirmPassword }, ctx) => {
+    if (password !== confirmPassword) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Passwords do not match",
+        path: ["confirmPassword"],
+      });
+    }
+  });
