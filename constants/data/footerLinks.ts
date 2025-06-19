@@ -77,7 +77,7 @@ export const ContactLinks: SocialLink[] = [
     link: "#",
   },
   {
-    label: "13 Chikuni Close, Off Makishi Road, Northmead, Lusaka.",
+    label: "First Floor, Sunshare Tower",
     icon: "/Icons/system-uicons_location.svg",
     link: "#",
   },
