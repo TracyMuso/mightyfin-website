@@ -26,7 +26,7 @@ const TranactionTable = () => {
                 className="w-4 h-5"
               />
             </div>
-            <select className="h-full text-gray-200 rounded-r sm:rounded-r-none block appearance-none w-full bg-white text-gray-700 py-1 px-4 pl-12 text-xs leading-tight focus:outline-none focus:bg-white">
+            <select className="h-full rounded-r sm:rounded-r-none block appearance-none w-full bg-white text-gray-700 py-1 px-4 pl-12 text-xs leading-tight focus:outline-none focus:bg-white">
               <option>Filter</option>
               <option>Active</option>
               <option>Inactive</option>

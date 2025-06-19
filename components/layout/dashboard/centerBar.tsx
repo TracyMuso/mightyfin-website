@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { useState } from "react";
 import { TransactionChart } from "./ui/transactionChart";
 import TranactionTable from "./ui/transactionTable";
 
-const CenterBar = () => {
+const CenterBar = ({
+  borrowedAmount = "0",
+  paybackDate = "",
+  dueAmount = "0",
+}) => {
   const [hasLoan, setHasLoan] = useState(true);
 
   return (
@@ -29,7 +35,9 @@ const CenterBar = () => {
           />
           <div className="flex flex-col text-left justify-between">
             <p className="text-purple-500">Current loan</p>
-            <h4 className="text-3xl font-bold text-purple-500">K 0</h4>
+            <h4 className="text-3xl font-bold text-purple-500">
+              K {borrowedAmount}
+            </h4>
             <p className="text-gray-100">Currency: ZMW</p>
           </div>
         </div>
@@ -44,9 +52,11 @@ const CenterBar = () => {
             alt="money-bag icon"
           />
           <div className="flex flex-col text-left justify-between">
-            <p className="text-purple-500">Deduct</p>
-            <h4 className="text-3xl font-bold text-purple-500">K 0</h4>
-            <p className="text-gray-100">Repay by: </p>
+            <p className="text-purple-500">Amount Due</p>
+            <h4 className="text-3xl font-bold text-purple-500">
+              K {dueAmount}
+            </h4>
+            <p className="text-gray-100">Repay by: {paybackDate} </p>
           </div>
         </div>
       </div>
