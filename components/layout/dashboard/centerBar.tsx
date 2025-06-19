@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useState } from "react";
-import { TransactionChart } from "./transactionChart";
-import TranactionTable from "./transactionTable";
+import { TransactionChart } from "./ui/transactionChart";
+import TranactionTable from "./ui/transactionTable";
 
 const CenterBar = () => {
   const [hasLoan, setHasLoan] = useState(true);
