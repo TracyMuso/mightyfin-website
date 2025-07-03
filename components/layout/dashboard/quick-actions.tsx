@@ -4,9 +4,9 @@ import { Pie } from "./ui/progressBar";
 
 const QuickActions = () => {
   return (
-    <div className="block bg-gray-50 xl:hidden w-full px-6 py-8">
-      <h4>QUICK ACTIONS</h4>
-      <div className="flex items-center">
+    <div className="block bg-gray-50 xl:hidden w-full md:px-6 px-4 py-8">
+      <h4 className="py-2 text-purple-600">QUICK ACTIONS</h4>
+      <div className="flex md:flex-row flex-col items-center">
         <div className="grid grid-cols-2 gap-2 grid-rows-2">
           <div className="flex flex-col items-center gap-1 rounded-md p-4 bg-white w-[140px]">
             <span className="p-3 rounded-[50px] bg-purple-50 flex w-10 justify-center">

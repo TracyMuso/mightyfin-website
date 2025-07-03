@@ -14,7 +14,7 @@ const CenterBar = ({
   const [hasLoan, setHasLoan] = useState(false);
 
   return (
-    <div className="flex flex-col flex-1 gap-[10px] p-[10px]">
+    <div className="flex flex-col flex-1 gap-[10px] p-[10px] w-full">
       <div className="grid grid-cols-2 gap-[10px] ">
         <button
           className="hidden"
@@ -26,7 +26,7 @@ const CenterBar = ({
         </button>
         <div
           id="current-loan"
-          className="flex gap-6 rounded-md items-center h-[160px] w-full py-7 px-8 bg-white"
+          className="flex gap-6 rounded-md items-center md:h-[160px] w-full py-3 px-4 lg:py-7 lg:px-8 bg-white"
         >
           <Image
             src={"/Icons/yellow-money-bag.png"}
@@ -40,12 +40,12 @@ const CenterBar = ({
             <h4 className="xl:text-3xl md:text-xl font-bold text-purple-500">
               K {borrowedAmount}
             </h4>
-            <p className="text-gray-100">Currency: ZMW</p>
+            <p className="text-gray-100 text-sm md:text-base">Currency: ZMW</p>
           </div>
         </div>
         <div
           id="loan-deduction"
-          className="flex gap-6 rounded-md items-center py-3 px-4 lg:py-7 lg:px-8 bg-white"
+          className="flex gap-6 rounded-md items-center md:h-[160px] py-3 px-4 lg:py-7 lg:px-8 bg-white"
         >
           <Image
             src={"/Icons/hand-money.png"}
@@ -59,18 +59,21 @@ const CenterBar = ({
             <h4 className="xl:text-3xl md:text-xl font-bold text-purple-500">
               K {dueAmount}
             </h4>
-            <p className="text-gray-100">Repay by: {paybackDate} </p>
+            <p className="text-gray-100 text-sm md:text-base">
+              Repay by: {paybackDate}{" "}
+            </p>
           </div>
         </div>
       </div>
-      <div className="flex justify-center rounded-md md:px-10 md:py-12 lg xl:py-[120px] xl:px-[163px] w-full bg-white">
+      <QuickActions />
+      <div className="flex justify-center rounded-md md:px-10 md:py-12 w-full bg-white">
         {hasLoan ? (
-          <div className="flex flex-col gap-10">
+          <div className="w-full flex flex-col gap-10 py-12">
             <TransactionChart />
             <TranactionTable />
           </div>
         ) : (
-          <div className="flex flex-col gap-3 items-center">
+          <div className="flex flex-col py-10 px-4 gap-3 items-center">
             <Image
               src={"/Icons/gray-money-bag.png"}
               width={100}
@@ -78,16 +81,15 @@ const CenterBar = ({
               alt="gray money bag"
             />
             <h5 className="text-2xl">No transactions yet?</h5>
-            <p className="text-gray-100">
+            <p className="text-gray-100 text-center">
               Select the button below to make your first transaction.
             </p>
-            <button className="px-10 py-4 w-[450px] text-center bg-purple-500 hover:bg-purple-primary rounded-md text-white">
+            <button className="px-10 py-4 md:w-[450px] text-center bg-purple-500 hover:bg-purple-primary rounded-md text-white">
               APPLY NOW
             </button>
           </div>
         )}
       </div>
-      <QuickActions />
     </div>
   );
 };

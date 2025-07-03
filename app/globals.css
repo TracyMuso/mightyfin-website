@@ -290,3 +290,11 @@ input:focus:-ms-input-placeholder {
   -webkit-appearance: none;
   margin: 0;
 }
+
+::-webkit-scrollbar {
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c084fc;
+  border-radius: 14px;
+}

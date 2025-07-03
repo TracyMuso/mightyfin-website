@@ -24,12 +24,16 @@ export const options = {
 
 export function TransactionChart() {
   return (
-    <Chart
-      chartType="Bar"
-      width="680px"
-      height="400px"
-      data={data}
-      options={options}
-    />
+    <div className="w-full overflow-x-auto">
+      <div className="w-[700px] p-3">
+        <Chart
+          chartType="Bar"
+          width="680px"
+          height="400px"
+          data={data}
+          options={options}
+        />
+      </div>
+    </div>
   );
 }
