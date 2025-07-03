@@ -25,7 +25,7 @@ const QuickActions = () => {
                 src={"/Icons/Hourglass.svg"}
                 width={15}
                 height={19}
-                alt="dollar icon"
+                alt="hourglass icon"
               />
             </span>
             <span className="pt-2">Track loan</span>
@@ -33,10 +33,10 @@ const QuickActions = () => {
           <div className="flex flex-col items-center gap-1 rounded-md p-4 bg-white w-[140px]">
             <span className="p-3 rounded-[50px] bg-purple-50 flex w-10 justify-center">
               <Image
-                src={"/icons/quill_mail.svg"}
+                src={"/Icons/quill_mail.svg"}
                 width={17}
                 height={14}
-                alt="dollar icon"
+                alt="mail icon"
               />
             </span>
             <span className="pt-2">Apply for loan</span>
@@ -44,10 +44,10 @@ const QuickActions = () => {
           <div className="flex flex-col items-center gap-1 rounded-md p-4 bg-white w-[140px]">
             <span className="p-3 rounded-[50px] bg-purple-50 flex w-10 justify-center">
               <Image
-                src={"/icons/fluent_shield-checkmark-24-regular.png"}
+                src={"/Icons/fluent_shield-checkmark-24-regular.png"}
                 width={15}
                 height={17}
-                alt="dollar icon"
+                alt="shield icon"
               />
             </span>
             <span className="pt-2">Withdraw</span>
