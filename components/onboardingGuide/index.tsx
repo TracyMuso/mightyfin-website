@@ -29,7 +29,7 @@ function startTour() {
 
 export default function GuideButton() {
   return (
-    <div>
+    <div className="hidden lg:block">
       <button className="border" onClick={startTour}>
         Start guide
       </button>

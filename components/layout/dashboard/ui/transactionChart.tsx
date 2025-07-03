@@ -26,7 +26,7 @@ export function TransactionChart() {
   return (
     <Chart
       chartType="Bar"
-      width="750px"
+      width="680px"
       height="400px"
       data={data}
       options={options}

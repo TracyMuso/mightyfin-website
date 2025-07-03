@@ -9,7 +9,7 @@ interface DashboardHeaderProps {
 
 const DashboardHeader = ({ name, initials }: DashboardHeaderProps) => {
   return (
-    <div className="header col-[2_/_3] row-[1_/_2] flex justify-between px-6 items-center border-b border-s">
+    <div className="header flex justify-between px-6 py-3 items-center ">
       <h3 className="font-bold text-purple-500 pl-5">Welcome {name}</h3>
       <div>
         <GuideButton />

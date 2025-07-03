@@ -1,45 +1,54 @@
 import type { sidebarDataType, TransactionTable } from "@/types";
 import type { OBGDashboard } from "@/types/dashboard";
+import {
+  BellIcon,
+  BookIcon,
+  ChartBarIcon,
+  Headphones,
+  SettingsIcon,
+  ArrowLeftCircle,
+  BoxesIcon,
+} from "lucide-react";
 
 export const LeftSidebarData: sidebarDataType[] = [
   {
-    icon: "/Icons/Category.png",
+    icon: BoxesIcon,
     alt: "Dashboard icon",
     title: "Dashboard",
     onClick: () => {},
   },
   {
-    icon: "/Icons/Notifications.png",
+    icon: BellIcon,
     alt: "Notifications icon",
     title: "Notifications",
     onClick: () => {},
   },
   {
-    icon: "/Icons/fi-rr-document.png",
+    icon: BookIcon,
     alt: "Document icon",
     title: "Your Documents",
     onClick: () => {},
   },
   {
-    icon: "/Icons/Loan-History.png",
+    icon: ChartBarIcon,
     alt: "Chart icon",
     title: "Transactions",
     onClick: () => {},
   },
   {
-    icon: "/Icons/fi_headphones.png",
+    icon: Headphones,
     alt: "headphones icon",
     title: "Customer Support",
     onClick: () => {},
   },
   {
-    icon: "/Icons/Settings.png",
+    icon: SettingsIcon,
     alt: "Settings icon",
     title: "Settings",
     onClick: () => {},
   },
   {
-    icon: "/Icons/Sign-out.png",
+    icon: ArrowLeftCircle,
     alt: "arrow left icon",
     title: "Log out",
     onClick: () => {},

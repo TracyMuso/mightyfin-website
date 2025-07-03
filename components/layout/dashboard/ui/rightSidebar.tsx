@@ -5,7 +5,7 @@ import { Pie } from "./progressBar";
 
 const RightSideBar = () => {
   return (
-    <div className="flex flex-col gap-[10px] pt-[10px] pr-[10px] w-full">
+    <div className="hidden lg:flex flex-col gap-[10px] pt-[10px] pr-[10px]">
       <Link
         href={"/"}
         className="bg-white py-5 px-7 flex justify-center w-full text-purple-500 rounded-md"
