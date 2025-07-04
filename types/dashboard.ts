@@ -13,4 +13,5 @@ export interface NotificationsType {
   title: string;
   message: string;
   timestamp: string;
+  tabIndex?: number;
 }

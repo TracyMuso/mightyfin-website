@@ -1,12 +1,14 @@
 import type { NotificationsType } from "@/types/dashboard";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 const Notification = ({
   title,
   timestamp,
   message,
   username,
+  tabIndex,
+  ...props
 }: NotificationsType) => {
   const [isOpen, setIsOpen] = useState(false);
   const previewLength = 90;
@@ -16,8 +18,30 @@ const Notification = ({
       ? `${message.substring(0, previewLength)}...`
       : message;
 
+  const notificationRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      notificationRef.current?.click();
+    }
+  };
+
   return (
-    <>
+    <div
+      ref={notificationRef}
+      tabIndex={tabIndex}
+      onKeyDown={handleKeyDown}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      className={`
+       rounded-lg cursor-pointer 
+        hover:bg-gray-50 focus:outline-none 
+        ${isFocused ? "bg-purple-300 ring-1 ring-purple-300" : ""}
+      `}
+      {...props}
+    >
       <div
         className="flex items-start gap-2 w-full p-2 rounded-md bg-purple-100"
         onClick={() => setIsOpen(true)}
@@ -89,7 +113,7 @@ const Notification = ({
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

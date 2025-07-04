@@ -1,11 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Notification from "./ui/notification";
 import { NotificationsData } from "@/constants/data/dashboard";
 import { NotificationPagination } from "@/app/dashboard/pagination";
+import { Button } from "@/components/button";
 
 const NotificationsTab = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  // Focus the first notification when component mounts
+  useEffect(() => {
+    const firstNotification = containerRef.current?.querySelector(
+      '[tabindex="0"]'
+    ) as HTMLElement;
+    firstNotification?.focus();
+  }, []);
+
   const [currentPage, setCurrentPage] = useState(1);
   const notificationsPerPage = 5;
 
@@ -41,12 +52,37 @@ const NotificationsTab = () => {
           </select>
         </div>
       </div>
-
-      <div className="notifications-container flex flex-col gap-2 pt-3">
-        {currentNotifications.map((item, idx) => (
-          <Notification {...item} key={idx} />
-        ))}
-      </div>
+      {totalPages > 0 ? (
+        <div
+          className="notifications-container flex flex-col gap-2 pt-3"
+          ref={containerRef}
+        >
+          {currentNotifications.map((item, idx: number) => (
+            <Notification tabIndex={idx} {...item} key={idx} />
+          ))}
+        </div>
+      ) : (
+        <div className="p-4 h-[50vh] flex flex-col text-center justify-center gap-2">
+          <Image
+            src={"/Icons/no-notifictions.png"}
+            alt="no notifications icon"
+            width={60}
+            height={60}
+            className="mx-auto"
+          />
+          <p className="font-semibold text-gray-700 text-base sm:text-xl">
+            You have no notifications
+          </p>
+          <span className="font-light sm:text-base text-sm text-gray-500">
+            Select the button below to start transacting!
+          </span>
+          <Button
+            className="w-10/12 sm:w-2/3 md:w-[200px] mx-auto"
+            text="Apply for a loan"
+            variant="primary"
+          />
+        </div>
+      )}
 
       <NotificationPagination
         currentPage={currentPage}
