@@ -15,8 +15,14 @@ import {
 import { LeftSidebarData } from "@/constants/data/dashboard";
 
 export function AppSidebar() {
-  const { openMobile } = useSidebar();
+  const { openMobile, setOpenMobile } = useSidebar();
   const pathname = usePathname();
+
+  const changeTab = () => {
+    if (openMobile) {
+      setOpenMobile(false);
+    }
+  };
 
   return (
     <Sidebar className="h-full" collapsible="icon">
@@ -36,7 +42,7 @@ export function AppSidebar() {
                   }`}
                   key={item.title}
                 >
-                  <SidebarMenuButton asChild>
+                  <SidebarMenuButton asChild onClick={changeTab}>
                     <Link href={item.href} className="flex items-center gap-2">
                       <item.icon />
                       <span>{item.title}</span>

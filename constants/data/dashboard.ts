@@ -156,21 +156,21 @@ export const NotificationsData: NotificationsType[] = [
     username: "James",
     title: "Loan Application Received",
     message:
-      "Dear James, we've received your loan application #L-2048. Our team will review it within 24 hours.",
+      "We've received your loan application #L-2048. Our team will review it within 24 hours.",
     timestamp: "15th July 2025, 08:30",
   },
   {
     username: "James",
     title: "Loan Approved",
     message:
-      "Congratulations James! Your loan of ZMW 5,000 has been approved. Funds will be available in your account shortly.",
+      "Congratulations! Your loan of ZMW 5,000 has been approved. Funds will be available in your account shortly.",
     timestamp: "16th July 2025, 11:45",
   },
   {
     username: "James",
     title: "Loan Disbursed",
     message:
-      "James, your approved loan of ZMW 5,000 has been sent to your bank account (****1234).",
+      "Your approved loan of ZMW 5,000 has been sent to your bank account (****1234).",
     timestamp: "16th July 2025, 15:20",
   },
   {
@@ -191,7 +191,7 @@ export const NotificationsData: NotificationsType[] = [
     username: "James",
     title: "Loan Rejected",
     message:
-      "Dear James, we couldn't approve your recent application. Please try again after 30 days or contact support.",
+      "We couldn't approve your recent application. Please try again after 30 days or contact support.",
     timestamp: "5th August 2025, 10:30",
   },
   {
