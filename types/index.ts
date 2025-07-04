@@ -94,7 +94,7 @@ export type sidebarDataType = {
   >;
   alt: string;
   title: string;
-  onClick: () => void;
+  href: string;
 };
 
 export interface TransactionTable {

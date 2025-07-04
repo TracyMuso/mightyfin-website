@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "@/styles/Dashboard.module.css";
 import {
   useSidebar,
@@ -10,17 +12,16 @@ import {
   SidebarMenuItem,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
-
 import { LeftSidebarData } from "@/constants/data/dashboard";
-// import styles from "@/styles/Dashboard.module.css";
 
 export function AppSidebar() {
   const { openMobile } = useSidebar();
+  const pathname = usePathname();
 
   return (
     <Sidebar className="h-full" collapsible="icon">
       {openMobile && (
-        <div className="md-hidden absolute z-250 top-3 left-[250px] text-white ">
+        <div className="md-hidden absolute z-250 top-3 left-[250px] text-white">
           <SidebarTrigger />
         </div>
       )}
@@ -30,14 +31,16 @@ export function AppSidebar() {
             <SidebarMenu>
               {LeftSidebarData.map((item) => (
                 <SidebarMenuItem
-                  className="text-white hover:text-purple-600 hover:cursor-pointer"
+                  className={`text-white hover:text-purple-600 hover:cursor-pointer ${
+                    pathname === item.href ? "text-purple-600" : ""
+                  }`}
                   key={item.title}
                 >
                   <SidebarMenuButton asChild>
-                    <span onClick={item.onClick}>
+                    <Link href={item.href} className="flex items-center gap-2">
                       <item.icon />
                       <span>{item.title}</span>
-                    </span>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}

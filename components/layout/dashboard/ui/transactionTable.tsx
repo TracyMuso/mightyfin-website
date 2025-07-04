@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import Image from "next/image";
 import { TransactionTableData } from "@/constants/data/dashboard";
 
 const tableHeaders: string[] = [
@@ -17,10 +17,11 @@ const TranactionTable = () => {
         <h2 className="text-gray-100 text-m">Transactions</h2>
         <div className="relative border rounded-md p-1">
           <div className="pointer-events-none absolute top-[6px] left-8 flex items-center text-gray-700">
-            <img
+            <Image
               src={"/Icons/fi_filter.svg"}
               alt="filter icon"
-              className="w-4 h-5"
+              width={16}
+              height={16}
             />
           </div>
           <select className="h-full rounded-r sm:rounded-r-none block appearance-none w-full bg-white text-gray-700 py-1 px-4 pl-12 text-xs leading-tight focus:outline-none focus:bg-white">
