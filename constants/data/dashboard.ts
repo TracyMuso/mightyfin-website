@@ -1,5 +1,5 @@
 import type { sidebarDataType, TransactionTable } from "@/types";
-import type { OBGDashboard } from "@/types/dashboard";
+import type { NotificationsType, OBGDashboard } from "@/types/dashboard";
 import {
   BellIcon,
   BookIcon,
@@ -15,43 +15,43 @@ export const LeftSidebarData: sidebarDataType[] = [
     icon: BoxesIcon,
     alt: "Dashboard icon",
     title: "Dashboard",
-    onClick: () => {},
+    href: "/dashboard",
   },
   {
     icon: BellIcon,
     alt: "Notifications icon",
     title: "Notifications",
-    onClick: () => {},
+    href: "/dashboard/notifications",
   },
   {
     icon: BookIcon,
     alt: "Document icon",
     title: "Your Documents",
-    onClick: () => {},
+    href: "/dashboard/documents",
   },
   {
     icon: ChartBarIcon,
     alt: "Chart icon",
     title: "Transactions",
-    onClick: () => {},
+    href: "/dashboard/transactions",
   },
   {
     icon: Headphones,
     alt: "headphones icon",
     title: "Customer Support",
-    onClick: () => {},
+    href: "/dashboard/support",
   },
   {
     icon: SettingsIcon,
     alt: "Settings icon",
     title: "Settings",
-    onClick: () => {},
+    href: "/dashboard/settings",
   },
   {
     icon: ArrowLeftCircle,
     alt: "arrow left icon",
     title: "Log out",
-    onClick: () => {},
+    href: "/",
   },
 ];
 
@@ -148,5 +148,57 @@ export const OnboardingGuideSteps: OBGDashboard[] = [
       description:
         "Deposit the amount requested directly to your bank or mobile money",
     },
+  },
+];
+
+export const NotificationsData: NotificationsType[] = [
+  {
+    username: "James",
+    title: "Loan Application Received",
+    message:
+      "We've received your loan application #L-2048. Our team will review it within 24 hours.",
+    timestamp: "15th July 2025, 08:30",
+  },
+  {
+    username: "James",
+    title: "Loan Approved",
+    message:
+      "Congratulations! Your loan of ZMW 5,000 has been approved. Funds will be available in your account shortly.",
+    timestamp: "16th July 2025, 11:45",
+  },
+  {
+    username: "James",
+    title: "Loan Disbursed",
+    message:
+      "Your approved loan of ZMW 5,000 has been sent to your bank account (****1234).",
+    timestamp: "16th July 2025, 15:20",
+  },
+  {
+    username: "James",
+    title: "Payment Reminder",
+    message:
+      "Friendly reminder James, your payment of ZMW 1,250 is due tomorrow. Pay via mobile money or bank transfer.",
+    timestamp: "30th July 2025, 09:15",
+  },
+  {
+    username: "James",
+    title: "Payment Received",
+    message:
+      "Thank you James! We've received your payment of ZMW 1,250. Next payment due on 30th August 2025.",
+    timestamp: "30th July 2025, 14:00",
+  },
+  {
+    username: "James",
+    title: "Loan Rejected",
+    message:
+      "We couldn't approve your recent application. Please try again after 30 days or contact support.",
+    timestamp: "5th August 2025, 10:30",
+  },
+  {
+    username: "James",
+    title: "Late Payment Notice",
+    message:
+      "URGENT: James, your payment of ZMW 1,250 is now 5 days overdue. Late fees may apply if not paid today.",
+    timestamp: "5th August 2025, 16:45",
   },
 ];
