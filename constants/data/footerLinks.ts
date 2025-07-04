@@ -19,34 +19,34 @@ export const footerLinks: FooterLink[] = [
     links: [
       {
         label: "Home",
-        link: "#",
+        link: "/",
       },
       {
         label: "About",
-        link: "#",
+        link: "/about",
       },
       {
         label: "Products",
-        link: "#",
+        link: "/products",
       },
-      {
-        label: "Blog",
-        link: "#",
-      },
+      // {
+      //   label: "Blog",
+      //   link: "#",
+      // },
     ],
   },
   {
     title: "Legal",
     titleLink: "#",
     links: [
-      {
-        label: "FAQs",
-        link: "#",
-      },
-      {
-        label: "Legal",
-        link: "#",
-      },
+      // {
+      //   label: "FAQs",
+      //   link: "#",
+      // },
+      // {
+      //   label: "Legal",
+      //   link: "#",
+      // },
       {
         label: "Terms and conditions",
         link: "#",
@@ -55,10 +55,10 @@ export const footerLinks: FooterLink[] = [
         label: "Privacy",
         link: "#",
       },
-      {
-        label: "Sitemap",
-        link: "#",
-      },
+      // {
+      //   label: "Sitemap",
+      //   link: "#",
+      // },
     ],
   },
 ];
@@ -69,26 +69,26 @@ export const ContactLinks: SocialLink[] = [
   {
     label: "+260 97 8555299",
     icon: "/Icons/fluent_call-12-regular.svg",
-    link: "#",
+    link: "tel:0978555299",
   },
   {
     label: "info@mightyfinance.co.zm",
     icon: "/Icons/quill_mail.svg",
-    link: "#",
+    link: "mailto:mightyfinance.co.zm",
   },
   {
     label: "First Floor, Sunshare Tower",
     icon: "/Icons/system-uicons_location.svg",
-    link: "#",
+    link: "https://maps.app.goo.gl/5x4LxLNNPeDM82Uu9",
   },
 ];
 
 export const footerSocialLinks: SocialLink[] = [
-  {
-    label: "Instagram",
-    icon: "/Icons/instagram.svg",
-    link: "#",
-  },
+  // {
+  //   label: "Instagram",
+  //   icon: "/Icons/instagram.svg",
+  //   link: "#",
+  // },
   {
     label: "Linkedin",
     icon: "/Icons/linkedin.svg",

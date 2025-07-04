@@ -130,7 +130,6 @@ body {
   padding: 0;
   margin: 0;
   background-color: #fff;
-  overflow-x: hidden;
 }
 
 *,
@@ -290,4 +289,12 @@ input:focus:-ms-input-placeholder {
 .loan-number-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+::-webkit-scrollbar {
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c084fc;
+  border-radius: 14px;
 }
