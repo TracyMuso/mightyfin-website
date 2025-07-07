@@ -1,5 +1,5 @@
 import { ZodType } from "zod";
-import { CombinedCheckoutType } from "@/validators/kyc.validator";
+import { CombinedCheckoutType } from "@/validators/application-flow.validator";
 import { LucideIcon } from "lucide-react";
 
 export interface OBGDashboard {
@@ -52,4 +52,42 @@ export interface FileUploadProps {
   name: string;
   accept?: string;
   onChange: (file: File | null) => void;
+}
+
+export interface KYCFormData {
+  // Personal Information
+  email: string;
+  firstName: string;
+  lastName: string;
+  nrc: string;
+  dob: string;
+  gender: string;
+  town: string;
+  province: string;
+  address: string;
+  phoneNumber: number;
+
+  // Next of Kin
+  kinAddress: string;
+  kinFirstName: string;
+  kinPhoneNumber: number;
+  kinLastName: string;
+
+  // HR Manager
+  hrmFirstName: string;
+  hrmLastName: string;
+  hrmPhoneNumber: number;
+
+  // Supervisor
+  supervisorFirstName: string;
+  supervisorLastName: string;
+  supervisorPhoneNumber: number;
+
+  // Documents
+  photo?: File;
+  proofOfIncome?: File;
+  preApprovalDoc?: File;
+  idCopy?: File;
+  bankStatement?: File;
+  tpin?: File;
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export function LoanApplicationModal({
@@ -9,7 +10,7 @@ export function LoanApplicationModal({
   userStatus: "no-kyc" | "pending-loan" | "poor-credit" | "eligible";
   onClose: () => void;
 }) {
-  const [countdown, setCountdown] = useState(4);
+  const [countdown, setCountdown] = useState(5);
 
   // Auto-close after 5 seconds for non-KYC cases
   useEffect(() => {
@@ -37,16 +38,12 @@ export function LoanApplicationModal({
             <h4 className="font-bold text-purple-800 md:text-[20px]">
               Please upload your kyc first
             </h4>
-            <div className="flex flex-col items-center text-center gap-1 md:text-[17px] text-sm">
-              <strong>Civil Servant Loan</strong>
-              <span>
-                National Identity Card, Payslip, 3 Months Bank Statements
-              </span>
-            </div>
-            <div className="flex flex-col items-center text-center gap-1 md:text-[17px] text-sm">
-              <strong>Business Loan</strong>
-              <span>Business Financial Books, Directors NRC, Letter</span>
-            </div>
+            <Link
+              className="bg-yellow-500 hover:bg-yellow-400 px-5 py-3 flex justify-center"
+              href={"/dashboard/kyc"}
+            >
+              Go to upload
+            </Link>
           </div>
         );
 
@@ -60,9 +57,6 @@ export function LoanApplicationModal({
               You cannot apply for a new loan while you have a pending
               application.
             </p>
-            <p className="text-sm text-gray-500">
-              Closing in {countdown} seconds...
-            </p>
           </div>
         );
 
@@ -72,9 +66,9 @@ export function LoanApplicationModal({
             <h3 className="text-lg font-medium text-red-600">
               Application Not Eligible
             </h3>
-            <p>Your credit score doesn`t meet our current requirements.</p>
-            <p className="text-sm text-gray-500">
-              Closing in {countdown} seconds...
+            <p>
+              Your credit score doesn`t meet our current requirements. Please
+              improve it to qualify for a loan
             </p>
           </div>
         );

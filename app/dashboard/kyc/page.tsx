@@ -1,26 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState } from "react";
+"use client";
+import { readLocalStorageValue } from "@mantine/hooks";
+import PersonalLoanApplication from "@/components/LoanApplication";
+import DashboardLayout from "@/components/layout/dashboard/layout";
+import KycPreview from "@/components/kyc/preview";
 
 const Kyc = () => {
-  const [hasKyc, setHasKyc] = useState(false);
-
-  // mock api call
-  const checkKyc = () => {
-    console.log("hasKyc");
-    setHasKyc(true);
-  };
+  const kycDets = readLocalStorageValue({
+    key: "checkout-form",
+  });
 
   return (
-    <div>
-      {hasKyc ? (
-        <div>
-          <p>Has No kyc, click the buttn below to upload docs</p>
-          <button>Upload kyc</button>
-        </div>
-      ) : (
-        <div>kyc data, editale upon request</div>
-      )}
-    </div>
+    <DashboardLayout>
+      <div className="p-5">
+        {kycDets !== null ? (
+          <KycPreview />
+        ) : (
+          <div>
+            <PersonalLoanApplication />
+          </div>
+        )}
+      </div>
+    </DashboardLayout>
   );
 };
 
