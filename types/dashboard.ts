@@ -1,3 +1,7 @@
+import { ZodType } from "zod";
+import { CombinedCheckoutType } from "@/validators/kyc.validator";
+import { LucideIcon } from "lucide-react";
+
 export interface OBGDashboard {
   element: string;
   popover: popoverType;
@@ -14,4 +18,38 @@ export interface NotificationsType {
   message: string;
   timestamp: string;
   tabIndex?: number;
+}
+
+type FieldKeys = keyof CombinedCheckoutType;
+
+export type kycFormStep = {
+  title: string;
+  position: number;
+  validationSchema: ZodType<unknown>;
+  component: React.ReactElement;
+  icon: LucideIcon;
+  fields: FieldKeys[];
+};
+
+export interface MultiStepFormContextProps {
+  currentStep: kycFormStep;
+  currentStepIndex: number;
+  isFirstStep: boolean;
+  isLastStep: boolean;
+  nextStep: () => void;
+  previousStep: () => void;
+  goToStep: (step: number) => void;
+  steps: kycFormStep[];
+}
+
+export type SavedFormState = {
+  currentStepIndex: number;
+  formValues: Record<string, unknown>;
+};
+
+export interface FileUploadProps {
+  label: string;
+  name: string;
+  accept?: string;
+  onChange: (file: File | null) => void;
 }

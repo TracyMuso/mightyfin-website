@@ -6,11 +6,19 @@ import { TransactionChart } from "./ui/transactionChart";
 import TranactionTable from "./ui/transactionTable";
 import QuickActions from "./quick-actions";
 
+interface CenterBarType {
+  borrowedAmount: string;
+  paybackDate: string;
+  dueAmount: string;
+  handleApplyButtonClick: () => void;
+}
+
 const CenterBar = ({
-  borrowedAmount = "0",
-  paybackDate = "",
-  dueAmount = "0",
-}) => {
+  borrowedAmount,
+  paybackDate,
+  dueAmount,
+  handleApplyButtonClick,
+}: CenterBarType) => {
   const [hasLoan, setHasLoan] = useState(false);
 
   return (
@@ -84,7 +92,10 @@ const CenterBar = ({
             <p className="text-gray-100 text-center">
               Select the button below to make your first transaction.
             </p>
-            <button className="px-10 py-4 md:w-[450px] text-center bg-purple-500 hover:bg-purple-primary rounded-md text-white">
+            <button
+              onClick={handleApplyButtonClick}
+              className="px-10 py-4 md:w-[450px] text-center bg-purple-500 hover:bg-purple-primary rounded-md text-white"
+            >
               APPLY NOW
             </button>
           </div>

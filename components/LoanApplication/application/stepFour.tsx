@@ -1,74 +1,79 @@
 "use client";
 
 import NextButton from "../steppedForm/nextButton";
-import ErrorMessage from "@/components/ui/error-message";
-import { Input } from "@/components/ui/input";
-import { useMultiStepForm } from "@/hooks/use-stepped-form";
-import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
+import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";
-import PrevButton from "../steppedForm/prevButton";
+import { CombinedKycSchema } from "@/validators/application-flow.validator";
+import { FileUpload } from "@/components/ui/file-upload";
+import { documentFields } from "@/utils/profile-upload-fields";
+import ErrorMessage from "@/components/ui/error-message";
+import Link from "next/link";
 
 const Step4 = () => {
   const {
-    register,
-    // getValues,
-    // setError,
     formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
+    setValue,
+    register,
+  } = useFormContext<z.infer<typeof CombinedKycSchema>>();
 
-  const { nextStep } = useMultiStepForm();
+  const router = useRouter();
 
-  const handleStepSubmit = async () => {
-    nextStep();
+  const SubmitForm = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("submitted!");
+
+    // Redirect to thank you page after submission
+    router.push("/thankyou");
   };
 
+  const handleFileChange =
+    (fieldName: keyof z.infer<typeof CombinedKycSchema>) =>
+    (file: File | null) => {
+      setValue(fieldName, file);
+    };
+
   return (
-    <div className="pt-4 pb-8">
-      <div className="grid sm:grid-cols-2 sm:gap-3">
-        <div>
-          <label className="font-semibold">First Name</label>
-          <Input {...register("kinFirstName")} placeholder="Simon" />
-          <ErrorMessage message={errors.kinFirstName?.message} />
+    <div className="flex flex-col gap-6 pt-4 pb-8">
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">Document Uploads</h3>
+        <div className="grid sm:grid-cols-2">
+          {documentFields.map((field) => (
+            <FileUpload
+              key={field.name}
+              label={field.label}
+              name={field.name}
+              accept={field.accept}
+              error={errors[field.name]?.message as string}
+              onChange={handleFileChange(field.name)}
+            />
+          ))}
         </div>
-        <div>
-          <label className="font-semibold">Last Name</label>
-          <Input {...register("kinLastName")} placeholder="Mwansa" />
-          <ErrorMessage message={errors.kinLastName?.message} />
+        {/* Consent Checkbox */}
+        <div className="flex items-start">
+          <div className="flex items-center h-5">
+            <input
+              id="consent"
+              type="checkbox"
+              {...register("consent")}
+              className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+            />
+          </div>
+          <div className="ml-3 text-sm">
+            <label htmlFor="consent" className="font-medium text-gray-700">
+              <p className="text-gray-500">
+                By checking this box, you consent to the{" "}
+                <Link className="text-purple-700 text-sm" href={"#"}>
+                  terms and conditions
+                </Link>
+              </p>
+            </label>
+          </div>
         </div>
-        <div>
-          <label className="font-semibold">Phone Number</label>
-          <Input
-            className="loan-number-input"
-            type="number"
-            inputMode="numeric"
-            {...register("kinPhoneNumber", {
-              valueAsNumber: true, // Convert to number automatically
-              validate: (value) =>
-                !isNaN(value) || "Please enter a valid number",
-            })}
-            placeholder="0978236744"
-          />
-          <ErrorMessage message={errors.kinPhoneNumber?.message} />
-        </div>
-        <div>
-          <label className="font-semibold">Relationship</label>
-          <Input {...register("relationship")} placeholder="e.g Brother" />
-          <ErrorMessage message={errors.relationship?.message} />
-        </div>
-        <div>
-          <label className="font-semibold">Address</label>
-          <Input
-            {...register("kinAddress")}
-            placeholder="e.g Plot 451 Kabwata, Lusaka"
-          />
-          <ErrorMessage message={errors.kinAddress?.message} />
-        </div>
+        <ErrorMessage message={errors.consent?.message} />
       </div>
-      <div className="w-full flex items-center justify-between">
-        <PrevButton />
-        <NextButton onClick={handleStepSubmit} />
-      </div>
+
+      <NextButton type="submit" onClick={SubmitForm} />
     </div>
   );
 };

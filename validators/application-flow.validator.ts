@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const step1Schema = z.object({
+export const LoanDetailsSchema = z.object({
   loanType: z.enum(["personal", "business"], {
     required_error: "Please select a loan type",
     invalid_type_error: "Loan type must be either personal or business",
@@ -35,7 +35,7 @@ const provinces = [
 ] as const;
 export type Province = (typeof provinces)[number];
 
-export const step2Schema = z.object({
+export const step1Schema = z.object({
   firstName: z.string().min(2, "First name must be at least 2 characters"),
   lastName: z.string().min(2, "Last name must be at least 2 characters"),
   email: z.string().email({ message: "Please enter a valid email address" }),
@@ -90,7 +90,7 @@ export const step2Schema = z.object({
   }),
 });
 
-export const step3Schema = z.object({
+export const step2Schema = z.object({
   jobTitle: z.string({ message: "Title name must be at least 3 characters" }),
   ministry: z.string({ message: "Title name must be at least 5 characters" }),
   department: z.string({ message: "Title name must be at least 3 characters" }),
@@ -125,7 +125,7 @@ const ACCEPTED_FILE_TYPES = [
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 
-export const step4Schema = z.object({
+export const step3Schema = z.object({
   kinFirstName: z.string().min(2, "First name must be at least 2 characters"),
   kinLastName: z.string().min(2, "Last name must be at least 2 characters"),
   kinPhoneNumber: z.number({
@@ -140,7 +140,7 @@ export const step4Schema = z.object({
   kinAddress: z.string().min(5, "Address must be at least 5 characters"),
 });
 
-export const step5Schema = z.object({
+export const step4Schema = z.object({
   idCopy: z
     .instanceof(File)
     .refine((file) => file.size <= MAX_FILE_SIZE, {
@@ -202,9 +202,9 @@ export const step5Schema = z.object({
   }),
 });
 
-export const CombinedCheckoutSchema = step1Schema
+export const CombinedKycSchema = step1Schema
   .merge(step2Schema)
   .merge(step3Schema)
-  .merge(step4Schema)
-  .merge(step5Schema);
-export type CombinedCheckoutType = z.infer<typeof CombinedCheckoutSchema>;
+  .merge(step4Schema);
+export type CombinedCheckoutType = z.infer<typeof CombinedKycSchema>;
+export type LoanDetsType = z.infer<typeof LoanDetailsSchema>;
