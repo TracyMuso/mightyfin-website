@@ -11,7 +11,7 @@ const Kyc = () => {
 
   return (
     <DashboardLayout>
-      <div className="p-5">
+      <div className="sm:p-5 p-2">
         {kycDets !== null ? (
           <KycPreview />
         ) : (

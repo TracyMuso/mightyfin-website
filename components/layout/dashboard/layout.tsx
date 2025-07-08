@@ -16,7 +16,7 @@ const DashboardLayout = ({ children }: AppLayoutProps) => {
       <AppSidebar />
       <div className="w-full">
         <SidebarTrigger />
-        <DashboardHeader name="Lute" initials="LC" />
+        <DashboardHeader />
         {children}
       </div>
     </SidebarProvider>

@@ -32,10 +32,11 @@ const kycDefaultValues: KYCFormData = {
   tpin: undefined,
 };
 
-const tabClass = "px-4 py-2 cursor-pointer rounded-t-lg";
+const tabClass =
+  "md:px-4 px-2 py-2 md:text-base sm:text-sm text-[10px] cursor-pointer rounded-t-lg";
 const activeTabClass =
-  "bg-yellow-100 border-t border-l border-r border-gray-300 font-semibold";
-const inactiveTabClass = "bg-purple-50 hover:bg-purple-100";
+  "bg-yellow-100 border-t border-l border-r border-yellow-500 text-purple-600 font-semibold";
+const inactiveTabClass = " hover:bg-purple-100";
 
 const KycPreview = () => {
   const safeJsonParse = (value: string | undefined) => {
@@ -58,7 +59,7 @@ const KycPreview = () => {
   const [activeTab, setActiveTab] = useState("personal");
 
   return (
-    <div className="p-5">
+    <div className="sm:p-5 p-2">
       {kycDets !== null && (
         <div className="flex flex-col">
           {/* Tab Navigation */}
@@ -93,97 +94,186 @@ const KycPreview = () => {
           <div className="bg-white p-4">
             {/* Personal Details Tab */}
             {activeTab === "personal" && (
-              <div className="flex flex-col gap-3">
-                <span className="font-semibold text-xl text-purple-600">
-                  Personal Details
-                </span>
+              <div className="grid grid-rows-1 md:grid-cols-2 md:grid-rows-2 gap-3 pt-5">
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Name</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Name
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.firstName} {formValues.lastName}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Phone</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Phone
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.phoneNumber}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Email</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Email
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.email}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">ID</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">ID</span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.nrc}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">DOB</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    DOB
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formattedDate}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Gender</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Gender
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.gender}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Town</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Town
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.town}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Province</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Province
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.province}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Full Address</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Full Address
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.address}
                   </span>
                 </div>
               </div>
             )}
-
+            {/* Employment details*/}
+            {activeTab === "employment" && (
+              <div className="grid md:grid-cols-2 md:grid-rows-2 gap-3">
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    Job Title
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.jobTitle}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    Ministry
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.ministry}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    Department
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.department}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    Employee number
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.nrc}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    HR Manager Name
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.hrmFirstName} {formValues.hrmLastName}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    HR Manager Phone
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.hrmPhoneNumber}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    Supervisor Name
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 italic">
+                    {formValues.supervisorFirstName}{" "}
+                    {formValues.supervisorLastName}
+                  </span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold md:text-base text-sm">
+                    Supervisor Phone
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
+                    {formValues.supervisorPhoneNumber}
+                  </span>
+                </div>
+              </div>
+            )}
+            {/*Next of kin*/}
             {activeTab === "kin" && (
               <div className="flex flex-col gap-2">
                 <span className="font-semibold text-xl text-purple-600">
                   Next of Kin
                 </span>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Name</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Name
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.kinFirstName} {formValues.kinLastName}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Phone</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Phone
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.kinPhoneNumber}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <span className="font-semibold">Full Address</span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
+                  <span className="font-semibold md:text-base text-sm">
+                    Full Address
+                  </span>
+                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
                     {formValues.kinAddress}
                   </span>
                 </div>
               </div>
             )}
-
+            {/*documents*/}
             {activeTab === "documents" && (
               <div>
                 <span className="font-semibold text-xl text-purple-600">
-                  Personal Details
+                  Documents
                 </span>
                 {formValues.photo && (
                   <div>
@@ -193,6 +283,61 @@ const KycPreview = () => {
                       target="_blank"
                     >
                       View Photo
+                    </a>
+                  </div>
+                )}
+                {formValues.proofOfIncome && (
+                  <div>
+                    <span>Proof of income</span>
+                    <a
+                      href={URL.createObjectURL(formValues.proofOfIncome)}
+                      target="_blank"
+                    >
+                      View Proof of income
+                    </a>
+                  </div>
+                )}
+                {formValues.preApprovalDoc && (
+                  <div>
+                    <span>Pre-approval Doc</span>
+                    <a
+                      href={URL.createObjectURL(formValues.preApprovalDoc)}
+                      target="_blank"
+                    >
+                      View Pre-approval Doc
+                    </a>
+                  </div>
+                )}
+                {formValues.idCopy && (
+                  <div>
+                    <span>ID</span>
+                    <a
+                      href={URL.createObjectURL(formValues.idCopy)}
+                      target="_blank"
+                    >
+                      View ID
+                    </a>
+                  </div>
+                )}
+                {formValues.bankStatement && (
+                  <div>
+                    <span>Bank Statement</span>
+                    <a
+                      href={URL.createObjectURL(formValues.bankStatement)}
+                      target="_blank"
+                    >
+                      View Bank Statement
+                    </a>
+                  </div>
+                )}
+                {formValues.tpin && (
+                  <div>
+                    <span>Tpin</span>
+                    <a
+                      href={URL.createObjectURL(formValues.tpin)}
+                      target="_blank"
+                    >
+                      View Tpin
                     </a>
                   </div>
                 )}
