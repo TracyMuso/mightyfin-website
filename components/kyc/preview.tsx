@@ -48,7 +48,6 @@ const KycPreview = () => {
   const kycDets = readLocalStorageValue({
     key: "checkout-form",
     defaultValue: {
-      currentStepindex: "3",
       formValues: kycDefaultValues,
     },
     deserialize: safeJsonParse, // Converts string back to object
@@ -60,7 +59,7 @@ const KycPreview = () => {
 
   return (
     <div className="sm:p-5 p-2">
-      {kycDets !== null && (
+      {kycDets && (
         <div className="flex flex-col">
           {/* Tab Navigation */}
           <div className="flex border-b border-gray-100 self-center">

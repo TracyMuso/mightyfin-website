@@ -3,11 +3,10 @@
 import NextButton from "../steppedForm/nextButton";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
-import { FormSelect } from "../ui/form-select";
-import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
-import { CombinedKycSchema } from "@/validators/application-flow.validator";
+import { FormSelect } from "@/components/LoanApplication/ui/form-select";
+import { useMultiStepForm } from "@/hooks/use-kyb-stepped-form";
+import { CombinedKybType } from "@/validators/application-flow.validator";
 import { useFormContext } from "react-hook-form";
-import { z } from "zod";
 import PrevButton from "../steppedForm/prevButton";
 import { provinces, genderOptions } from "@/constants/data/loan";
 
@@ -18,7 +17,7 @@ const Step1 = () => {
     setError,
     control,
     formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedKycSchema>>();
+  } = useFormContext<CombinedKybType>();
 
   const { nextStep } = useMultiStepForm();
 

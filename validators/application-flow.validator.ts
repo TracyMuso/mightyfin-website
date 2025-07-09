@@ -202,9 +202,91 @@ export const step4Schema = z.object({
   }),
 });
 
+export const SmeInfoSchema = z.object({
+  businessType: z
+    .string()
+    .min(3, "Business type must be at least 2 characters"),
+  businessName: z
+    .string()
+    .min(2, "Business name must be at least 2 characters"),
+  businessAddress: z
+    .string({
+      required_error: "Address is required",
+    })
+    .min(5, {
+      message: "Address must be at least 5 characters",
+    })
+    .max(100, {
+      message: "Address must be less than 100 characters",
+    }),
+  businessTown: z
+    .string({
+      required_error: "Town is required",
+    })
+    .min(2, {
+      message: "Town name must be at least 2 characters",
+    })
+    .max(50, {
+      message: "Town name must be less than 50 characters",
+    }),
+  businessProvince: z.enum(provinces, {
+    required_error: "Province is required",
+  }),
+});
+
+export const smeDocschema = z.object({
+  pacra: z
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: "File size must be less than 5MB",
+    })
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+      message: "Only PDF, JPEG, PNG, or Word files are accepted",
+    })
+    .nullable(),
+
+  taxClearance: z
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: "File size must be less than 5MB",
+    })
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+      message: "Only PDF, JPEG, PNG, or Word files are accepted",
+    })
+    .nullable(),
+
+  bankStatement: z
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: "File size must be less than 5MB",
+    })
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+      message: "Only PDF, JPEG, PNG, or Word files are accepted",
+    })
+    .nullable(),
+
+  tpin: z
+    .instanceof(File)
+    .refine((file) => file.size <= MAX_FILE_SIZE, {
+      message: "File size must be less than 5MB",
+    })
+    .refine((file) => ACCEPTED_FILE_TYPES.includes(file.type), {
+      message: "Only PDF, JPEG, PNG, or Word files are accepted",
+    })
+    .nullable(),
+  consent: z.boolean({
+    message: "To proceed, please agree to the T's and C's",
+  }),
+});
+
 export const CombinedKycSchema = step1Schema
   .merge(step2Schema)
   .merge(step3Schema)
   .merge(step4Schema);
+
+export const CombinedKybSchema = step1Schema
+  .merge(SmeInfoSchema)
+  .merge(smeDocschema);
+export type CombinedKybType = z.infer<typeof CombinedKybSchema>;
 export type CombinedCheckoutType = z.infer<typeof CombinedKycSchema>;
 export type LoanDetsType = z.infer<typeof LoanDetailsSchema>;

@@ -3,7 +3,7 @@
 import NextButton from "../steppedForm/nextButton";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
-import { useMultiStepForm } from "@/hooks/use-stepped-form";
+import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
 import { CombinedKycSchema } from "@/validators/application-flow.validator";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";

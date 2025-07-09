@@ -7,12 +7,13 @@ import KycPreview from "@/components/kyc/preview";
 const Kyc = () => {
   const kycDets = readLocalStorageValue({
     key: "checkout-form",
+    defaultValue: null,
   });
 
   return (
     <DashboardLayout>
       <div className="sm:p-5 p-2">
-        {kycDets !== null ? (
+        {kycDets ? (
           <KycPreview />
         ) : (
           <div>

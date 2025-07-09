@@ -30,3 +30,26 @@ export const documentFields = [
     accept: ".pdf,.jpg,.jpeg,.png",
   },
 ] as const;
+
+export const SmedocumentFields = [
+  {
+    name: "taxClearance",
+    label: "Pre-Approval Document",
+    accept: ".pdf,.doc,.docx",
+  },
+  {
+    name: "pacra",
+    label: "Proof of Income",
+    accept: ".pdf,.jpg,.jpeg,.png",
+  },
+  {
+    name: "bankStatement",
+    label: "Bank Statement",
+    accept: ".pdf,.csv,.xlsx",
+  },
+  {
+    name: "tpin",
+    label: "TPIN Document",
+    accept: ".pdf,.jpg,.jpeg,.png",
+  },
+] as const;

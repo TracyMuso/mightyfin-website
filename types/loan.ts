@@ -1,8 +1,12 @@
 import { ZodType } from "zod";
-import { CombinedCheckoutType } from "@/validators/application-flow.validator";
+import {
+  CombinedCheckoutType,
+  CombinedKybType,
+} from "@/validators/application-flow.validator";
 import { LucideIcon } from "lucide-react";
 
 type FieldKeys = keyof CombinedCheckoutType;
+type SmeFieldKeys = keyof CombinedKybType;
 
 export type FormStep = {
   title: string;
@@ -22,6 +26,26 @@ export interface MultiStepFormContextProps {
   previousStep: () => void;
   goToStep: (step: number) => void;
   steps: FormStep[];
+}
+
+export type SmeFormStep = {
+  title: string;
+  position: number;
+  validationSchema: ZodType<unknown>;
+  component: React.ReactElement;
+  icon: LucideIcon;
+  fields: SmeFieldKeys[];
+};
+
+export interface SmeMultiStepFormContextProps {
+  currentStep: SmeFormStep;
+  currentStepIndex: number;
+  isFirstStep: boolean;
+  isLastStep: boolean;
+  nextStep: () => void;
+  previousStep: () => void;
+  goToStep: (step: number) => void;
+  steps: SmeFormStep[];
 }
 
 export type SavedFormState = {
