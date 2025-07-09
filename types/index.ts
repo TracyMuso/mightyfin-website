@@ -1,3 +1,6 @@
+import { LucideProps } from "lucide-react";
+import { ForwardRefExoticComponent, RefAttributes } from "react";
+
 export interface HeroPointType {
   title: string;
   text: string;
@@ -86,10 +89,12 @@ export type authInputDataType = {
 };
 
 export type sidebarDataType = {
-  icon: string;
+  icon: ForwardRefExoticComponent<
+    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
+  >;
   alt: string;
   title: string;
-  onClick: () => void;
+  href: string;
 };
 
 export interface TransactionTable {

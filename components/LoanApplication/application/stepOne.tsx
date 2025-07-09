@@ -1,147 +1,164 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import NextButton from "../steppedForm/nextButton";
-import { Input } from "@/components/ui/input";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import ErrorMessage from "@/components/ui/error-message";
-import { useMultiStepForm } from "@/hooks/use-stepped-form";
+import { Input } from "@/components/ui/input";
+import { FormSelect } from "../ui/form-select";
+import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
+import { CombinedKycSchema } from "@/validators/application-flow.validator";
 import { useFormContext } from "react-hook-form";
-import {
-  getInterestRate,
-  getNextRepaymentDate,
-} from "@/hooks/calculate-loan-details";
 import { z } from "zod";
-import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
 import PrevButton from "../steppedForm/prevButton";
+import { provinces, genderOptions } from "@/constants/data/loan";
 
 const Step1 = () => {
   const {
     register,
+    getValues,
+    setError,
     watch,
+    setValue,
+    control,
     formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
+  } = useFormContext<z.infer<typeof CombinedKycSchema>>();
 
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
+    const { email } = getValues();
+
+    if (email === "test2356@test.com") {
+      setError("email", {
+        type: "manual",
+        message:
+          "Email already exists in the database. Please use a different email.",
+      });
+      return;
+    }
+
     nextStep();
   };
+  const [localDate, setLocalDate] = useState("");
 
-  const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
-  const [totalPayment, setTotalPayment] = useState<number>(0);
-  const [totalInterest, setTotalInterest] = useState<number>(0);
-
-  // Watch loanAmount changes in real-time
-  const watchedLoanAmount = watch("loanAmount");
-  const watchedLoanTerm = watch("loanTermMonths");
-
-  const calculatePayment = (amount: number, term: number) => {
-    const interestRate = getInterestRate(term);
-    const monthlyRate = interestRate / term; // Divide total interest by number of months
-
-    // Simple interest calculation (interest is spread evenly across payments)
-    const totalInterestAmount = amount * interestRate;
-    const payment = (amount + totalInterestAmount) / term;
-
-    setMonthlyPayment(parseFloat(payment.toFixed(2)));
-    setTotalPayment(parseFloat((amount + totalInterestAmount).toFixed(2)));
-    setTotalInterest(parseFloat(totalInterestAmount.toFixed(2)));
+  // Convert between MM-DD-YYYY and YYYY-MM-DD (for native date input)
+  const formatForInput = (mmddyyyy: string) => {
+    const [month, day, year] = mmddyyyy.split("-");
+    return `${year}-${month}-${day}`; // Convert to YYYY-MM-DD for input[type="date"]
   };
 
+  const formatForStorage = (yyyymmdd: string) => {
+    const [year, month, day] = yyyymmdd.split("-");
+    return `${month}-${day}-${year}`; // Convert back to MM-DD-YYYY
+  };
+
+  // Initialize from form values
   useEffect(() => {
-    if (watchedLoanAmount) {
-      calculatePayment(watchedLoanAmount, watchedLoanTerm);
+    const dob = watch("dob");
+    if (dob) {
+      setLocalDate(formatForInput(dob));
     }
-  }, [watchedLoanAmount, watchedLoanTerm]);
+  }, []);
 
   return (
-    <div className="flex flex-col gap-1 pt-4 pb-8">
-      <div className="space-y-2">
-        <fieldset>
-          <legend className="font-semibold">Loan Type</legend>
-          <div className="flex flex-col items-start gap-3 pt-2">
-            <div className="flex items-center">
-              <input
-                id="personal-loan"
-                type="radio"
-                value="personal"
-                {...register("loanType")}
-                className="h-4 w-4 text-purple-600 focus:ring-purple-600"
-              />
-              <label
-                htmlFor="personal-loan"
-                className="pl-2 sm:text-[16px] text-[13px]"
-              >
-                Civil Servant Loan
-              </label>
-            </div>
-            <div className="flex items-center">
-              <input
-                id="business-loan"
-                type="radio"
-                value="business"
-                {...register("loanType")}
-                className="h-4 w-4 text-purple-600 focus:ring-purple-600"
-              />
-              <label
-                htmlFor="business-loan"
-                className="pl-2 sm:text-[16px] text-[13px]"
-              >
-                Business Loan
-              </label>
-            </div>
-          </div>
-        </fieldset>
-        <ErrorMessage message={errors.loanType?.message} />
-      </div>
-      <div>
-        <label className="font-semibold">Amount</label>
-        <Input
-          className="loan-number-input"
-          inputMode="numeric"
-          type="number"
-          {...register("loanAmount", {
-            valueAsNumber: true, // Convert to number automatically
-            validate: (value) => !isNaN(value) || "Please enter a valid number",
-          })}
-          placeholder="10000"
-        />
-        <ErrorMessage message={errors.loanAmount?.message} />
-      </div>
-      <div>
-        <label className="font-semibold">Duration (up to 9 months)</label>
-        <Input
-          min={1}
-          max={9}
-          inputMode="numeric"
-          type="number"
-          {...register("loanTermMonths", {
-            valueAsNumber: true, // Convert to number automatically
-            validate: (value) => !isNaN(value) || "Please enter a valid number",
-          })}
-          placeholder="1"
-        />
-        <ErrorMessage message={errors.loanTermMonths?.message} />
-      </div>
-      <div className="flex items-center w-full justify-between pb-4">
+    <div className="pt-4 pb-8">
+      <div className="grid sm:grid-cols-2 sm:gap-3">
         <div>
-          <span className="text-purple-700 sm:text-[17px] text-sm">
-            Payback amount
-          </span>
-          <p className="sm:text-[15px] text-[12px]">{totalPayment}</p>
+          <label className="font-semibold">First Name</label>
+          <Input {...register("firstName")} placeholder="Simon" />
+          <ErrorMessage message={errors.firstName?.message} />
         </div>
         <div>
-          <span className="text-purple-700 sm:text-[17px] text-sm">
-            Monthly deduction
-          </span>
-          <p className="sm:text-[15px] text-[12px]">{monthlyPayment}</p>
+          <label className="font-semibold sm:text-[16px] text-sm">
+            Last Name
+          </label>
+          <Input {...register("lastName")} placeholder="Mwansa" />
+          <ErrorMessage message={errors.lastName?.message} />
         </div>
         <div>
-          <span className="text-purple-700 sm:text-[17px] text-sm">
-            Next Payment date
-          </span>
-          <p className="sm:text-[15px] text-[12px]">{getNextRepaymentDate()}</p>
+          <label className="font-semibold">Email</label>
+          <Input
+            type="email"
+            {...register("email")}
+            placeholder="sim@mail.com"
+          />
+          <ErrorMessage message={errors.email?.message} />
+        </div>
+        <div>
+          <label className="font-semibold">Phone Number</label>
+          <Input
+            className="loan-number-input"
+            type="number"
+            inputMode="numeric"
+            {...register("phoneNumber", {
+              valueAsNumber: true, // Convert to number automatically
+              validate: (value) =>
+                !isNaN(value) || "Please enter a valid number",
+            })}
+            placeholder="0978236744"
+          />
+          <ErrorMessage message={errors.phoneNumber?.message} />
+        </div>
+        <div className="space-y-2">
+          <label className="font-semibold">Date of Birth (MM-DD-YYYY)</label>
+          <Input
+            type="date"
+            value={localDate}
+            onChange={(e) => {
+              const yyyymmdd = e.target.value;
+              setLocalDate(yyyymmdd);
+              setValue("dob", formatForStorage(yyyymmdd), {
+                shouldValidate: true,
+              });
+            }}
+            max={
+              new Date(new Date().setFullYear(new Date().getFullYear() - 18))
+                .toISOString()
+                .split("T")[0]
+            }
+          />
+          <ErrorMessage message={errors.dob?.message} />
+          {localDate && (
+            <p className="text-sm text-gray-500">
+              Selected: {formatForStorage(localDate)}
+            </p>
+          )}
+        </div>
+        <div>
+          <label className="font-semibold">NRC number</label>
+          <Input type="text" {...register("nrc")} placeholder="123456/78/9" />
+          <ErrorMessage message={errors.nrc?.message} />
+        </div>
+        <FormSelect
+          name="gender"
+          label="Gender"
+          control={control}
+          errors={errors.gender}
+          options={genderOptions}
+          placeholder="Select your gender"
+        />
+        <div>
+          <label className="font-semibold">Address</label>
+          <Input
+            {...register("address")}
+            placeholder="Plot 46, Chikuni road, Kabwata"
+          />
+          <ErrorMessage message={errors.address?.message} />
+        </div>
+        <div>
+          <label className="font-semibold">Town</label>
+          <Input {...register("town")} placeholder="Kitwe" />
+          <ErrorMessage message={errors.town?.message} />
+        </div>
+        <div className="space-y-2">
+          <FormSelect
+            name="province"
+            label="Province"
+            control={control}
+            errors={errors.province}
+            options={provinces}
+            placeholder="Select your province"
+          />
         </div>
       </div>
       <div className="w-full flex items-center justify-between">

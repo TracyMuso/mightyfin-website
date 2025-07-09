@@ -1,4 +1,4 @@
-import { useMultiStepForm } from "@/hooks/use-stepped-form";
+import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
 import { Button } from "../../button";
 
 const PrevButton = () => {

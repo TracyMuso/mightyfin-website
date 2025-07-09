@@ -68,8 +68,8 @@ export default function PasswordReset() {
       // Mock response
       const userExists =
         method === VerificationMethod.EMAIL
-          ? email === "user@example.com"
-          : phoneNumber === 260977123456;
+          ? email !== "123user@example.com"
+          : phoneNumber !== 260988123456;
 
       if (userExists) {
         setUserExists(true);

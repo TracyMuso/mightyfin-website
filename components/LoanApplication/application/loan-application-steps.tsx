@@ -5,31 +5,21 @@ import Step1 from "./stepOne";
 import Step2 from "./stepTwo";
 import Step3 from "./stepThree";
 import Step4 from "./stepFour";
-import Step5 from "./stepFive";
 import {
   step1Schema,
   step2Schema,
   step3Schema,
   step4Schema,
-  step5Schema,
 } from "@/validators/application-flow.validator";
-import { UserIcon, HandshakeIcon, CircleDollarSignIcon } from "lucide-react";
+import { UserIcon, HandshakeIcon } from "lucide-react";
 
 export const checkoutSteps: FormStep[] = [
   {
-    title: "Fill in Loan Information",
+    title: "Confirm Personal Details",
     component: <Step1 />,
-    icon: CircleDollarSignIcon,
+    icon: UserIcon,
     position: 1,
     validationSchema: step1Schema,
-    fields: ["loanType", "loanTermMonths", "loanAmount"],
-  },
-  {
-    title: "Confirm Personal Details",
-    component: <Step2 />,
-    icon: UserIcon,
-    position: 2,
-    validationSchema: step2Schema,
     fields: [
       "email",
       "firstName",
@@ -45,10 +35,10 @@ export const checkoutSteps: FormStep[] = [
   },
   {
     title: "Employment Details",
-    component: <Step3 />,
+    component: <Step2 />,
     icon: HandshakeIcon,
-    position: 3,
-    validationSchema: step3Schema,
+    position: 2,
+    validationSchema: step2Schema,
     fields: [
       "department",
       "jobTitle",
@@ -64,10 +54,10 @@ export const checkoutSteps: FormStep[] = [
   },
   {
     title: "Next of Kin",
-    component: <Step4 />,
+    component: <Step3 />,
     icon: HandshakeIcon,
-    position: 4,
-    validationSchema: step4Schema,
+    position: 3,
+    validationSchema: step3Schema,
     fields: [
       "kinAddress",
       "kinFirstName",
@@ -78,10 +68,10 @@ export const checkoutSteps: FormStep[] = [
   },
   {
     title: "Required Documents",
-    component: <Step5 />,
+    component: <Step4 />,
     icon: HandshakeIcon,
-    position: 5,
-    validationSchema: step5Schema,
+    position: 4,
+    validationSchema: step4Schema,
     fields: [
       "preApprovalDoc",
       "proofOfIncome",

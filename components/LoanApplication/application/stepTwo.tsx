@@ -3,37 +3,23 @@
 import NextButton from "../steppedForm/nextButton";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
-import { FormSelect } from "../ui/form-select";
-import { useMultiStepForm } from "@/hooks/use-stepped-form";
-import { CombinedCheckoutSchema } from "@/validators/application-flow.validator";
+import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
+import { CombinedKycSchema } from "@/validators/application-flow.validator";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 import PrevButton from "../steppedForm/prevButton";
-import { provinces, genderOptions } from "@/constants/data/loan";
 
 const Step2 = () => {
   const {
     register,
-    getValues,
-    setError,
-    control,
+    // getValues,
+    // setError,
     formState: { errors },
-  } = useFormContext<z.infer<typeof CombinedCheckoutSchema>>();
+  } = useFormContext<z.infer<typeof CombinedKycSchema>>();
 
   const { nextStep } = useMultiStepForm();
 
   const handleStepSubmit = async () => {
-    const { email } = getValues();
-
-    if (email === "test@test.com") {
-      setError("email", {
-        type: "manual",
-        message:
-          "Email already exists in the database. Please use a different email.",
-      });
-      return;
-    }
-
     nextStep();
   };
 
@@ -41,91 +27,89 @@ const Step2 = () => {
     <div className="pt-4 pb-8">
       <div className="grid sm:grid-cols-2 sm:gap-3">
         <div>
-          <label className="font-semibold">First Name</label>
-          <Input {...register("firstName")} placeholder="Simon" />
-          <ErrorMessage message={errors.firstName?.message} />
+          <label className="font-semibold">Job Title</label>
+          <Input {...register("jobTitle")} placeholder="e.g Accountant" />
+          <ErrorMessage message={errors.jobTitle?.message} />
         </div>
         <div>
-          <label className="font-semibold sm:text-[16px] text-sm">
-            Last Name
-          </label>
-          <Input {...register("lastName")} placeholder="Mwansa" />
-          <ErrorMessage message={errors.lastName?.message} />
-        </div>
-        <div>
-          <label className="font-semibold">Email</label>
+          <label className="font-semibold">Ministry</label>
           <Input
-            type="email"
-            {...register("email")}
-            placeholder="sim@mail.com"
+            {...register("ministry")}
+            placeholder="e.g Ministry of Finance"
           />
-          <ErrorMessage message={errors.email?.message} />
+          <ErrorMessage message={errors.ministry?.message} />
         </div>
         <div>
-          <label className="font-semibold">Phone Number</label>
-          <Input
-            className="loan-number-input"
-            type="number"
-            inputMode="numeric"
-            {...register("phoneNumber", {
-              valueAsNumber: true, // Convert to number automatically
-              validate: (value) =>
-                !isNaN(value) || "Please enter a valid number",
-            })}
-            placeholder="0978236744"
-          />
-          <ErrorMessage message={errors.phoneNumber?.message} />
-        </div>
-        <div className="space-y-2">
-          <label className="font-semibold">Date of Birth (DD/MM/YYYY)</label>
-          <Input
-            type="date"
-            {...register("dob", {
-              valueAsDate: true,
-            })}
-            max={
-              new Date(new Date().setFullYear(new Date().getFullYear() - 18))
-                .toISOString()
-                .split("T")[0]
-            }
-          />
-          <ErrorMessage message={errors.dob?.message} />
+          <label className="font-semibold">Department</label>
+          <Input {...register("department")} placeholder="e.g Finance" />
+          <ErrorMessage message={errors.department?.message} />
         </div>
         <div>
-          <label className="font-semibold">NRC number</label>
-          <Input type="text" {...register("nrc")} placeholder="123456/78/9" />
-          <ErrorMessage message={errors.nrc?.message} />
+          <label className="font-semibold">Employee Number</label>
+          <Input {...register("employeeNumber")} placeholder="e.g 10336622" />
+          <ErrorMessage message={errors.employeeNumber?.message} />
         </div>
-        <FormSelect
-          name="gender"
-          label="Gender"
-          control={control}
-          errors={errors.gender}
-          options={genderOptions}
-          placeholder="Select your gender"
-        />
-        <div>
-          <label className="font-semibold">Address</label>
-          <Input
-            {...register("address")}
-            placeholder="Plot 46, Chikuni road, Kabwata"
-          />
-          <ErrorMessage message={errors.address?.message} />
+      </div>
+      {/* references */}
+      <div className="py-4">
+        <h2 className="text-center font-semibold text-purple-900">
+          References
+        </h2>
+        <h3 className="font-semibold py-3">Human Resource Manager</h3>
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:flex-wrap md:flex-nowrap">
+          <div>
+            <label className="font-semibold">First Name</label>
+            <Input {...register("hrmFirstName")} placeholder="Simon" />
+            <ErrorMessage message={errors.hrmFirstName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Last Name</label>
+            <Input {...register("hrmLastName")} placeholder="Mwansa" />
+            <ErrorMessage message={errors.hrmLastName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Phone Number</label>
+            <Input
+              className="loan-number-input"
+              type="number"
+              inputMode="numeric"
+              {...register("hrmPhoneNumber", {
+                valueAsNumber: true, // Convert to number automatically
+                validate: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+              })}
+              placeholder="0978236744"
+            />
+            <ErrorMessage message={errors.hrmPhoneNumber?.message} />
+          </div>
         </div>
-        <div>
-          <label className="font-semibold">Town</label>
-          <Input {...register("town")} placeholder="Kitwe" />
-          <ErrorMessage message={errors.town?.message} />
-        </div>
-        <div className="space-y-2">
-          <FormSelect
-            name="province"
-            label="Province"
-            control={control}
-            errors={errors.province}
-            options={provinces}
-            placeholder="Select your province"
-          />
+        <h3 className="font-semibold py-3">Supervisor</h3>
+        <div className="flex sm:flex-row flex-col sm:justify-between sm:flex-wrap md:flex-nowrap">
+          <div>
+            <label className="font-semibold">First Name</label>
+            <Input {...register("supervisorFirstName")} placeholder="Simon" />
+            <ErrorMessage message={errors.supervisorFirstName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Last Name</label>
+            <Input {...register("supervisorLastName")} placeholder="Mwansa" />
+            <ErrorMessage message={errors.supervisorLastName?.message} />
+          </div>
+          <div>
+            <label className="font-semibold">Phone Number</label>
+            <Input
+              className="loan-number-input"
+              type="number"
+              inputMode="numeric"
+              {...register("supervisorPhoneNumber", {
+                valueAsNumber: true, // Convert to number automatically
+                validate: (value) =>
+                  !isNaN(value) || "Please enter a valid number",
+              })}
+              placeholder="0978236744"
+            />
+            <ErrorMessage message={errors.supervisorPhoneNumber?.message} />
+          </div>
         </div>
       </div>
       <div className="w-full flex items-center justify-between">

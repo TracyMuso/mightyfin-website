@@ -11,7 +11,7 @@ import {
 } from "@/types/loan";
 import { FormProvider, useForm } from "react-hook-form";
 import {
-  CombinedCheckoutSchema,
+  CombinedKycSchema,
   CombinedCheckoutType,
 } from "@/validators/application-flow.validator";
 import ProgressIndicator from "./progressIndictor";
@@ -28,12 +28,9 @@ const MultiStepForm = ({
   steps: FormStep[];
   localStorageKey: string;
 }) => {
-  const methods = useForm<z.infer<typeof CombinedCheckoutSchema>>({
-    resolver: zodResolver(CombinedCheckoutSchema),
+  const methods = useForm<z.infer<typeof CombinedKycSchema>>({
+    resolver: zodResolver(CombinedKycSchema),
     defaultValues: {
-      loanAmount: 10000,
-      loanTermMonths: 1,
-      loanType: "personal",
       email: "",
       firstName: "",
       lastName: "",
@@ -149,9 +146,7 @@ const MultiStepForm = ({
     }
   };
 
-  async function submitSteppedForm(
-    data: z.infer<typeof CombinedCheckoutSchema>
-  ) {
+  async function submitSteppedForm(data: z.infer<typeof CombinedKycSchema>) {
     try {
       // Perform your form submission logic here
       console.log("data", data);

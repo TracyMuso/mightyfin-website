@@ -1,5 +1,5 @@
 import { Button } from "@/components/button";
-import { useMultiStepForm } from "@/hooks/use-stepped-form";
+import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
 
 const NextButton = ({
   onClick,
