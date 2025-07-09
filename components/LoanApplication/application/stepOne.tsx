@@ -1,6 +1,7 @@
 "use client";
 
 import NextButton from "../steppedForm/nextButton";
+import { useEffect, useState } from "react";
 import ErrorMessage from "@/components/ui/error-message";
 import { Input } from "@/components/ui/input";
 import { FormSelect } from "../ui/form-select";
@@ -16,6 +17,8 @@ const Step1 = () => {
     register,
     getValues,
     setError,
+    watch,
+    setValue,
     control,
     formState: { errors },
   } = useFormContext<z.infer<typeof CombinedKycSchema>>();
@@ -36,6 +39,26 @@ const Step1 = () => {
 
     nextStep();
   };
+  const [localDate, setLocalDate] = useState("");
+
+  // Convert between MM-DD-YYYY and YYYY-MM-DD (for native date input)
+  const formatForInput = (mmddyyyy: string) => {
+    const [month, day, year] = mmddyyyy.split("-");
+    return `${year}-${month}-${day}`; // Convert to YYYY-MM-DD for input[type="date"]
+  };
+
+  const formatForStorage = (yyyymmdd: string) => {
+    const [year, month, day] = yyyymmdd.split("-");
+    return `${month}-${day}-${year}`; // Convert back to MM-DD-YYYY
+  };
+
+  // Initialize from form values
+  useEffect(() => {
+    const dob = watch("dob");
+    if (dob) {
+      setLocalDate(formatForInput(dob));
+    }
+  }, []);
 
   return (
     <div className="pt-4 pb-8">
@@ -77,12 +100,17 @@ const Step1 = () => {
           <ErrorMessage message={errors.phoneNumber?.message} />
         </div>
         <div className="space-y-2">
-          <label className="font-semibold">Date of Birth (DD/MM/YYYY)</label>
+          <label className="font-semibold">Date of Birth (MM-DD-YYYY)</label>
           <Input
             type="date"
-            {...register("dob", {
-              valueAsDate: true,
-            })}
+            value={localDate}
+            onChange={(e) => {
+              const yyyymmdd = e.target.value;
+              setLocalDate(yyyymmdd);
+              setValue("dob", formatForStorage(yyyymmdd), {
+                shouldValidate: true,
+              });
+            }}
             max={
               new Date(new Date().setFullYear(new Date().getFullYear() - 18))
                 .toISOString()
@@ -90,6 +118,11 @@ const Step1 = () => {
             }
           />
           <ErrorMessage message={errors.dob?.message} />
+          {localDate && (
+            <p className="text-sm text-gray-500">
+              Selected: {formatForStorage(localDate)}
+            </p>
+          )}
         </div>
         <div>
           <label className="font-semibold">NRC number</label>

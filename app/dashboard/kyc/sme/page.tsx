@@ -1,13 +1,13 @@
 "use client";
 
 import { readLocalStorageValue } from "@mantine/hooks";
-import PersonalLoanApplication from "@/components/LoanApplication";
+import SmeLoanApplication from "@/components/SmeLoanApplication";
 import DashboardLayout from "@/components/layout/dashboard/layout";
-import KycPreview from "@/components/kyc/preview";
+import KycPreview from "@/components/kyc/sme-preview";
 
 const Kyc = () => {
   const kycDets = readLocalStorageValue({
-    key: "checkout-form",
+    key: "sme-kyc-form",
     defaultValue: null,
   });
 
@@ -18,7 +18,7 @@ const Kyc = () => {
           <KycPreview />
         ) : (
           <div>
-            <PersonalLoanApplication />
+            <SmeLoanApplication />
           </div>
         )}
       </div>

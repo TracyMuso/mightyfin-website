@@ -12,23 +12,21 @@ export function LoanApplicationModal({
 }) {
   const [countdown, setCountdown] = useState(5);
 
-  // Auto-close after 5 seconds for non-KYC cases
   useEffect(() => {
-    if (userStatus !== "no-kyc") {
-      const timer = setInterval(() => {
-        setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
-      }, 1000);
+    // For demo purposes, we'll show all modals for 5 seconds
+    const timer = setInterval(() => {
+      setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
 
-      const closeTimer = setTimeout(() => {
-        if (countdown === 0) onClose();
-      }, 5000);
+    const closeTimer = setTimeout(() => {
+      if (countdown === 0) onClose();
+    }, 5000);
 
-      return () => {
-        clearInterval(timer);
-        clearTimeout(closeTimer);
-      };
-    }
-  }, [countdown, onClose, userStatus]);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(closeTimer);
+    };
+  }, [countdown, onClose]);
 
   const renderContent = () => {
     switch (userStatus) {
@@ -36,40 +34,59 @@ export function LoanApplicationModal({
         return (
           <div className="sm:px-6 sm:py-8 py-4 px-2 flex flex-col items-center text-center gap-6 border shadow-md rounded-sm w-full max-w-[800px] bg-white">
             <h4 className="font-bold text-purple-800 md:text-[20px]">
-              Please upload your kyc first
+              [DEMO] Please complete your KYC
             </h4>
+            <p className="text-sm text-gray-500 mb-2">
+              (In a real app, this would redirect to KYC upload)
+            </p>
             <Link
               className="bg-yellow-500 hover:bg-yellow-400 px-5 py-3 flex justify-center"
               href={"/dashboard/kyc"}
             >
-              Go to upload
+              Go to KYC Upload
             </Link>
           </div>
         );
 
       case "pending-loan":
         return (
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 p-4">
             <h3 className="text-lg font-medium text-red-600">
-              Loan Application Blocked
+              [DEMO] Loan Application Blocked
             </h3>
-            <p>
-              You cannot apply for a new loan while you have a pending
-              application.
+            <p>You have a pending loan application in our demo system.</p>
+            <p className="text-sm text-gray-500">
+              Auto-closing in {countdown} seconds...
             </p>
           </div>
         );
 
       case "poor-credit":
         return (
-          <div className="text-center space-y-4">
+          <div className="text-center space-y-4 p-4">
             <h3 className="text-lg font-medium text-red-600">
-              Application Not Eligible
+              [DEMO] Credit Score Too Low
             </h3>
-            <p>
-              Your credit score doesn`t meet our current requirements. Please
-              improve it to qualify for a loan
+            <p>Demo message: Your credit score doesn`t meet requirements.</p>
+            <p className="text-sm text-gray-500">
+              Auto-closing in {countdown} seconds...
             </p>
+          </div>
+        );
+
+      case "eligible":
+        return (
+          <div className="text-center space-y-4 p-4">
+            <h3 className="text-lg font-medium text-green-600">
+              [DEMO] Loan Application Would Start
+            </h3>
+            <p>In a real app, the loan application form would open now.</p>
+            <button
+              onClick={onClose}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            >
+              Close Demo
+            </button>
           </div>
         );
 
@@ -84,10 +101,10 @@ export function LoanApplicationModal({
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          aria-label="Close modal"
         >
           ✕
         </button>
-
         {renderContent()}
       </div>
     </div>

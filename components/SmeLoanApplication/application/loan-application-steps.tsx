@@ -51,6 +51,14 @@ export const checkoutSteps: SmeFormStep[] = [
     icon: HandshakeIcon,
     position: 3,
     validationSchema: smeDocschema,
-    fields: ["pacra", "taxClearance", "bankStatement", "tpin", "consent"],
+    fields: [
+      "pacra",
+      "taxClearance",
+      "bankStatement",
+      "tpin",
+      "consent",
+      "photo",
+      "idCopy",
+    ],
   },
 ];

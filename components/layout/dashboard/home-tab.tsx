@@ -5,6 +5,18 @@ import CenterBar from "./centerBar";
 import RightSideBar from "./ui/rightSidebar";
 import { LoanApplicationModal } from "@/components/kyc/modal";
 
+// Temporary dummy user data
+const dummyUserData = {
+  hasKYC: false,
+  hasPendingLoan: true,
+  hasPoorCredit: false,
+  name: "Lute Chongo",
+  id: "MF10923",
+  borrowedAmount: "0",
+  paybackDate: "",
+  dueAmount: "0",
+};
+
 const DashboardHome = () => {
   const [showModal, setShowModal] = useState(false);
   const [userStatus, setUserStatus] = useState<
@@ -12,36 +24,33 @@ const DashboardHome = () => {
   >("eligible");
 
   const handleApplyForLoan = () => {
-    // Check user status (you would replace this with actual checks)
-    if (!userHasKYC()) {
+    // Using dummy data instead of API calls
+    if (!dummyUserData.hasKYC) {
       setUserStatus("no-kyc");
-    } else if (userHasPendingLoan()) {
+    } else if (dummyUserData.hasPendingLoan) {
       setUserStatus("pending-loan");
-    } else if (userHasPoorCredit()) {
+    } else if (dummyUserData.hasPoorCredit) {
       setUserStatus("poor-credit");
     } else {
       setUserStatus("eligible");
-      // Proceed with loan application
+      // In a real scenario, you would proceed with loan application here
+      console.log("User is eligible for loan");
       return;
     }
     setShowModal(true);
   };
 
-  const userHasKYC = () => false;
-  const userHasPendingLoan = () => true;
-  const userHasPoorCredit = () => false;
-
   return (
     <div className={`flex gap-1 bg-gray-50`}>
       <CenterBar
-        borrowedAmount="0"
-        paybackDate=""
-        dueAmount="0"
+        borrowedAmount={dummyUserData.borrowedAmount}
+        paybackDate={dummyUserData.paybackDate}
+        dueAmount={dummyUserData.dueAmount}
         handleApplyButtonClick={handleApplyForLoan}
       />
       <RightSideBar
-        userName="Lute Chongo"
-        userID="MF10923"
+        userName={dummyUserData.name}
+        userID={dummyUserData.id}
         handleApplyButtonClick={handleApplyForLoan}
       />
       {showModal && (

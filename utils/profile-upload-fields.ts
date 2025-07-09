@@ -38,6 +38,11 @@ export const SmedocumentFields = [
     accept: ".pdf,.doc,.docx",
   },
   {
+    name: "photo",
+    label: "Photo",
+    accept: ".jpg,.jpeg,.png",
+  },
+  {
     name: "pacra",
     label: "Proof of Income",
     accept: ".pdf,.jpg,.jpeg,.png",
@@ -50,6 +55,11 @@ export const SmedocumentFields = [
   {
     name: "tpin",
     label: "TPIN Document",
+    accept: ".pdf,.jpg,.jpeg,.png",
+  },
+  {
+    name: "idCopy",
+    label: "ID Copy",
     accept: ".pdf,.jpg,.jpeg,.png",
   },
 ] as const;

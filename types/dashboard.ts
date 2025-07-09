@@ -67,6 +67,12 @@ export interface KYCFormData {
   address: string;
   phoneNumber: number;
 
+  //employment
+  jobTitle: string;
+  ministry: string;
+  department: string;
+  employeeNumber: string;
+
   // Next of Kin
   kinAddress: string;
   kinFirstName: string;

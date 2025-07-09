@@ -1,39 +1,32 @@
 "use client";
-import { useState } from "react";
-import { readLocalStorageValue } from "@mantine/hooks";
-import { KYCFormData } from "@/types/dashboard";
 
-export const kycDefaultValues: KYCFormData = {
+import { useState, useEffect } from "react";
+import { readLocalStorageValue } from "@mantine/hooks";
+import { CombinedKybType } from "@/validators/application-flow.validator";
+
+export const kycDefaultValues: CombinedKybType = {
   email: "",
   firstName: "",
   lastName: "",
   nrc: "",
   dob: "",
-  gender: "",
+  gender: "female",
   town: "",
-  province: "",
+  province: "Central",
   address: "",
   phoneNumber: 0,
-  kinAddress: "",
-  kinFirstName: "",
-  kinPhoneNumber: 0,
-  kinLastName: "",
-  jobTitle: "",
-  ministry: "",
-  department: "",
-  employeeNumber: "",
-  hrmFirstName: "",
-  hrmLastName: "",
-  hrmPhoneNumber: 0,
-  supervisorFirstName: "",
-  supervisorLastName: "",
-  supervisorPhoneNumber: 0,
-  photo: undefined,
-  proofOfIncome: undefined,
-  preApprovalDoc: undefined,
-  idCopy: undefined,
-  bankStatement: undefined,
-  tpin: undefined,
+  businessName: "",
+  businessAddress: "",
+  businessProvince: "Central",
+  businessTown: "",
+  businessType: "",
+  pacra: null,
+  taxClearance: null,
+  bankStatement: null,
+  idCopy: null,
+  photo: null,
+  tpin: null,
+  consent: true,
 };
 
 const safeJsonParse = (value: string | undefined) => {
@@ -49,7 +42,7 @@ const safeJsonParse = (value: string | undefined) => {
 };
 
 export interface KycData {
-  formValues: KYCFormData | null;
+  formValues: CombinedKybType | null;
 }
 
 const tabClass =
@@ -58,36 +51,40 @@ const activeTabClass =
   "bg-yellow-100 border-t border-l border-r border-yellow-500 text-purple-600 font-semibold";
 const inactiveTabClass = " hover:bg-purple-100";
 
-const KycPreview = () => {
-  const kycDets = readLocalStorageValue<KycData>({
-    key: "checkout-form",
-    defaultValue: {
-      formValues: kycDefaultValues,
-    },
-    deserialize: safeJsonParse,
-  });
+const SmeKycPreview = () => {
+  const [activeTab, setActiveTab] = useState("director");
+  const [kycDets, setKycDets] = useState<KycData | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    const data = readLocalStorageValue<KycData>({
+      key: "sme-kyc-form",
+      defaultValue: {
+        formValues: kycDefaultValues,
+      },
+      deserialize: safeJsonParse,
+    });
+    setKycDets(data);
+  }, []);
+
+  // Don't render anything during SSR or initial render
+  if (!isClient) {
+    return null;
+  }
 
   const { formValues = kycDefaultValues } = kycDets || {};
-  const formattedDate = formValues?.dob.split("T")[0];
-  const [activeTab, setActiveTab] = useState("personal");
 
   return (
     <div className="sm:p-5 p-2">
       {kycDets && (
         <div className="flex flex-col">
-          {/* Tab Navigation */}
           <div className="flex border-b border-gray-100 self-center">
             <div
-              className={`${tabClass} ${activeTab === "personal" ? activeTabClass : inactiveTabClass}`}
-              onClick={() => setActiveTab("personal")}
+              className={`${tabClass} ${activeTab === "director" ? activeTabClass : inactiveTabClass}`}
+              onClick={() => setActiveTab("director")}
             >
-              Personal Details
-            </div>
-            <div
-              className={`${tabClass} ${activeTab === "kin" ? activeTabClass : inactiveTabClass}`}
-              onClick={() => setActiveTab("kin")}
-            >
-              Next of Kin
+              Director Details
             </div>
             <div
               className={`${tabClass} ${activeTab === "documents" ? activeTabClass : inactiveTabClass}`}
@@ -96,17 +93,15 @@ const KycPreview = () => {
               Documents
             </div>
             <div
-              className={`${tabClass} ${activeTab === "employment" ? activeTabClass : inactiveTabClass}`}
-              onClick={() => setActiveTab("employment")}
+              className={`${tabClass} ${activeTab === "company" ? activeTabClass : inactiveTabClass}`}
+              onClick={() => setActiveTab("company")}
             >
-              Employment Details
+              Company Details
             </div>
           </div>
 
-          {/* Tab Content */}
           <div className="bg-white p-4">
-            {/* Personal Details Tab */}
-            {activeTab === "personal" && (
+            {activeTab === "director" && (
               <div className="grid grid-rows-1 md:grid-cols-2 md:grid-rows-2 gap-3 pt-5">
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold md:text-base text-sm">
@@ -135,7 +130,7 @@ const KycPreview = () => {
                     DOB
                   </span>
                   <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formattedDate}
+                    {formValues?.dob}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
@@ -172,109 +167,52 @@ const KycPreview = () => {
                 </div>
               </div>
             )}
-            {/* Employment details*/}
-            {activeTab === "employment" && (
+
+            {activeTab === "company" && (
               <div className="grid md:grid-cols-2 md:grid-rows-2 gap-3">
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold md:text-base text-sm">
-                    Job Title
+                    Business Name
                   </span>
                   <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.jobTitle}
+                    {formValues?.businessName}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold md:text-base text-sm">
-                    Ministry
+                    Business Type
                   </span>
                   <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.ministry}
+                    {formValues?.businessType}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold md:text-base text-sm">
-                    Department
+                    Business Town
                   </span>
                   <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.department}
+                    {formValues?.businessTown}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold md:text-base text-sm">
-                    Employee number
+                    Business Province
                   </span>
                   <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.employeeNumber}
+                    {formValues?.businessProvince}
                   </span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="font-semibold md:text-base text-sm">
-                    HR Manager Name
+                    Business Address
                   </span>
                   <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.hrmFirstName} {formValues?.hrmLastName}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold md:text-base text-sm">
-                    HR Manager Phone
-                  </span>
-                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.hrmPhoneNumber}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold md:text-base text-sm">
-                    Supervisor Name
-                  </span>
-                  <span className="border rounded-md shadow-sm p-2 italic">
-                    {formValues?.supervisorFirstName}{" "}
-                    {formValues?.supervisorLastName}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold md:text-base text-sm">
-                    Supervisor Phone
-                  </span>
-                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.supervisorPhoneNumber}
+                    {formValues?.businessAddress}
                   </span>
                 </div>
               </div>
             )}
-            {/*Next of kin*/}
-            {activeTab === "kin" && (
-              <div className="flex flex-col gap-2">
-                <span className="font-semibold text-xl text-purple-600">
-                  Next of Kin
-                </span>
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold md:text-base text-sm">
-                    Name
-                  </span>
-                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.kinFirstName} {formValues?.kinLastName}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold md:text-base text-sm">
-                    Phone
-                  </span>
-                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.kinPhoneNumber}
-                  </span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <span className="font-semibold md:text-base text-sm">
-                    Full Address
-                  </span>
-                  <span className="border rounded-md shadow-sm p-2 md:text-base text-sm italic">
-                    {formValues?.kinAddress}
-                  </span>
-                </div>
-              </div>
-            )}
-            {/*documents*/}
+
             {activeTab === "documents" && (
               <div>
                 <span className="font-semibold text-xl text-purple-600">
@@ -291,28 +229,6 @@ const KycPreview = () => {
                     </a>
                   </div>
                 )}
-                {formValues?.proofOfIncome && (
-                  <div>
-                    <span>Proof of income</span>
-                    <a
-                      href={URL.createObjectURL(formValues?.proofOfIncome)}
-                      target="_blank"
-                    >
-                      View Proof of income
-                    </a>
-                  </div>
-                )}
-                {formValues?.preApprovalDoc && (
-                  <div>
-                    <span>Pre-approval Doc</span>
-                    <a
-                      href={URL.createObjectURL(formValues?.preApprovalDoc)}
-                      target="_blank"
-                    >
-                      View Pre-approval Doc
-                    </a>
-                  </div>
-                )}
                 {formValues?.idCopy && (
                   <div>
                     <span>ID</span>
@@ -321,6 +237,28 @@ const KycPreview = () => {
                       target="_blank"
                     >
                       View ID
+                    </a>
+                  </div>
+                )}
+                {formValues?.pacra && (
+                  <div>
+                    <span>Pacra Certificate</span>
+                    <a
+                      href={URL.createObjectURL(formValues?.pacra)}
+                      target="_blank"
+                    >
+                      View Pacra cert
+                    </a>
+                  </div>
+                )}
+                {formValues?.taxClearance && (
+                  <div>
+                    <span>Tax clearance</span>
+                    <a
+                      href={URL.createObjectURL(formValues?.taxClearance)}
+                      target="_blank"
+                    >
+                      View tax cleaarance
                     </a>
                   </div>
                 )}
@@ -355,4 +293,4 @@ const KycPreview = () => {
   );
 };
 
-export default KycPreview;
+export default SmeKycPreview;
