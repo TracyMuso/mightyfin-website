@@ -1,35 +1,36 @@
 "use client";
 
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 import { createContext, useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
-  FormStep,
-  MultiStepFormContextProps,
+  SmeFormStep,
+  SmeMultiStepFormContextProps,
   SavedFormState,
 } from "@/types/loan";
 import { FormProvider, useForm } from "react-hook-form";
 import {
-  CombinedKycSchema,
-  CombinedCheckoutType,
+  CombinedKybSchema,
+  CombinedKybType,
 } from "@/validators/application-flow.validator";
 import ProgressIndicator from "./progressIndictor";
 import { useLocalStorage } from "@mantine/hooks";
 import { useToast } from "@/hooks/use-toast";
 
 export const MultiStepFormContext =
-  createContext<MultiStepFormContextProps | null>(null);
+  createContext<SmeMultiStepFormContextProps | null>(null);
 
 const MultiStepForm = ({
   steps,
-  localStorageKey = "multi-step-form",
+  localStorageKey = "sme-multi-step-form",
 }: {
-  steps: FormStep[];
+  steps: SmeFormStep[];
   localStorageKey: string;
 }) => {
-  const methods = useForm<z.infer<typeof CombinedKycSchema>>({
-    resolver: zodResolver(CombinedKycSchema),
+  const methods = useForm<CombinedKybType>({
+    resolver: zodResolver(CombinedKybSchema),
     defaultValues: {
       email: "",
       firstName: "",
@@ -39,27 +40,21 @@ const MultiStepForm = ({
       gender: undefined,
       town: "",
       province: undefined,
+      businessType: "",
+      businessAddress: "",
+      businessName: "",
+      businessTown: "",
+      businessProvince: undefined,
       address: "",
       phoneNumber: undefined,
-      kinAddress: "",
-      kinFirstName: "",
-      kinPhoneNumber: undefined,
-      kinLastName: "",
-      hrmFirstName: "",
-      hrmLastName: "",
-      hrmPhoneNumber: undefined,
-      supervisorFirstName: "",
-      supervisorLastName: "",
-      supervisorPhoneNumber: undefined,
-      photo: undefined,
-      proofOfIncome: undefined,
-      preApprovalDoc: undefined,
-      idCopy: undefined,
+      pacra: undefined,
       bankStatement: undefined,
       tpin: undefined,
       consent: false,
     },
   });
+
+  const router = useRouter();
 
   const { toast } = useToast();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -117,7 +112,7 @@ const MultiStepForm = ({
 
       if (!validationResult.success) {
         validationResult.error.errors.forEach((err) => {
-          methods.setError(err.path.join(".") as keyof CombinedCheckoutType, {
+          methods.setError(err.path.join(".") as keyof CombinedKybType, {
             type: "manual",
             message: err.message,
           });
@@ -146,7 +141,7 @@ const MultiStepForm = ({
     }
   };
 
-  async function submitSteppedForm(data: z.infer<typeof CombinedKycSchema>) {
+  async function submitSteppedForm(data: z.infer<typeof CombinedKybSchema>) {
     try {
       // Perform your form submission logic here
       console.log("data", data);
@@ -158,13 +153,21 @@ const MultiStepForm = ({
           </pre>
         ),
       });
+      setTimeout(() => {
+        router.push("/thankyou");
+      }, 1500);
       clearFormState();
     } catch (error) {
       console.error("Form submission error:", error);
+      toast({
+        title: "Submission Failed",
+        description:
+          "There was an error submitting your form. Please try again.",
+      });
     }
   }
 
-  const value: MultiStepFormContextProps = {
+  const value: SmeMultiStepFormContextProps = {
     currentStep: steps[currentStepIndex],
     currentStepIndex,
     isFirstStep: currentStepIndex === 0,

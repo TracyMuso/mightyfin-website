@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 import { motion } from "framer-motion";
-import { useMultiStepForm } from "@/hooks/use-kyc-stepped-form";
+import { useMultiStepForm } from "@/hooks/use-kyb-stepped-form";
 import { checkoutSteps } from "../application/loan-application-steps";
 
 export default function ProgressIndicator() {

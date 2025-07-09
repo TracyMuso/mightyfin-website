@@ -1,6 +1,10 @@
-// app/dashboard/notifications/page.tsx
+import DashboardLayout from "@/components/layout/dashboard/layout";
 import NotificationsTab from "@/components/layout/dashboard/notifications-tab";
 
 export default function NotificationsPage() {
-  return <NotificationsTab />;
+  return (
+    <DashboardLayout>
+      <NotificationsTab />
+    </DashboardLayout>
+  );
 }

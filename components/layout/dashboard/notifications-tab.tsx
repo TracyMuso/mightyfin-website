@@ -1,33 +1,35 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+
+import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Notification from "./ui/notification";
 import { NotificationsData } from "@/constants/data/dashboard";
-import { NotificationPagination } from "@/app/dashboard/pagination";
+import { NotificationPagination } from "@/components/pagination/pagination";
 import { Button } from "@/components/button";
 
 const NotificationsTab = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Focus the first notification when component mounts
-  useEffect(() => {
-    const firstNotification = containerRef.current?.querySelector(
-      '[tabindex="0"]'
-    ) as HTMLElement;
-    firstNotification?.focus();
-  }, []);
+  const safeNotificationsData = Array.isArray(NotificationsData)
+    ? NotificationsData
+    : [];
 
   const [currentPage, setCurrentPage] = useState(1);
   const notificationsPerPage = 5;
 
   const indexOfLastNotification = currentPage * notificationsPerPage;
-  const indexOfFirstNotification =
-    indexOfLastNotification - notificationsPerPage;
-  const currentNotifications = NotificationsData.slice(
-    indexOfFirstNotification,
-    indexOfLastNotification
+  const indexOfFirstNotification = Math.max(
+    0,
+    indexOfLastNotification - notificationsPerPage
   );
-  const totalPages = Math.ceil(NotificationsData.length / notificationsPerPage);
+  const currentNotifications = safeNotificationsData.slice(
+    indexOfFirstNotification,
+    Math.min(indexOfLastNotification, safeNotificationsData.length)
+  );
+  const totalPages = Math.max(
+    1,
+    Math.ceil(safeNotificationsData.length / notificationsPerPage)
+  );
 
   return (
     <div className="w-full relative min-h-screen p-5">
@@ -52,14 +54,22 @@ const NotificationsTab = () => {
           </select>
         </div>
       </div>
-      {totalPages > 0 ? (
+
+      {currentNotifications.length > 0 ? (
         <div
           className="notifications-container flex flex-col gap-2 pt-3"
           ref={containerRef}
         >
-          {currentNotifications.map((item, idx: number) => (
-            <Notification tabIndex={idx} {...item} key={idx} />
-          ))}
+          {currentNotifications.map((item, idx) => {
+            if (!item) return null;
+            return (
+              <Notification
+                tabIndex={idx}
+                {...item}
+                key={item.timestamp || idx}
+              />
+            );
+          })}
         </div>
       ) : (
         <div className="p-4 h-[50vh] flex flex-col text-center justify-center gap-2">
@@ -84,11 +94,13 @@ const NotificationsTab = () => {
         </div>
       )}
 
-      <NotificationPagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={setCurrentPage}
-      />
+      {safeNotificationsData.length > notificationsPerPage && (
+        <NotificationPagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+      )}
     </div>
   );
 };

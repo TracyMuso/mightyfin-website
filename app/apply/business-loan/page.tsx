@@ -1,6 +1,6 @@
 import React from "react";
-import LoanDocumentsModal from "@/components/popupCards/loanDocuments";
-import ChooseLoan from "@/components/LoanApplication/choose-loan";
+// import LoanCalculator from '@/components/calculator';
+import SmeLoanApplication from "@/components/SmeLoanApplication";
 import NavMenu from "@/components/layout/nav";
 import Footer from "@/components/Footer";
 
@@ -9,8 +9,7 @@ const ApplyForLoan = () => {
     <div>
       <NavMenu />
       <div className="pt-5 pb-16 md:px-12 px-4">
-        <LoanDocumentsModal />
-        <ChooseLoan />
+        <SmeLoanApplication />
       </div>
       <Footer />
     </div>
