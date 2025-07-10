@@ -38,7 +38,9 @@ export function AppSidebar() {
               {LeftSidebarData.map((item) => (
                 <SidebarMenuItem
                   className={`text-white hover:text-purple-600 hover:cursor-pointer ${
-                    pathname === item.href ? "text-purple-600" : ""
+                    pathname === item.href
+                      ? "text-purple-600 bg-purple-50 rounded-sm"
+                      : ""
                   }`}
                   key={item.title}
                 >

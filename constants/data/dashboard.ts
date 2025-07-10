@@ -27,7 +27,7 @@ export const LeftSidebarData: sidebarDataType[] = [
     icon: BookIcon,
     alt: "Document icon",
     title: "Your Documents",
-    href: "/dashboard/documents",
+    href: "/dashboard/kyc",
   },
   {
     icon: ChartBarIcon,

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Image from "next/image";
 import { TransactionTableData } from "@/constants/data/dashboard";
 
@@ -36,7 +35,7 @@ const TranactionTable = () => {
       {/* Table Container with Scroll */}
       <div className="w-full shadow rounded-lg">
         <div className="overflow-x-auto md:overflow-x-hidden">
-          <table className="w-auto min-w-full md:min-w-0 leading-normal">
+          <table className="w-full min-w-full md:min-w-0 leading-normal">
             <thead>
               <tr>
                 {tableHeaders.map((item, idx) => (
@@ -82,13 +81,8 @@ const TranactionTable = () => {
                       <span className="relative">{item.status}</span>
                     </span>
                   </td>
-                  <td className="px-5 py-5 bg-white text-sm">
-                    <Link
-                      href={item.receipt}
-                      className="text-gray-900 whitespace-nowrap"
-                    >
-                      View
-                    </Link>
+                  <td className="px-5 py-5 bg-white text-sm cursor-pointer">
+                    View
                   </td>
                 </tr>
               ))}
