@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import LoanApplication from "../layout/dashboard/loan-application";
 
 export function LoanApplicationModal({
   userStatus,
@@ -13,20 +14,22 @@ export function LoanApplicationModal({
   const [countdown, setCountdown] = useState(5);
 
   useEffect(() => {
-    // For demo purposes, we'll show all modals for 5 seconds
-    const timer = setInterval(() => {
-      setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
+    // Only set up auto-close for specific statuses
+    if (userStatus === "pending-loan" || userStatus === "poor-credit") {
+      const timer = setInterval(() => {
+        setCountdown((prev) => (prev > 0 ? prev - 1 : 0));
+      }, 1000);
 
-    const closeTimer = setTimeout(() => {
-      if (countdown === 0) onClose();
-    }, 5000);
+      const closeTimer = setTimeout(() => {
+        if (countdown === 0) onClose();
+      }, 5000);
 
-    return () => {
-      clearInterval(timer);
-      clearTimeout(closeTimer);
-    };
-  }, [countdown, onClose]);
+      return () => {
+        clearInterval(timer);
+        clearTimeout(closeTimer);
+      };
+    }
+  }, [countdown, onClose, userStatus]);
 
   const renderContent = () => {
     switch (userStatus) {
@@ -76,31 +79,26 @@ export function LoanApplicationModal({
 
       case "eligible":
         return (
-          <div className="text-center space-y-4 p-4">
-            <h3 className="text-lg font-medium text-green-600">
-              [DEMO] Loan Application Would Start
-            </h3>
-            <p>In a real app, the loan application form would open now.</p>
-            <button
-              onClick={onClose}
-              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
-            >
-              Close Demo
-            </button>
+          <div className="text-center space-y-4 sm:p-4 p-2">
+            <LoanApplication />
           </div>
         );
 
       default:
-        return null;
+        return (
+          <div className="w-2/3">
+            <LoanApplication />
+          </div>
+        );
     }
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-400/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
-      <div className="bg-white rounded-lg max-w-md w-full p-6 relative">
+    <div className="fixed inset-0 bg-gray-50/10 backdrop-blur-sm flex items-center justify-center md:p-4 p-2 z-50">
+      <div className="bg-transparent rounded-lg w-full md:w-10/12 md:p-6 py-4 relative">
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+          className="absolute top-24 sm:top-20 right-8 md:right-2 z-100 text-gray-500 md:font-bold hover:text-gray-600"
           aria-label="Close modal"
         >
           ✕

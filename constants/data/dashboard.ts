@@ -1,4 +1,8 @@
-import type { sidebarDataType, TransactionTable } from "@/types";
+import type {
+  LoanStepDataType,
+  sidebarDataType,
+  TransactionTable,
+} from "@/types";
 import type { NotificationsType, OBGDashboard } from "@/types/dashboard";
 import {
   BellIcon,
@@ -200,5 +204,23 @@ export const NotificationsData: NotificationsType[] = [
     message:
       "URGENT: James, your payment of ZMW 1,250 is now 5 days overdue. Late fees may apply if not paid today.",
     timestamp: "5th August 2025, 16:45",
+  },
+];
+
+export const LoanTrackingData: LoanStepDataType[] = [
+  {
+    title: "Application sent",
+    text: "We have received your loan request",
+    step: 1,
+  },
+  {
+    title: "Request Under Review",
+    text: "Kindly wait for atleast 30 minutes as we review your loan request",
+    step: 2,
+  },
+  {
+    title: "Request Processed",
+    text: "Your loan has been processed. We thank you for your patience. Kindly check your notifications for your confirmation message",
+    step: 3,
   },
 ];

@@ -5,10 +5,9 @@ import CenterBar from "./centerBar";
 import RightSideBar from "./ui/rightSidebar";
 import { LoanApplicationModal } from "@/components/kyc/modal";
 
-// Temporary dummy user data
 const dummyUserData = {
-  hasKYC: false,
-  hasPendingLoan: true,
+  hasKYC: true,
+  hasPendingLoan: false,
   hasPoorCredit: false,
   name: "Lute Chongo",
   id: "MF10923",
@@ -35,7 +34,6 @@ const DashboardHome = () => {
       setUserStatus("eligible");
       // In a real scenario, you would proceed with loan application here
       console.log("User is eligible for loan");
-      return;
     }
     setShowModal(true);
   };

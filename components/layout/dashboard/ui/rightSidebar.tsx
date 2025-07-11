@@ -1,4 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import LoanRepayment from "@/components/LoanRepayment";
+import { LoanModal } from "./modal";
+import TrackLoan from "../modals/track-loan";
 import Link from "next/link";
 import styles from "@/styles/Dashboard.module.css";
 import { Pie } from "./progressBar";
@@ -14,18 +20,24 @@ const RightSideBar = ({
   userName,
   handleApplyButtonClick,
 }: RightSideBarType) => {
-  const handleRepayLoan = () => {
-    console.log("paid");
-  };
+  const [showTrackModal, setShowTrackModal] = useState(false);
+  const [showRepayModal, setShowRepayModal] = useState(false);
+  const [showWithdrawalModal, setShowWithdrawalModal] = useState(false);
+
   const handleTrackLoan = () => {
-    console.log("track");
+    setShowTrackModal(true);
   };
+
+  const handleRepayLoan = () => {
+    setShowRepayModal(true);
+  };
+
   const handleWithdrawal = () => {
-    console.log("withdraw");
+    setShowWithdrawalModal(true);
   };
 
   return (
-    <div className="hidden lg:flex flex-col gap-[10px] pt-[10px] pr-[10px]">
+    <div className="hidden xl:flex flex-col gap-[10px] pt-[10px] pr-[10px]">
       <Link
         href={"/"}
         className="bg-white py-5 px-7 flex justify-center w-full text-purple-500 rounded-md"
@@ -102,6 +114,35 @@ const RightSideBar = ({
           K 0 Left
         </h4>
       </div>
+      {/* Track Loan Modal */}
+      <LoanModal
+        isOpen={showTrackModal}
+        onClose={() => setShowTrackModal(false)}
+      >
+        <TrackLoan />
+      </LoanModal>
+
+      {/* Repay Loan Modal */}
+      <LoanModal
+        isOpen={showRepayModal}
+        onClose={() => setShowRepayModal(false)}
+      >
+        <LoanRepayment />
+      </LoanModal>
+      {/* Withdrawal Modal */}
+      <LoanModal
+        isOpen={showWithdrawalModal}
+        onClose={() => setShowWithdrawalModal(false)}
+      >
+        <div className="space-y-4">
+          <p>You are about to make a loan repayment.</p>
+          <div className="bg-yellow-50 p-3 rounded border border-yellow-200">
+            <p className="font-medium">Amount Due: $500.00</p>
+            <p className="text-sm">Due Date: 15th June 2023</p>
+          </div>
+          {/* Add repayment form or details here */}
+        </div>
+      </LoanModal>
     </div>
   );
 };

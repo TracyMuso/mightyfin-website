@@ -21,16 +21,18 @@ const Step = ({ step, icon, title, text }: LoanStepDataType) => {
         )}
       </div>
       <div className="flex items-start gap-3 text-left w-[375px]">
-        <div className="flex items-start gap-2">
-          <div className={`${styles.stepGrad} w-[3px] h-[60px]`} />
-          <Image
-            src={icon}
-            alt="step icon"
-            width={50}
-            height={50}
-            className="md:size-12 size-8"
-          />
-        </div>
+        {icon && (
+          <div className="flex items-start gap-2">
+            <div className={`${styles.stepGrad} w-[3px] h-[60px]`} />
+            <Image
+              src={icon}
+              alt="step icon"
+              width={50}
+              height={50}
+              className="md:size-12 size-8"
+            />
+          </div>
+        )}
         <div className="m-0">
           <span className="font-bold md:text-[17px] text-sm">{title}</span>
           <p className="text-gray-400 md:text-[16px] text-sm">{text}</p>

@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { Button } from "../button";
+import { Button } from "@/components/button";
 import { useState, useEffect } from "react";
 import ErrorMessage from "@/components/ui/error-message";
 import { useForm } from "react-hook-form";
@@ -18,7 +19,7 @@ import {
   LoanDetailsSchema,
 } from "@/validators/application-flow.validator";
 
-const ChooseLoan = () => {
+const LoanApplication = () => {
   const {
     register,
     getValues,
@@ -41,8 +42,17 @@ const ChooseLoan = () => {
       loanTermMonths: 0,
     },
   });
+  const [isChecked, setIsChecked] = useState(false);
 
   const router = useRouter();
+
+  const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
+  const [totalPayment, setTotalPayment] = useState<number>(0);
+  const [totalInterest, setTotalInterest] = useState<number>(0);
+
+  // Watch loanAmount changes in real-time
+  const watchedLoanAmount = watch("loanAmount");
+  const watchedLoanTerm = watch("loanTermMonths");
 
   const handleStepSubmit = async () => {
     const loanType = getValues("loanType");
@@ -55,27 +65,15 @@ const ChooseLoan = () => {
       loanTermMonths: loanTerm,
     });
 
-    if (!loanType) {
-      // You might want to show an error here
-      console.error("Please select a loan type");
+    if (!watchedLoanAmount) {
+      console.error("Please add loan amount");
       return;
     }
-
-    // Redirect based on loan type
-    if (loanType === "personal") {
-      router.push("/apply/personal-loan");
-    } else if (loanType === "business") {
-      router.push("/apply/business-loan");
+    if (!isChecked) {
+      return;
     }
+    console.log("applied");
   };
-
-  const [monthlyPayment, setMonthlyPayment] = useState<number>(0);
-  const [totalPayment, setTotalPayment] = useState<number>(0);
-  const [totalInterest, setTotalInterest] = useState<number>(0);
-
-  // Watch loanAmount changes in real-time
-  const watchedLoanAmount = watch("loanAmount");
-  const watchedLoanTerm = watch("loanTermMonths");
 
   const calculatePayment = (amount: number, term: number) => {
     const interestRate = getInterestRate(term);
@@ -97,7 +95,10 @@ const ChooseLoan = () => {
   }, [watchedLoanAmount, watchedLoanTerm]);
 
   return (
-    <div className="flex flex-col gap-1 px-12 py-8 mx-auto lg:w-[700px] w-full border rounded-md shadow-md">
+    <form className=" bg-white flex flex-col gap-1 md:px-12 sm:px-6 px-4 py-8 mx-auto sm:mt-6 md:mt-4 mt-16 lg:w-[700px] w-full border rounded-md shadow-md">
+      <h3 className="font-semibold py-1 md:text-xl">
+        Please fill in the details below
+      </h3>
       <div className="space-y-2">
         <fieldset>
           <legend className="font-semibold">Loan Type</legend>
@@ -185,11 +186,37 @@ const ChooseLoan = () => {
           <p className="sm:text-[15px] text-[12px]">{getNextRepaymentDate()}</p>
         </div>
       </div>
-      <div className="w-full flex items-center justify-between">
-        <Button variant="secondary" text="proceed" onClick={handleStepSubmit} />
+      <div className="flex items-start">
+        <div className="flex items-center h-5">
+          <input
+            id="consent"
+            type="checkbox"
+            className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+            checked={isChecked}
+            onChange={(e) => setIsChecked(e.target.checked)}
+          />
+        </div>
+        <div className="ml-3 text-sm">
+          <label htmlFor="consent" className="font-medium text-gray-700">
+            <p className="text-gray-500">
+              By checking this box, you consent to the{" "}
+              <Link className="text-purple-700 text-sm" href={"#"}>
+                terms and conditions
+              </Link>
+            </p>
+          </label>
+        </div>
       </div>
-    </div>
+      <div className="w-full flex items-center justify-center">
+        <Button
+          variant="secondary"
+          type="submit"
+          text="Submit"
+          onClick={handleStepSubmit}
+        />
+      </div>
+    </form>
   );
 };
 
-export default ChooseLoan;
+export default LoanApplication;
