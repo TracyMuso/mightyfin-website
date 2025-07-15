@@ -136,10 +136,18 @@ export const mobileMoneyStep1Schema = z.object({
       required_error: "Phone number is required",
       invalid_type_error: "Must be a number",
     })
+    .min(10, "Should have minimum 10 digits")
+    .max(12, "Should have maximum 12 digits")
     .regex(/^[0-9]+$/, "must contain only numbers"),
   saveNumber: z.boolean(),
 });
 
+export const CombinedMobileMethodSchema = MethodSchema.merge(
+  mobileMoneyStep1Schema
+);
+export type CombinedMobileMethodType = z.infer<
+  typeof CombinedMobileMethodSchema
+>;
 export type MethodSchemaType = z.infer<typeof MethodSchema>;
 export type BankMethodType = z.infer<typeof BankStep1Schema>;
 export type CardMethodType = z.infer<typeof CardStep1Schema>;
