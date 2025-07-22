@@ -6,6 +6,10 @@
 > Here is the project stucture
 
 ```bash
+|_ app
+    |_ page.tsx # this is the homepage
+    |_ route_folder # this is where routing is done by the name of the folder
+      |_ page.tsx # this is where the component is rendered
 |_ components/
   |_ index.ts # this will be the file that will export all the components, but each component should have a folder like
   |_ component-name
@@ -16,6 +20,11 @@
   |_ apiService.ts # for example
 |_ constants
   |_ index.ts # to export all the constants
+|_ validators
+  |_ validator.ts # to export all schemas for forms where zod is used
+|_ pulic
+  |_ images # to export all images
+  |_ icons # to export all icons
 ```
 
 ## Getting started
