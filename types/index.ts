@@ -44,7 +44,7 @@ export interface HeroPointType {
 
 export interface LoanStepDataType {
   step: number;
-  icon: string;
+  icon?: string;
   title: string;
   text: string;
 }

@@ -165,20 +165,20 @@ const ChooseLoan = () => {
         />
         <ErrorMessage message={errors.loanTermMonths?.message} />
       </div>
-      <div className="flex items-center w-full justify-between pb-4">
-        <div>
+      <div className="flex sm:flex-row flex-col gap-2 sm:gap-0 items-start sm:items-center w-full justify-between pb-4">
+        <div className="flex flex-row sm:flex-col justify-between w-full sm:w-auto">
           <span className="text-purple-700 sm:text-[17px] text-sm">
             Payback amount
           </span>
           <p className="sm:text-[15px] text-[12px]">{totalPayment}</p>
         </div>
-        <div>
+        <div className="flex flex-row sm:flex-col justify-between w-full sm:w-auto">
           <span className="text-purple-700 sm:text-[17px] text-sm">
             Monthly deduction
           </span>
           <p className="sm:text-[15px] text-[12px]">{monthlyPayment}</p>
         </div>
-        <div>
+        <div className="flex flex-row sm:flex-col justify-between w-full sm:w-auto">
           <span className="text-purple-700 sm:text-[17px] text-sm">
             Next Payment date
           </span>
