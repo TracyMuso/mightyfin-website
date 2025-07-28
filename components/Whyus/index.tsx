@@ -2,6 +2,7 @@ import styles from "@/styles/landingPage.module.css";
 import { Button } from "../button";
 import { WhyUsCardData } from "@/constants/data/landingPage";
 import WhyUsCard from "../Cards/whyUs";
+import PointEmblaCarousel from "./mobile-carousel";
 
 const Whyus = () => {
   return (
@@ -13,18 +14,23 @@ const Whyus = () => {
           Why <span className="text-yellow-300">Mightyfin </span>Stands Out
         </h2>
         <p className="text-white py-2">
-          At Mighty Fin, we understand that access to funding is crucial. We`re
-          here to make the loan process fast, easy, and transparent.
+          In Zambia, SMEs and civil servants often struggle to access loans
+          without collateral or credit history. At Mighty Finance, we provide
+          fair financing solutions—even for first-time borrowers—backed by free
+          financial training and personalized support. As a digital lender built
+          for Zambia, we combine fast approvals with a commitment to growing
+          your financial future.
         </p>
         <div className="w-2/5 md:mx-0 mx-auto">
-          <Button text="Apply now" variant="tertiary" />
+          <Button text="Apply now" variant="secondary" />
         </div>
       </div>
-      <div className="mf-pros grid md:grid-rows-2 md:grid-cols-2 grid-cols-1 xl:w-1/2 justify-center gap-5">
+      <div className="mf-pros hidden sm:grid md:grid-rows-2 md:grid-cols-2 grid-cols-1 xl:w-1/2 justify-center gap-5">
         {WhyUsCardData.map((item, idx) => (
           <WhyUsCard {...item} key={idx} />
         ))}
       </div>
+      <PointEmblaCarousel />
     </section>
   );
 };

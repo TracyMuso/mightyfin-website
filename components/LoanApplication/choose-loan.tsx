@@ -56,12 +56,10 @@ const ChooseLoan = () => {
     });
 
     if (!loanType) {
-      // You might want to show an error here
       console.error("Please select a loan type");
       return;
     }
 
-    // Redirect based on loan type
     if (loanType === "personal") {
       router.push("/apply/personal-loan");
     } else if (loanType === "business") {
@@ -73,13 +71,12 @@ const ChooseLoan = () => {
   const [totalPayment, setTotalPayment] = useState<number>(0);
   const [totalInterest, setTotalInterest] = useState<number>(0);
 
-  // Watch loanAmount changes in real-time
   const watchedLoanAmount = watch("loanAmount");
   const watchedLoanTerm = watch("loanTermMonths");
 
   const calculatePayment = (amount: number, term: number) => {
     const interestRate = getInterestRate(term);
-    const monthlyRate = interestRate / term; // Divide total interest by number of months
+    const monthlyRate = interestRate / term;
 
     // Simple interest calculation (interest is spread evenly across payments)
     const totalInterestAmount = amount * interestRate;

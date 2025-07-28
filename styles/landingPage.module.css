@@ -1,8 +1,8 @@
 .rightText {
   position: absolute;
   left: 2%;
-  width: 500px;
-  height: 250px;
+  top: 0;
+  bottom: 0;
   background-blend-mode: overlay;
   background-image: url("/Images/sp.png");
   background-repeat: none;
@@ -18,13 +18,13 @@
 }
 
 .heroPoint {
-  background: rgba(222, 222, 222, 0.1);
+  background: rgba(243, 172, 250, 0.925);
   backdrop-filter: blur(10px);
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.16);
 }
 
 .heroPoint:hover {
-  background: rgba(255, 195, 13, 0.76);
+  background: rgba(239, 151, 247, 0.925);
   backdrop-filter: blur(10px);
   box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.16);
 }
