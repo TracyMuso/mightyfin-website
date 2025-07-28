@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { z } from "zod";
 import { createContext, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
@@ -23,7 +25,7 @@ export const MultiStepFormContext =
 
 const MultiStepForm = ({
   steps,
-  localStorageKey = "multi-step-form",
+  localStorageKey = "personal-kyc-form",
 }: {
   steps: FormStep[];
   localStorageKey: string;
@@ -60,6 +62,8 @@ const MultiStepForm = ({
       consent: false,
     },
   });
+
+  const router = useRouter();
 
   const { toast } = useToast();
   const [currentStepIndex, setCurrentStepIndex] = useState(0);
@@ -149,6 +153,7 @@ const MultiStepForm = ({
   async function submitSteppedForm(data: z.infer<typeof CombinedKycSchema>) {
     try {
       // Perform your form submission logic here
+      if (data.consent !== true) return;
       console.log("data", data);
       toast({
         title: "Form Submitted Successfully!",
@@ -161,6 +166,11 @@ const MultiStepForm = ({
       clearFormState();
     } catch (error) {
       console.error("Form submission error:", error);
+      toast({
+        title: "Submission Failed",
+        description:
+          "There was an error submitting your form. Please try again.",
+      });
     }
   }
 
