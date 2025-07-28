@@ -4,12 +4,12 @@ import styles from "../../styles/landingPage.module.css";
 
 const Step = ({ step, icon, title, text }: LoanStepDataType) => {
   return (
-    <div className="flex items-start justify-between gap-6 font-Montserrat">
+    <div className="flex items-start justify-between sm:gap-6 gap-4 font-Montserrat">
       <div className="flex flex-col justify-center items-center">
         <div className="bg-purple-400 rounded-[50%] md:px-6 px-4 py-2 md:py-3 text-white md:text-2xl text-xl font-extrabold">
           {step}
         </div>
-        {step < 4 ? (
+        {step < 3 ? (
           <Image
             src={"/Images/LandingPage/dotted-arrow.png"}
             alt="step arrow"
@@ -20,7 +20,7 @@ const Step = ({ step, icon, title, text }: LoanStepDataType) => {
           <>{""}</>
         )}
       </div>
-      <div className="flex items-start gap-3 text-left w-[375px]">
+      <div className="flex items-start sm:gap-3 gap-2 text-left w-[375px]">
         {icon && (
           <div className="flex items-start gap-2">
             <div className={`${styles.stepGrad} w-[3px] h-[60px]`} />

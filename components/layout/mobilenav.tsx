@@ -86,9 +86,15 @@ export default function MobileNav() {
           ))}
           <Link
             href={"auth/signin"}
-            className="bg-purple-800 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
+            className="bg-purple-800 my-3 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
           >
             Log in
+          </Link>
+          <Link
+            href={"apply"}
+            className="bg-yellow-400 hover:bg-yellow-500 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
+          >
+            Apply
           </Link>
         </nav>
       </div>
