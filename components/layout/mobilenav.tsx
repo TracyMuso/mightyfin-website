@@ -85,9 +85,10 @@ export default function MobileNav() {
             </a>
           ))}
           <Link
-            href={"https://app.mightyfinance.co.zm/"}
-            className="bg-purple-800 my-3 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
-            target="_blank"
+              href="https://app.mightyfinance.co.zm/login"
+  target="_blank"
+  rel="noopener noreferrer"
+            className="bg-purple-800 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
           >
             Log in
           </Link>

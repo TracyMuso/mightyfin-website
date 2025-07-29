@@ -36,6 +36,7 @@ const NavMenu = () => {
             href={"https://app.mightyfinance.co.zm/"}
             className="bg-purple-800 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
             target="_blank"
+              rel="noopener noreferrer"
           >
             Log in
           </a>
@@ -43,6 +44,7 @@ const NavMenu = () => {
             href={"https://app.mightyfinance.co.zm/"}
             className="bg-yellow-400 hover:bg-yellow-500 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
             target="_blank"
+              rel="noopener noreferrer"
           >
             Apply
           </a>
