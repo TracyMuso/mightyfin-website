@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# api res/req body
+/api/example.json
+
 # next.js
 /.next/
 /out/

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
 import { z } from "zod";
@@ -24,7 +25,7 @@ export const MultiStepFormContext =
 
 const MultiStepForm = ({
   steps,
-  localStorageKey = "sme-multi-step-form",
+  localStorageKey = "sme-kyc-form",
 }: {
   steps: SmeFormStep[];
   localStorageKey: string;
@@ -153,9 +154,9 @@ const MultiStepForm = ({
           </pre>
         ),
       });
-      setTimeout(() => {
-        router.push("/thankyou");
-      }, 1500);
+      // setTimeout(() => {
+      //   router.push("/thankyou");
+      // }, 1500);
       clearFormState();
     } catch (error) {
       console.error("Form submission error:", error);

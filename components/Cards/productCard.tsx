@@ -10,9 +10,11 @@ const ProductCard = ({
   productDetails,
 }: ProductCardType) => {
   return (
-    <div className={`${styles.productCard} bg-purple-500 relative rounded-3xl`}>
+    <div
+      className={`${styles.productCard} bg-purple-500 min-w-[300px] hover:bg-purple-400 relative rounded-3xl`}
+    >
       <div className={`${styles.pcBgImg} `} />
-      <div className="absolute bottom-12 left-[10%] w-4/5 h-[230px] text-white">
+      <div className="absolute flex flex-col justif bottom-12 w-full px-5 h-[220px] text-white">
         <Image src={icon} width={50} height={50} alt="product-card-icon" />
         <h3 className="font-extrabold text-xl py-4">{title}</h3>
         <span className="font-medium py-2">{text}</span>

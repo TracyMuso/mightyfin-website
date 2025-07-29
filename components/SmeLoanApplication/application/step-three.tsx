@@ -1,7 +1,6 @@
 "use client";
 
 import NextButton from "../steppedForm/nextButton";
-import { useRouter } from "next/navigation";
 import { useFormContext } from "react-hook-form";
 import { z } from "zod";
 import { CombinedKybSchema } from "@/validators/application-flow.validator";
@@ -14,25 +13,11 @@ const Step3 = () => {
   const {
     formState: { errors, isSubmitting },
     setValue,
-    watch,
-    setError,
     register,
   } = useFormContext<z.infer<typeof CombinedKybSchema>>();
 
-  const router = useRouter();
-
-  const SubmitForm = async (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("submitted!");
-    const consentValue = watch("consent");
-    if (consentValue == false) {
-      setError("consent", {
-        type: "manual",
-        message: "Please agree to Ts n Cs to submiit application",
-      });
-      return;
-    }
-    router.push("/thankyou");
+  const SubmitForm = async () => {
+    return;
   };
 
   const handleFileChange =

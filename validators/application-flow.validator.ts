@@ -16,7 +16,7 @@ const isValidMMDDYYYY = (str: string) => {
 };
 
 export const LoanDetailsSchema = z.object({
-  loanType: z.enum(["personal", "business"], {
+  loanType: z.enum(["Civil Servant Loan", "Business Loan"], {
     required_error: "Please select a loan type",
     invalid_type_error: "Loan type must be either personal or business",
   }),

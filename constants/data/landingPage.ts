@@ -13,10 +13,10 @@ export const PartnershipData: PartnershipDataType[] = [
     alt: "village capital icon",
     url: "/Images/LandingPage/vc.png",
   },
-  {
-    alt: "bank of zambia icon",
-    url: "/Images/LandingPage/boz.png",
-  },
+  // {
+  //   alt: "bank of zambia icon",
+  //   url: "/Images/LandingPage/boz.png",
+  // },
   {
     alt: "baobab icon",
     url: "/Images/LandingPage/baobab.png",
@@ -53,19 +53,19 @@ export const LoanStepsData: LoanStepDataType[] = [
     step: 2,
     icon: "/Icons/system-uicons_user-add.png",
     title: "Online Account Registration",
-    text: "Create Your Account",
+    text: "Sign up and track your application",
   },
+  // {
+  //   step: 3,
+  //   icon: "/Icons/material-symbols-light_domain-verification-outline-rounded.png",
+  //   title: "Verification",
+  //   text: "Verify Email and Phone number",
+  // },
   {
     step: 3,
-    icon: "/Icons/material-symbols-light_domain-verification-outline-rounded.png",
-    title: "Verification",
-    text: "Verify Email and Phone number",
-  },
-  {
-    step: 4,
     icon: "/Icons/wpf_approval.png",
     title: "Loan Approval Confirmation",
-    text: "Get Your Loan Decision ",
+    text: "Get Your funds disbursed",
   },
 ];
 
@@ -121,20 +121,20 @@ export const BlogCategoriesData: BlogCategoriesDataType[] = [
 export const ProductCardData: ProductCardType[] = [
   {
     icon: "/Icons/Personal-Loan.png",
-    text: "Personal Loans for Civil Servants, MOU Employees & Secured Options",
+    text: "Personal Loans for Civil Servants, MOU Employees & Secured Options. Up to k500k",
     title: "Personal",
     productDetails: "#",
   },
   {
     icon: "/Icons/house.png",
-    text: "Grow your business with our credit financing solutions for SMEs",
+    text: "Grow your business with our credit financing solutions. Up to K1M for small businesses.",
     title: "SMEs",
     productDetails: "#",
   },
   {
     icon: "/Icons/woman.png",
-    text: "Empowering women led businesses through working capital loans",
-    title: "For women",
+    text: "Mamapay, Quick personal loans and Trade financing products are launching soon",
+    title: "Coming soon",
     productDetails: "#",
   },
 ];
@@ -142,22 +142,22 @@ export const ProductCardData: ProductCardType[] = [
 export const WhyUsCardData: WhyUsCardType[] = [
   {
     icon: "/Icons/mdi_clock-fast.png",
-    text: "Apply for a loan in minutes with our user-friendly platform.",
-    title: "Fast & Streamlined",
+    title: "Approval in Hours, Not Days",
+    text: "Government employees enjoy priority processing - get funds the same business day after approval.",
   },
   {
     icon: "/Icons/fluent_shield-checkmark-24-regular.png",
-    text: "Choose a loan that fits your needs with a variety of terms, amounts, and purposes.",
-    title: "Flexible Options",
+    title: "Tailored for Your Sector",
+    text: "Specialized loan products for civil service salaries and SME cash flow cycles.",
   },
   {
     icon: "/Icons/solar_graph-outline.png",
     text: "We offer some of the most competitive interest rates in the market.",
-    title: "Competitive Rates",
+    title: "Lower Than Bank Rates",
   },
   {
     icon: "/Icons/heroicons_eye.png",
-    text: "Clear and upfront fees, so you always know what to expect.",
+    text: "All fees calculated upfront - no surprise deductions from your salary or business account",
     title: "Transparent Fees",
   },
 ];

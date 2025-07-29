@@ -5,6 +5,8 @@ import NavMenu from "@/components/layout/nav";
 import LoanSteps from "@/components/LoanSteps";
 import Products from "@/components/Products";
 import SocialProof from "@/components/SocialProof";
+import Calculator from "@/components/Laf";
+
 import Whyus from "@/components/Whyus";
 export default function Home() {
   return (
@@ -12,6 +14,7 @@ export default function Home() {
       <NavMenu />
       <Hero />
       <Products />
+      <Calculator />
       <Whyus />
       <LoanSteps />
       <BlogandNews />
