@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Point from "./point";
 import { CheckCircle } from "lucide-react";
-import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -25,12 +24,13 @@ const Hero = () => {
         </article>
         <div className="lg:mx-0 mx-auto lg:block h-[100px] lg:h-auto flex justify-center">
           <span className="">
-            <Link
+            <a
               className="px-8 py-4 md:text-xl bg-purple-800 hover:bg-purple-700 transition-all text-center sm:w-full rounded-md font-semibold text-white"
-              href={"/apply"}
+              href={"https://app.mightyfinance.co.zm/"}
+              target="_blank"
             >
               Get Started!
-            </Link>
+            </a>
           </span>
         </div>
       </div>

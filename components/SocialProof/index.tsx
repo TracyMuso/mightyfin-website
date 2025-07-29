@@ -80,12 +80,13 @@ const SocialProof = () => {
               Accounts
             </h4>
             <div className="flex md:flex-row flex-col items-center md:gap-3 gap-2">
-              <Link
-                href={"/apply"}
+              <a
+                href={"https://app.mightyfinance.co.zm/"}
                 className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-purple-800 hover:bg-purple-700 rounded-3xl text-white font-bold"
+                target="_blank"
               >
                 Apply Now!
-              </Link>
+              </a>
               <Link
                 href={"/about"}
                 className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-yellow-500 hover:bg-yellow-400 rounded-3xl text-white font-bold"

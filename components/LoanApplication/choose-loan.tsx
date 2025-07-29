@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
+import Link from "next/link";
 
 import { Button } from "../button";
 import { useState, useEffect } from "react";
@@ -64,12 +65,13 @@ const ChooseLoan = () => {
       console.error("Please select a loan type");
       return;
     }
+    router.push("https://app.mightyfinance.co.zm/");
 
-    if (loanType === "Civil Servant Loan") {
-      router.push("/apply/personal-loan");
-    } else if (loanType === "Business Loan") {
-      router.push("/apply/business-loan");
-    }
+    // if (loanType === "Civil Servant Loan") {
+    //   router.push("/apply/personal-loan");
+    // } else if (loanType === "Business Loan") {
+    //   router.push("/apply/business-loan");
+    // }
   };
 
   const [monthlyPayment, setMonthlyPayment] = useState<number>(11000);
@@ -87,7 +89,6 @@ const ChooseLoan = () => {
         const products = response.data.data;
         setLoanProducts(products);
 
-        // ✅ Auto-select product that matches default loan type
         const defaultType = getValues("loanType");
         const defaultProduct = products.find(
           (p: any) => p.name === defaultType
@@ -96,7 +97,7 @@ const ChooseLoan = () => {
         if (defaultProduct) {
           setSelectedProduct(defaultProduct);
         } else if (products.length > 0) {
-          setSelectedProduct(products[0]); // fallback
+          setSelectedProduct(products[0]);
         }
       } catch (err) {
         console.error("Error fetching loan products:", err);
@@ -131,7 +132,6 @@ const ChooseLoan = () => {
     const minAmount = parseFloat(selectedProduct.minimum_principal);
     const minTerm = parseFloat(selectedProduct.minimum_loan_term);
 
-    // ✅ Update form values if they are below product limits
     if (watchAmount < minAmount) {
       setValue("loanAmount", minAmount);
     }
@@ -244,9 +244,7 @@ const ChooseLoan = () => {
           <span className="text-purple-700 sm:text-[17px] text-sm">
             Next Payment date
           </span>
-          <p className="sm:text-[15px] text-[12px]">
-            {getNextRepaymentDate(watchTerm)}
-          </p>
+          <p className="sm:text-[15px] text-[12px]">{getNextRepaymentDate()}</p>
         </div>
       </div>
       <div className="w-full flex items-center justify-between">

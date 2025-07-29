@@ -81,9 +81,9 @@ const AboutPage = () => {
             seamless loan application process, with competitive rates and
             transparent terms.
           </p>
-          <button className="px-12 py-4 sm:w-1/2 w-full text-center mx-auto md:mx-0 bg-purple-500 hover:bg-purple-primary rounded-md text-white">
+          {/* <button className="px-12 py-4 sm:w-1/2 w-full text-center mx-auto md:mx-0 bg-purple-500 hover:bg-purple-primary rounded-md text-white">
             Learn More
-          </button>
+          </button> */}
         </div>
       </section>
       <div className="bg-yellow-500 flex flex-col gap-5 items-center xl:h-[100vh] px-10 py-16">
