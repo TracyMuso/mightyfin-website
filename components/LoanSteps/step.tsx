@@ -4,7 +4,7 @@ import styles from "../../styles/landingPage.module.css";
 
 const Step = ({ step, icon, title, text }: LoanStepDataType) => {
   return (
-    <div className="flex items-start justify-between sm:gap-6 gap-4 font-Montserrat">
+    <div className="flex items-start justify-between sm:gap-6 gap-4 font-montserrat">
       <div className="flex flex-col justify-center items-center">
         <div className="bg-purple-400 rounded-[50%] md:px-6 px-4 py-2 md:py-3 text-white md:text-2xl text-xl font-extrabold">
           {step}

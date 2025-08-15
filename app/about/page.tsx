@@ -63,7 +63,7 @@ const AboutPage = () => {
             height={450}
           />
         </div>
-        <div className="flex flex-col text-left md:w-1/2 md:h-[450px] justify-between font-Montserrat">
+        <div className="flex flex-col text-left md:w-1/2 md:h-[450px] justify-between font-montserrat">
           <div className="md:block hidden">
             <Image
               src={"/Images/LandingPage/wwa.png"}

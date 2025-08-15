@@ -9,7 +9,7 @@ import MobileNav from "./mobilenav";
 const NavMenu = () => {
   const pathname = usePathname();
   return (
-    <div className="pt-2 px-9 flex lg:gap-6 gap-3 border-gray-50 border-b-2 justify-between items-center m-0 w-full font-Montserrat">
+    <div className="pt-2 px-9 flex lg:gap-6 gap-3 border-gray-50 border-b-2 justify-between items-center m-0 w-full font-montserrat">
       <div className="logo p-0">
         <Link href={"/"}>
           <Image

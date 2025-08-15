@@ -9,7 +9,7 @@ import {
 
 const Footer = () => {
   return (
-    <section className="font-Montserrat pt-6">
+    <section className="font-montserrat pt-6">
       <footer className="flex flex-col px-5">
         <div
           className={`${styles.footerBorder} flex md:flex-row flex-col justify-between lg:gap-2 sm:gap-8 mx-auto pb-8`}

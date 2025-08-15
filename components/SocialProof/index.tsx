@@ -42,7 +42,7 @@ const SocialProof = () => {
           </span>
         </div>
       </div>
-      <section className="font-Montserrat flex flex-col bg-[#FBECFF]">
+      <section className="font-montserrat flex flex-col bg-[#FBECFF]">
         <div className="flex md:flex-row flex-col gap-2 justify-between items-center md:w-11/12 px-4 pt-6 pb-12 mx-auto">
           <p className="md:w-2/5 text-gray-500 text-center ">
             Mightyfin is a regulated financial services provider. We are proudly
