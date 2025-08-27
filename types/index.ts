@@ -4,6 +4,7 @@ import { ForwardRefExoticComponent, RefAttributes } from "react";
 export interface HeroPointType {
   title: string;
   text: string;
+  className?: string;
 }
 
 export type User = {
@@ -37,10 +38,7 @@ export interface PartnershipDataType {
   url: string;
 }
 
-export interface HeroPointType {
-  title: string;
-  text: string;
-}
+
 
 export interface LoanStepDataType {
   step: number;
