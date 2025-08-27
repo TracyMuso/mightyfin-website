@@ -11,7 +11,7 @@ const Whyus = () => {
     >
       <div className="text-content xl:w-1/3 lg:w-1/4 flex flex-col gap-5 text-center md:text-left">
         <h2 className="font-extrabold lg:text-4xl sm:text-2xl text-xl text-white leading-[56px]">
-          Why <span className="text-yellow-300">Mightyfin </span>Stands Out
+          Why <span className="text-secondary">Mightyfin </span>Stands Out
         </h2>
         <p className="text-white py-2">
           In Zambia, SMEs and civil servants often struggle to access loans

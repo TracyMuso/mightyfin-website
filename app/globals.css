@@ -5,14 +5,39 @@
 
 @layer base {
   :root {
-    /* Color Palette */
+    /* Brand Colors */
+    --brand-primary: #5d2b86;
+    --brand-secondary: #fec00f;
+    
+    /* Semantic Colors */
+    --color-primary: var(--brand-primary);
+    --color-secondary: var(--brand-secondary);
+    --color-primary-hover: #4a2269;
+    --color-secondary-hover: #e5ac0e;
+    --color-primary-light: #8b5fbf;
+    --color-secondary-light: #fed65a;
+    
+    /* Text Colors */
+    --text-primary: var(--brand-primary);
+    --text-secondary: var(--brand-secondary);
+    --text-white: #ffffff;
+    --text-gray: #6b7280;
+    --text-dark: #1f2937;
+    
+    /* Background Colors */
+    --bg-primary: var(--brand-primary);
+    --bg-secondary: var(--brand-secondary);
+    --bg-primary-light: #f3f0f7;
+    --bg-secondary-light: #fef9e7;
+    
+    /* Legacy Color Palette (for backward compatibility) */
     /* Purple */
-    --color-purple-primary: #653191;
+    --color-purple-primary: var(--brand-primary);
     --color-purple-100: #edccff;
     --color-purple-200: #a152cc;
     --color-purple-300: #793d99;
     --color-purple-400: #531773;
-    --color-purple-500: #410064;
+    --color-purple-500: var(--brand-primary);
     --color-purple-600: #1b0129;
 
     /* Pink */
@@ -23,8 +48,8 @@
     --color-yellow-50: #fff2cc;
     --color-yellow-100: #ffe599;
     --color-yellow-200: #ffd866;
-    --color-yellow-300: #ffcb33;
-    --color-yellow-400: #ffc10d;
+    --color-yellow-300: var(--brand-secondary);
+    --color-yellow-400: var(--brand-secondary);
 
     /* Gray */
     --color-gray-100: #878787;
@@ -81,6 +106,7 @@
     --rounded-2xl: 1.25rem;
     --rounded-3xl: 1.5rem;
     --rounded-4xl: 1.75rem;
+    --rounded-full: 9999px;
   }
 
   /* Apply font families */
@@ -92,6 +118,47 @@
   }
   .font-inter {
     font-family: var(--font-inter);
+  }
+  
+  /* Brand Color Utilities */
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+  .bg-secondary {
+    background-color: var(--bg-secondary);
+  }
+  .bg-primary-light {
+    background-color: var(--bg-primary-light);
+  }
+  .bg-secondary-light {
+    background-color: var(--bg-secondary-light);
+  }
+  .text-primary {
+    color: var(--text-primary);
+  }
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  .text-white {
+    color: var(--text-white);
+  }
+  .text-gray {
+    color: var(--text-gray);
+  }
+  .text-dark {
+    color: var(--text-dark);
+  }
+  .border-primary {
+    border-color: var(--color-primary);
+  }
+  .border-secondary {
+    border-color: var(--color-secondary);
+  }
+  .hover\:bg-primary-hover:hover {
+    background-color: var(--color-primary-hover);
+  }
+  .hover\:bg-secondary-hover:hover {
+    background-color: var(--color-secondary-hover);
   }
 }
 
@@ -131,6 +198,7 @@ body {
   margin: 0;
   background-color: #fff;
   font-family: var(--font-montserrat);
+  color: var(--brand-primary)
 }
 
 *,
@@ -144,8 +212,8 @@ body {
 } */
 
 .nav-item-active {
-  color: #410064;
-  text-decoration: underline;
+  background-color: var(--bg-primary);
+  color: white;
   font-weight: 700;
 }
 
@@ -195,10 +263,10 @@ body {
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
+  --primary: var(--brand-primary);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-secondary);
+  --secondary-foreground: var(--brand-primary);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
   --accent: oklch(0.97 0 0);

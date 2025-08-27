@@ -4,7 +4,7 @@ import { ProductCardData } from "@/constants/data/landingPage";
 const Products = () => {
   return (
     <section className="flex flex-col gap-5 lg:h-[100vh] items-center bg-[#FBECFF] px-6 py-8">
-      <div className="text-purple-500 flex flex-col items-center pt-5 gap-2 pb-8">
+      <div className="text-primary flex flex-col items-center pt-5 gap-2 pb-8">
         <h1 className="font-extrabold sm:text-3xl lg:text-5xl text-xl">
           Our Products
         </h1>

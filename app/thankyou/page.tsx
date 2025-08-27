@@ -29,7 +29,7 @@ const ThankYou: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center items-center p-4">
-      <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md text-center">
+      <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-md text-center">
         <h1 className="text-2xl font-bold text-gray-800 mb-4">Thank You!</h1>
 
         <p className="text-gray-600 pb-6">
@@ -46,7 +46,7 @@ const ThankYou: React.FC = () => {
         <div className="pt-8">
           <button
             onClick={() => router.push(redirectUrl)}
-            className="px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-400 transition-colors"
+            className="px-4 py-2 bg-secondary text-white rounded-full hover:bg-secondary/90 transition-colors"
           >
             Go Now
           </button>
