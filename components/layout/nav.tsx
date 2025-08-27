@@ -5,7 +5,6 @@ import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import { usePathname } from "next/navigation";
 import { navLinks } from "@/constants/data/navmenu";
-import MobileNav from "./mobilenav";
 
 const NavMenu = () => {
   const pathname = usePathname();
