@@ -11,7 +11,7 @@ const ProductCard = ({
 }: ProductCardType) => {
   return (
     <div
-      className={`${styles.productCard} bg-purple-500 min-w-[300px] hover:bg-purple-400 relative rounded-3xl`}
+      className={`${styles.productCard} bg-primary min-w-[300px] hover:bg-primary/90 relative rounded-3xl`}
     >
       <div className={`${styles.pcBgImg} `} />
       <div className="absolute flex flex-col justif bottom-12 w-full px-5 h-[220px] text-white">
@@ -20,7 +20,7 @@ const ProductCard = ({
         <span className="font-medium py-2">{text}</span>
         <Link href={productDetails}>
           <div className="flex justify-between items-center pt-2">
-            <span className="text-yellow-400 font-bold">See More</span>
+            <span className="text-secondary font-bold">See More</span>
             <Image
               src={"/Icons/yellow-arrow-right.png"}
               alt="yellow-arrow-white"

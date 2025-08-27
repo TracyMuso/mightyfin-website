@@ -13,7 +13,7 @@ export default function ProgressIndicator() {
           {/* Progress Line */}
           <div className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 bg-gray-200">
             <motion.div
-              className="h-full bg-white border-yellow-400 border"
+              className="h-full bg-white border-secondary border"
               initial={{ width: "0%" }}
               animate={{
                 width: `${(currentStepIndex / (checkoutSteps.length - 1)) * 100}%`,
@@ -32,7 +32,7 @@ export default function ProgressIndicator() {
                   onClick={() => goToStep(step.position)}
                   className={`flex sm:size-12 size-6 items-center justify-center rounded-full border-2 ${
                     isCompleted || isCurrent
-                      ? "bg-yellow-500 border border-yellow-400 text-white"
+                      ? "bg-secondary border border-secondary text-white"
                       : "border-gray-200 bg-white text-gray-400"
                   }`}
                   initial={false}

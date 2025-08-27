@@ -28,8 +28,8 @@ export const comingSoonProducts: Product[] = [
       height: 400
     },
     theme: {
-      primaryColor: "bg-purple-500",
-      secondaryColor: "hover:bg-yellow-400"
+      primaryColor: "bg-primary",
+    secondaryColor: "hover:bg-secondary/20"
     }
   }
 ];
@@ -61,8 +61,8 @@ export const products: Product[] = [
       height: 380
     },
     theme: {
-      primaryColor: "bg-purple-500",
-      secondaryColor: "hover:bg-yellow-400"
+      primaryColor: "bg-primary",
+    secondaryColor: "hover:bg-secondary/20"
     }
   },
   {
@@ -92,8 +92,8 @@ export const products: Product[] = [
       height: 340
     },
     theme: {
-      primaryColor: "bg-purple-500",
-      secondaryColor: "hover:bg-yellow-400"
+      primaryColor: "bg-primary",
+    secondaryColor: "hover:bg-secondary/20"
     }
   }
 ];

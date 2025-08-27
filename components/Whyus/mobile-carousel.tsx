@@ -32,7 +32,7 @@ const PointEmblaCarousel: React.FC<PropType> = ({ options }) => {
         <div className="embla__container">
           {WhyUsCardData.map((item, idx) => (
             <div key={idx} className="embla__slide">
-              <div className="embla__slide__number w-[300px] h-[280px] bg-white hover:bg-yellow-300 pt-4 px-6 flex justify-center rounded-3xl">
+              <div className="embla__slide__number w-[300px] h-[280px] bg-white hover:bg-secondary/30 pt-4 px-6 flex justify-center rounded-3xl">
                 <div className="flex flex-col pt-6 gap-3 ">
                   <Image
                     src={item.icon}
@@ -40,7 +40,7 @@ const PointEmblaCarousel: React.FC<PropType> = ({ options }) => {
                     height={40}
                     alt="card-icon"
                   />
-                  <h3 className="font-bold text-purple-500 pt-4">
+                  <h3 className="font-bold text-primary pt-4">
                     {item.title}
                   </h3>
                   <p className="text-[#4E4E4E]">{item.text}</p>

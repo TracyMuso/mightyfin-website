@@ -86,8 +86,8 @@ const ChooseLoan = () => {
       setError(null);
       try {
         const response = await axios.get("/api/loan-products");
-        const products = response.data.data;
-        setLoanProducts(products);
+        const products = response.data.data || [];
+        setLoanProducts(Array.isArray(products) ? products : []);
 
         const defaultType = getValues("loanType");
         const defaultProduct = products.find(
@@ -141,7 +141,7 @@ const ChooseLoan = () => {
   }, [selectedProduct]);
 
   return (
-    <div className="flex flex-col gap-1 px-12 py-8 mx-auto lg:w-[700px] w-full border rounded-md shadow-md">
+    <div className="flex flex-col gap-1 px-12 py-8 mx-auto lg:w-[700px] w-full border rounded-xl shadow-md">
       {loading && <p className="text-gray-500">Loading loan products...</p>}
       {error && <p className="text-red-500">{error}</p>}
 
@@ -149,21 +149,27 @@ const ChooseLoan = () => {
         <fieldset>
           <legend className="font-semibold">Loan Type</legend>
           <div className="flex flex-col items-start gap-3 pt-2">
-            {loanProducts.map((product) => (
-              <div key={product.id} className="flex items-center">
-                <input
-                  id={`loan-${product.id}`}
-                  type="radio"
-                  value={product.name}
-                  {...register("loanType")}
-                  onChange={() => setSelectedProduct(product)}
-                  className="h-4 w-4 text-purple-600 focus:ring-purple-600"
-                />
-                <label htmlFor={`loan-${product.id}`} className="pl-2">
-                  {product.name}
-                </label>
+            {Array.isArray(loanProducts) && loanProducts.length > 0 ? (
+              loanProducts.map((product) => (
+                <div key={product.id} className="flex items-center">
+                  <input
+                    id={`loan-${product.id}`}
+                    type="radio"
+                    value={product.name}
+                    {...register("loanType")}
+                    onChange={() => setSelectedProduct(product)}
+                    className="h-4 w-4 text-primary focus:ring-primary"
+                  />
+                  <label htmlFor={`loan-${product.id}`} className="pl-2">
+                    {product.name}
+                  </label>
+                </div>
+              ))
+            ) : (
+              <div className="text-gray-500">
+                {loading ? "Loading loan types..." : "No loan products available"}
               </div>
-            ))}
+            )}
           </div>
         </fieldset>
 
@@ -229,19 +235,19 @@ const ChooseLoan = () => {
 
       <div className="flex sm:flex-row flex-col gap-2 sm:gap-0 items-start sm:items-center w-full justify-between pb-4">
         <div className="flex flex-row sm:flex-col justify-between w-full sm:w-auto">
-          <span className="text-purple-700 sm:text-[17px] text-sm">
+          <span className="text-primary sm:text-[17px] text-sm">
             Payback amount
           </span>
           <p className="sm:text-[15px] text-[12px]">{totalPayment}</p>
         </div>
         <div className="flex flex-row sm:flex-col justify-between w-full sm:w-auto">
-          <span className="text-purple-700 sm:text-[17px] text-sm">
+          <span className="text-primary sm:text-[17px] text-sm">
             Monthly deduction
           </span>
           <p className="sm:text-[15px] text-[12px]">{monthlyPayment}</p>
         </div>
         <div className="flex flex-row sm:flex-col justify-between w-full sm:w-auto">
-          <span className="text-purple-700 sm:text-[17px] text-sm">
+          <span className="text-primary sm:text-[17px] text-sm">
             Next Payment date
           </span>
           <p className="sm:text-[15px] text-[12px]">{getNextRepaymentDate()}</p>

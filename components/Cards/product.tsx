@@ -36,12 +36,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
         
         <div className="flex sm:flex-row flex-col gap-5 justify-between xl:w-8/12 lg:w-10/12 pl-5 md:w-3/5 sm:w-9/12">
           <button 
-            className={`px-10 py-4 text-center text-sm md:text-[17px] ${product.theme?.primaryColor || "bg-blue-500"} hover:${product.theme?.primaryColor?.replace("bg", "bg-dark") || "bg-blue-600"} rounded-md text-white`}
+            className={`px-10 py-4 text-center text-sm md:text-[17px] bg-primary hover:bg-primary/90 rounded-full text-white`}
           >
             {product.ctaPrimary.text}
           </button>
           <button 
-            className={`px-10 py-4 text-center hover:${product.theme?.secondaryColor || "bg-gray-200"} border rounded-md text-black`}
+            className={`px-10 py-4 text-center hover:bg-secondary/20 border border-secondary rounded-full text-black`}
           >
             {product.ctaSecondary.text}
           </button>

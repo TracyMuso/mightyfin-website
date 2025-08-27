@@ -52,7 +52,7 @@ const Step2 = () => {
       </div>
       {/* references */}
       <div className="py-4">
-        <h2 className="text-center font-semibold text-purple-900">
+        <h2 className="text-center font-semibold text-primary">
           References
         </h2>
         <h3 className="font-semibold py-3">Human Resource Manager</h3>
