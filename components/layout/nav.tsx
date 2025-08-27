@@ -41,22 +41,23 @@ const NavMenu = () => {
 
   {/* Right: Buttons */}
   <div className="flex gap-2">
-    <Button
-      href={"https://app.mightyfinance.co.zm/"}
+     <Link target="_blank" href={"https://app.mightyfinance.co.zm/"}> <Button
+     
       className="bg-primary hover:bg-primary/90 px-5 py-2 rounded-full text-white text-sm lg:text-[16px] font-semibold"
-      target="_blank"
+      
       rel="noopener noreferrer"
     >
       Log in
-    </Button>
-    <Button
-      href={"https://app.mightyfinance.co.zm/"}
+    </Button></Link>
+   
+     <Link target="_blank" href={"https://app.mightyfinance.co.zm/"}> <Button
       className="bg-secondary hover:bg-secondary/90 px-5 py-2 rounded-full text-white text-sm lg:text-[16px] font-semibold"
-      target="_blank"
+      
       rel="noopener noreferrer"
     >
       Apply
-    </Button>
+    </Button></Link>
+   
   </div>
 </div>
 
