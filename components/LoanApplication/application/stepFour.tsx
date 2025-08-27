@@ -56,7 +56,7 @@ const Step4 = () => {
             <label htmlFor="consent" className="font-medium text-gray-700">
               <p className="text-gray-500">
                 By checking this box, you consent to the{" "}
-                <Link className="text-purple-700 text-sm" href={"#"}>
+                <Link className="text-primary text-sm" href={"#"}>
                   terms and conditions
                 </Link>
               </p>

@@ -9,8 +9,8 @@ interface LoanDocumentsProps {
 
 const LoanDocuments: React.FC<LoanDocumentsProps> = ({ onClose }) => {
   return (
-    <div className="sm:px-6 sm:py-8 py-4 px-2 flex flex-col items-center text-center gap-6 border shadow-md rounded-sm w-full max-w-[800px] bg-white">
-      <h4 className="font-bold text-purple-800 md:text-[20px]">
+    <div className="sm:px-6 sm:py-8 py-4 px-2 flex flex-col items-center text-center gap-6 border shadow-md rounded-xl w-full max-w-[800px] bg-white">
+      <h4 className="font-bold text-primary md:text-[20px]">
         Required Documents
       </h4>
       <div className="flex flex-col items-center text-center gap-1 md:text-[17px] text-sm">

@@ -30,7 +30,7 @@ const ProductsPage = () => {
             ))}
           </div>
         </div>
-        <div className="bg-purple-100 py-10 w-full sm:px-10 px-8 flex flex-col items-center">
+        <div className="bg-primary/10 py-10 w-full sm:px-10 px-8 flex flex-col items-center">
           <h2 className="font-semibold md:text-4xl sm:text-2xl text-xl py-6">
             Coming Soon
           </h2>

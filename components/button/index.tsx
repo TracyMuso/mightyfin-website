@@ -59,7 +59,7 @@ export const Button: React.FC<ButtonProps> = ({
   ...props
 }) => {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-2xl font-medium transition-colors duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
+    "inline-flex items-center justify-center rounded-full font-medium transition-colors duration-200 focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed";
 
   const sizeStyles: Record<ButtonSize, string> = {
     sm: "px-3 py-1.5 text-sm",
@@ -68,10 +68,10 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const variantStyles: Record<ButtonVariant, string> = {
-    primary: "bg-purple-600 text-white font-semibold hover:bg-purple-500",
-    secondary: "bg-yellow-400 text-gray-900 hover:bg-yellow-300",
-    tertiary: "bg-white text-gray-900 border border-yellow-400 hover:bg-yellow-200",
-    ghost: "bg-transparent text-purple-600 hover:bg-purple-100",
+    primary: "bg-primary text-white font-semibold hover:bg-primary/90",
+  secondary: "bg-secondary text-gray-900 hover:bg-secondary/90",
+  tertiary: "bg-white text-gray-900 border border-secondary hover:bg-secondary/20",
+  ghost: "bg-transparent text-primary hover:bg-primary/10",
   };
 
   const content = (

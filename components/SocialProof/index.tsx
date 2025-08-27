@@ -6,7 +6,7 @@ import styles from "../../styles/landingPage.module.css";
 const SocialProof = () => {
   return (
     <div className="">
-      <div className="flex md:flex-row flex-col md:py-2 py-12 items-center md:items-start justify-between gap-4 bg-yellow-300 h-[255px] w-full">
+      <div className="flex md:flex-row flex-col md:py-2 py-12 items-center md:items-start justify-between gap-4 bg-secondary h-[255px] w-full">
         <div className={`relative md:w-[650px] w-full`}>
           <div
             className={`${styles.rightText} md:w-[450px] lg:w-[500px] sm:h-[250px]`}
@@ -73,7 +73,7 @@ const SocialProof = () => {
           <div className="p-6 md:w-2/3">
             <h2 className="md:text-3xl sm:text-2xl text-xl sm:leading-[2.5rem] font-extrabold pb-4 sm:text-left text-center">
               Building Better Credit begins now with
-              <span className="text-yellow-300"> Mighty Fin </span>
+              <span className="text-secondary"> Mighty Fin </span>
             </h2>
             <h4 className="md:font-bold md:text-xl pb-8 sm:text-left text-center">
               Financial Solutions at Your Fingertips: Secure Loans, Manage
@@ -82,14 +82,14 @@ const SocialProof = () => {
             <div className="flex md:flex-row flex-col items-center md:gap-3 gap-2">
               <a
                 href={"https://app.mightyfinance.co.zm/"}
-                className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-purple-800 hover:bg-purple-700 rounded-3xl text-white font-bold"
+                className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-primary hover:bg-primary/90 rounded-full text-white font-bold"
                 target="_blank"
               >
                 Apply Now!
               </a>
               <Link
                 href={"/about"}
-                className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-yellow-500 hover:bg-yellow-400 rounded-3xl text-white font-bold"
+                className="px-12 py-4 w-[300px] text-center sm:mx-0 mx-auto bg-secondary hover:bg-secondary/90 rounded-full text-white font-bold"
               >
                 Learn more
               </Link>

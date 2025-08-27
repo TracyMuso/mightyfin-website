@@ -8,7 +8,7 @@ const MiniBlogCard = ({ postType, title, author, image }: MiniBlogDataType) => {
         <p className="text-m">{postType}</p>
         <p className="font-bold">{title}</p>
         <span className="italic font-light text-m">By {author}</span>
-        <button className="px-5 py-3 text-center bg-purple-500 hover:bg-purple-primary rounded-md text-white">
+        <button className="px-5 py-3 text-center bg-primary hover:bg-primary/90 rounded-full text-white">
           View
         </button>
       </div>

@@ -5,11 +5,11 @@ import { FormFieldData } from "@/constants/data/about";
 export const ContactForm = () => {
   return (
     <form
-      className="rounded-md border border-purple-500 pt-5 pb-7 px-6 md:w-1/2 w-full"
+      className="rounded-xl border border-primary pt-5 pb-7 px-6 md:w-1/2 w-full"
       action="https://api.web3forms.com/submit"
       method="POST"
     >
-      <p className="md:text-[17px] text-m py-2 w-full text-purple-600 font-bold">
+      <p className="md:text-[17px] text-m py-2 w-full text-primary font-bold">
         Please fill in all the fields
       </p>
        <input type="hidden" name="access_key"
@@ -46,7 +46,7 @@ export const ContactForm = () => {
             Message
           </label>
           <textarea
-            className="px-4 py-2 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-input shadow-xs transition-[color,box-shadow] outline-none bg-purple-100 w-full h-[100px] rounded-md leading-5 text-sm text-gray-800"
+            className="px-4 py-2 focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border-input shadow-xs transition-[color,box-shadow] outline-none bg-primary/10 w-full h-[100px] rounded-md leading-5 text-sm text-gray-800"
             id="message"
             name="message"
             placeholder="Your message"
@@ -63,7 +63,7 @@ export const ContactForm = () => {
         </label>
       </div>
       <button
-        className="w-full bg-purple-600 text-white px-4 py-3 rounded-md"
+        className="w-full bg-primary text-white px-4 py-3 rounded-full"
         type="submit"
       >
         Send Message

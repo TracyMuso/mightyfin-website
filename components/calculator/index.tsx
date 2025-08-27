@@ -69,7 +69,7 @@ const LoanCalculator: React.FC = () => {
 
   return (
     <div className={`${styles.calculatorContainer} px-10`}>
-      <h3 className="text-purple-700 font-semibold py-5 md:text-3xl text-xl">
+      <h3 className="text-primary font-semibold py-5 md:text-3xl text-xl">
         Pick your loan!
       </h3>
       <div className="flex justify-between gap-5 flex-wrap lg:flex-nowrap">

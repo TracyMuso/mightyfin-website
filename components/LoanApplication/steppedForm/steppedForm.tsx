@@ -191,7 +191,7 @@ const MultiStepForm = ({
         <div className="max-w-[550px] mx-auto">
           <ProgressIndicator />
           <form onSubmit={methods.handleSubmit(submitSteppedForm)}>
-            <h1 className="py-2 font-bold md:text-xl text-purple-900 text-center">
+            <h1 className="py-2 font-bold md:text-xl text-primary text-center">
               {currentStep.title}
             </h1>
             {currentStep.component}

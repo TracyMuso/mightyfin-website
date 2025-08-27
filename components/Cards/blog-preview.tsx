@@ -15,7 +15,7 @@ const BlogPreview = ({ title, content }: BlogDataType) => {
           <h4 className="font-bold">{title}</h4>
           <p className="text-gray-400 leading-7 font-normal">{content}</p>
         </article>
-        <button className="px-10 py-4 text-center bg-purple-500 hover:bg-purple-primary rounded-md text-white">
+        <button className="px-10 py-4 text-center bg-primary hover:bg-primary/90 rounded-full text-white">
           Read more
         </button>
       </div>

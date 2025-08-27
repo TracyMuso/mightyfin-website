@@ -67,7 +67,7 @@ export default function MobileNav() {
 
       {/* Mobile menu */}
       <div
-        className={`absolute top-0 left-0 right-0 bg-purple-100 py-12 z-9998 shadow-md transition-all duration-300 ease-in-out ${
+        className={`absolute top-0 left-0 right-0 bg-primary/10 py-12 z-9998 shadow-md transition-all duration-300 ease-in-out ${
           isOpen
             ? "opacity-100 translate-y-0"
             : "opacity-0 -translate-y-2 pointer-events-none"
@@ -78,7 +78,7 @@ export default function MobileNav() {
             <a
               key={idx}
               href={item.url}
-              className="w-full text-center py-3 text-gray-800 hover:bg-purple-200 border-b border-gray-900"
+              className="w-full text-center py-3 text-gray-800 hover:bg-primary/20 border-b border-gray-900"
               onClick={() => setIsOpen(false)}
             >
               {item.title}
@@ -88,13 +88,13 @@ export default function MobileNav() {
               href="https://app.mightyfinance.co.zm/login"
   target="_blank"
   rel="noopener noreferrer"
-            className="bg-purple-800 hover:bg-purple-700 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
+            className="bg-primary hover:bg-primary/90 px-5 py-2 rounded-full text-white text-sm lg:text-[16px] font-semibold"
           >
             Log in
           </Link>
           <Link
             href={"https://app.mightyfinance.co.zm/"}
-            className="bg-yellow-400 hover:bg-yellow-500 px-5 py-2 rounded-lg text-white text-sm lg:text-[16px] font-semibold"
+            className="bg-secondary hover:bg-secondary/90 px-5 py-2 rounded-full text-white text-sm lg:text-[16px] font-semibold"
             target="_blank"
           >
             Apply
