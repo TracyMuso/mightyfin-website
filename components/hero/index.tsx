@@ -4,7 +4,7 @@ import { CheckCircle } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="md:mx-0 mx-auto lg:flex items-center md:justify-between justify-center bg-yellow-100 lg:bg-white px-6 font-Montserrat">
+    <section className="md:mx-0 mx-auto lg:flex items-center md:justify-between justify-center bg-yellow-100 lg:bg-white px-6 font-montserrat">
       <div className="main-text sm:text-left lg:w-1/2 sm:pb-12 sm:px-12 px-0">
         <article className="py-12 gap-2 md:text-left text-center flex flex-col md:items-start items-center">
           <span className="md:text-3xl sm:text-xl">

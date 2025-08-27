@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
-// import { Poppins, Montserrat } from "next/font/google";
+import { Poppins, Montserrat } from "next/font/google";
 import "./globals.css";
 
-// const poppins = Poppins({
-//   variable: "--font-poppins",
-//   weight: ["400", "500", "600", "700"],
-//   subsets: ["latin"],
-// });
+const poppins = Poppins({
+  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 
-// const montserrat = Montserrat({
-//   variable: "--font-montserrat",
-//   subsets: ["latin"],
-// });
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
+  weight: ["300", "400", "500", "600", "700"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Mighty Finance | Financing Your Goals",
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-      // className={`${poppins.variable} ${montserrat.variable} antialiased`}
+        className={`${poppins.variable} ${montserrat.variable} font-montserrat antialiased`}
       >
         {children}
       </body>
